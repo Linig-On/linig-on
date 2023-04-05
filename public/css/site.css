@@ -19,6 +19,23 @@
 	--default-text: #34475f;
 }
 
+/* SCROLLBAR */
+::-webkit-scrollbar {
+	width: 14px;
+}
+
+::-webkit-scrollbar-thumb {
+	border: 3px solid transparent;
+	background-clip: padding-box;
+	border-radius: 9999px;
+	background-color: var(--primary);
+}
+
+/* SELECTION BACKGROUND */
+::selection {
+	background: rgba(0, 0, 100, 0.15);
+}
+
 * {
 	font-family: "Montserrat", sans-serif;
 	color: var(--default-text);
