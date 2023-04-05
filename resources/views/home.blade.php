@@ -6,7 +6,13 @@
         <div class="hero-text position-absolute top-0 p-5">
             <h1 class="display-2 fw-bolder pt-5 mt-5">Your <span class="text-secondary h1 display-2 fw-bolder">local service <br> workers <br></span> to your rescue</h1>
             <p class="lead">Naga City homeowners trust us in all aspects of home services</p>
-            <a href="/services" role="button"class="btn btn-primary btn-lg text-uppercase fw-bold mt-3 px-5 py-2 text-decoration-none">Avail Service <i class="fa-solid fa-arrow-right-long text-white"></i></a>
+            @guest 
+                @if (Auth::check())
+                <a href="/services" role="button" class="btn btn-primary btn-lg text-uppercase fw-bold mt-3 px-5 py-2 text-decoration-none">Avail Service <i class="fa-solid fa-arrow-right-long text-white"></i></a>
+                @else
+                <a href="/login" role="button" class="btn btn-primary btn-lg text-uppercase fw-bold mt-3 px-5 py-2 text-decoration-none">Avail Service <i class="fa-solid fa-arrow-right-long text-white"></i></a>
+                @endif 
+            @endguest
         </div>
     </div>
 </div>
