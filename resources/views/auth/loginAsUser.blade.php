@@ -6,8 +6,10 @@
         <div class="card-body px-5 py-4">
             <div class="row px-5 py-4 gx-5">
                 <div class="col-md-6">
-                    <h1 class="text-uppercase fw-bolder">Login</h1>
-                    <p>Don't have an account yet? <a href="/register">Sign Up</a></p>
+                    <h1 class="text-uppercase fw-bolder">Login as a user</h1>
+                    <p>Don't have an account yet? 
+                        <a href="/register/user" class="text-decoration-underline fw-bold">Sign Up</a>
+                    </p>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="row mb-3">
@@ -44,7 +46,7 @@
                             </div>
                             <div>
                                 @if (Route::has('password.request'))
-                                <a class="small" href="{{ route('password.request') }}">
+                                <a class="small fw-bold text-decoration-underline" href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}
                                 </a>
                                 @endif
