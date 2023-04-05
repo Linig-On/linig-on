@@ -17,10 +17,11 @@
 
 		<!-- Site Styles -->
 		<link href="{{ asset('css/site.css') }}" rel="stylesheet" />
-		<script defer src="{{ mix('js/app.js') }}"></script>
 
+		<script defer src="{{ mix('js/app.js') }}"></script>
 		<!-- BS-Coreui Script -->
 		<script defer src="{{ asset('vendor/bs-coreui/build/bs-coreui.min.js') }}"></script>
+		<script defer src="{{ asset('js/site.js') }}"></script>
 	</head>
 
 	<body>
@@ -45,6 +46,11 @@
 							<li class="nav-item">
 								<a href="/about" class="nav-link {{ request()->is('about') ? 'active' : '' }}">About Us</a>
 							</li>
+						</ul>
+						<ul class="navbar-nav ms-auto">
+							<li class="nav-item">
+								<input type="search" id="searchField" class="form-control" placeholder="Search..." style="width: 15rem" />
+							</li>
 							@guest @if (Auth::check())
 							<li class="nav-item dropdown">
 								<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -65,11 +71,6 @@
 								</div>
 							</li>
 							@endif @endguest
-						</ul>
-						<ul class="navbar-nav ms-auto">
-							<li class="nav-item">
-								<input type="search" id="searchField" class="form-control" placeholder="Search..." style="width: 15rem" />
-							</li>
 						</ul>
 					</div>
 				</div>
