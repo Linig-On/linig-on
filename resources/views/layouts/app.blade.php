@@ -12,6 +12,9 @@
 		<!-- BS-Coreui Styles -->
 		<link href="{{ asset('vendor/bs-coreui/build/bs-coreui.min.css') }}" rel="stylesheet" />
 
+		<!-- Fontawesome 6 Icons -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 		<!-- Site Styles -->
 		<link href="{{ asset('css/site.css') }}" rel="stylesheet" />
 		<script defer src="{{ mix('js/app.js') }}"></script>
@@ -22,10 +25,10 @@
 
 	<body>
 		<div id="app">
-			<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm py-3">
+			<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
 				<div class="container">
 					<a class="navbar-brand" href="{{ url('/') }}">
-						<img src="{{ asset('/assets/logo.svg') }}" width="150" alt="" />
+						<img src="{{ asset('/svg/logo.svg') }}" width="150" alt="" />
 					</a>
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
 						<span class="navbar-toggler-icon"></span>
@@ -37,10 +40,10 @@
 								<a href="/" class="nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
 							</li>
 							<li class="nav-item">
-								<a href="/shop" class="nav-link {{ request()->is('services') ? 'active' : '' }}">Services</a>
+								<a href="/services" class="nav-link {{ request()->is('services') ? 'active' : '' }}">Services</a>
 							</li>
 							<li class="nav-item">
-								<a href="#" class="nav-link {{ request()->is('aboutus') ? 'active' : '' }}">About Us</a>
+								<a href="/about" class="nav-link {{ request()->is('about') ? 'active' : '' }}">About Us</a>
 							</li>
 							@guest @if (Auth::check())
 							<li class="nav-item dropdown">
@@ -78,7 +81,7 @@
 				<div class="container py-5">
 					<div class="row">
 						<div class="col-2">
-							<img src="{{ asset('assets/logo-compressed.svg') }}" alt="" />
+							<img src="{{ asset('svg/logo-compressed.svg') }}" alt="" />
 							<p class="text-white mt-3">© {{ now()->year }} Linig-On.</p>
 						</div>
 						<div class="col">
@@ -127,7 +130,7 @@
 							<form>
 								<h5 class="text-uppercase text-white mb-4">Subscribe to our newsletter</h5>
 
-								<label class="small fw-bold mt-3 text-white" for="newsletter1">Email address</label>
+								<label class="small fw-bold text-white" for="newsletter1">Email address</label>
 								<div class="d-flex w-100 gap-2">
 									<input id="newsletter1" type="text" class="form-control" placeholder="Email address" />
 									<button class="btn btn-secondary text-uppercase text-white fw-bold w-25" type="button">Send</button>
