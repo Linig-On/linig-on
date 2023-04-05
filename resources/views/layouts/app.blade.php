@@ -9,13 +9,15 @@
 
 		<title>Linig On: An Online Home Service Application</title>
 
-		<!-- Styles -->
-		<link href="{{ asset('css/app.css') }}" rel="stylesheet" />
+		<!-- BS-Coreui Styles -->
+		<link href="{{ asset('vendor/bs-coreui/build/bs-coreui.min.css') }}" rel="stylesheet" />
+
 		<!-- Site Styles -->
 		<link href="{{ asset('css/site.css') }}" rel="stylesheet" />
+		<script defer src="{{ mix('js/app.js') }}"></script>
 
-		<!-- Scripts -->
-		<script src="{{ asset('js/app.js') }}" defer></script>
+		<!-- BS-Coreui Script -->
+		<script defer src="{{ asset('vendor/bs-coreui/build/bs-coreui.min.js') }}"></script>
 	</head>
 
 	<body>
@@ -72,49 +74,50 @@
 
 			<main class="min-vh-100">@yield('content')</main>
 
-			<footer class="">
+			<footer class="bg-primary py-5">
 				<div class="container py-5">
 					<div class="row">
 						<div class="col-2">
 							<img src="{{ asset('assets/logo-compressed.svg') }}" alt="" />
+							<p class="text-white mt-3">© {{ now()->year }} Linig-On.</p>
 						</div>
 						<div class="col">
 							<div class="row">
 								<div class="col">
-									<h5 class="text-uppercase">Sitemap</h5>
+									<h5 class="text-uppercase text-white mb-4">Sitemap</h5>
 									<ul class="nav flex-column">
 										<li class="nav-item mb-2">
-											<a href="#" class="nav-link p-0 text-muted">Home</a>
+											<a href="#" class="nav-link p-0 text-white">Home</a>
 										</li>
 										<li class="nav-item mb-2">
-											<a href="#" class="nav-link p-0 text-muted">Services</a>
+											<a href="#" class="nav-link p-0 text-white">Services</a>
 										</li>
 										<li class="nav-item mb-2">
-											<a href="#" class="nav-link p-0 text-muted">About Us</a>
+											<a href="#" class="nav-link p-0 text-white">About Us</a>
 										</li>
 									</ul>
 								</div>
 								<div class="col">
-									<h5 class="text-uppercase">Resources</h5>
+									<h5 class="text-uppercase text-white mb-4">Resources</h5>
 									<ul class="nav flex-column">
 										<li class="nav-item mb-2">
-											<a href="#" class="nav-link p-0 text-muted">Figma</a>
+											<a href="#" class="nav-link p-0 text-white">Figma</a>
 										</li>
-										<li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Unsplash</a></li>
-										<li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">iStock</a></li>
+										<li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Unsplash</a></li>
+										<li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">iStock</a></li>
 									</ul>
 								</div>
 								<div class="col">
-									<h5 class="text-uppercase">Help</h5>
+									<h5 class="text-uppercase text-white mb-4">Help</h5>
 									<ul class="nav flex-column">
 										<li class="nav-item mb-2">
-											<a href="#" class="nav-link p-0 text-muted">Getting Started</a>
+											<a href="#" class="nav-link p-0 text-white">Getting Started</a>
 										</li>
 										<li class="nav-item mb-2">
-											<a href="#" class="nav-link p-0 text-muted">FAQ</a>
+											<a href="#" class="nav-link p-0 text-white">FAQ</a>
 										</li>
 										<li class="nav-item mb-2">
-											<a href="#" class="nav-link p-0 text-muted">Report Problems</a>
+											<a href="#" class="nav-link p-0 text-white">Report Problems</a>
 										</li>
 									</ul>
 								</div>
@@ -122,17 +125,15 @@
 						</div>
 						<div class="col">
 							<form>
-								<h5 class="text-uppercase">Subscribe to our newsletter</h5>
+								<h5 class="text-uppercase text-white mb-4">Subscribe to our newsletter</h5>
+
+								<label class="small fw-bold mt-3 text-white" for="newsletter1">Email address</label>
 								<div class="d-flex w-100 gap-2">
-									<label for="newsletter1" class="visually-hidden">Email address</label>
 									<input id="newsletter1" type="text" class="form-control" placeholder="Email address" />
-									<button class="btn btn-primary" type="button">Subscribe</button>
+									<button class="btn btn-secondary text-uppercase text-white fw-bold w-25" type="button">Send</button>
 								</div>
 							</form>
 						</div>
-					</div>
-					<div class="d-flex justify-content-between pt-4 my-4 border-top">
-						<p>© {{ now()->year }} Linig-On. All rights reserved.</p>
 					</div>
 				</div>
 			</footer>
