@@ -1,10 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url(typography.css);
+@import url(animation.css);
+@import url(utils.css);
+@import url(bootstrap-override.css);
+@import url(components.css);
 
 :root {
 	/* main */
 	--primary: #153c6b;
 	--secondary: #06bdea;
-
+	
 	/* other */
 	--white: #ffffff;
 	--off-white: #fbf5ea;
@@ -13,10 +17,16 @@
 	--success: #59dd8e;
 	--inputfield-outline-clr: #d9d9d9;
 	--box-shadow-clr: rgba(0, 1, 83, 30%);
-
+	
 	/* text */
 	--heading: #0e1c2e;
 	--default-text: #34475f;
+}
+
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 /* SCROLLBAR */
@@ -34,83 +44,4 @@
 /* SELECTION BACKGROUND */
 ::selection {
 	background: rgba(0, 0, 100, 0.15);
-}
-
-* {
-	font-family: "Montserrat", sans-serif;
-	color: var(--default-text);
-	line-height: 1.5;
-}
-
-*,
-.nav-link,
-.navbar-brand,
-a,
-b,
-i,
-li {
-	font-size: 15px;
-}
-
-small {
-	font-size: 13px;
-}
-
-.fw-bolder {
-	font-weight: 800 !important;
-}
-
-.navbar-nav .nav-link:hover {
-	text-decoration: none;
-}
-
-.navbar-nav .nav-link {
-	position: relative;
-}
-.navbar-nav .nav-link.active span {
-	display: block;
-    width: 120%;
-    height: 5px;
-    background: var(--primary);
-    position: absolute;
-    top: 160%;
-    border-radius: 5px;
-    z-index: 1000;
-    left: -0.5rem;
-	animation: fadeInNavLinkActive 300ms forwards ease;
-}
-
-@keyframes fadeInNavLinkActive {
-	from {
-		width: 0;
-	}
-	to {
-		width: 120%;
-	}
-}
-
-.spacer {
-	padding-top: 5rem;
-	padding-bottom: 5rem;
-}
-
-.fade-in {
-	animation: fadeInElement 500ms forwards ease-in;
-}
-
-@keyframes fadeInElement {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 100%;
-	}
-}
-
-.hero {
-	background: url("../svg/hero.svg") no-repeat;
-    height: 100vh;
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
 }

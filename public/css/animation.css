@@ -1,0 +1,21 @@
+@keyframes fadeInNavLinkActive {
+	from {
+		width: 0;
+	}
+	to {
+		width: 120%;
+	}
+}
+
+@keyframes fadeInElement {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 100%;
+	}
+}
+
+.fade-in {
+	animation: fadeInElement 500ms forwards ease-in;
+}

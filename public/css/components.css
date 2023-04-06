@@ -1,0 +1,17 @@
+.hero {
+	background: url("../svg/hero.svg") no-repeat;
+    height: 100vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.form-control-icon-end {
+	position: relative;
+}
+
+.form-control-icon-end i {
+	position: absolute;
+	top: 0.65rem;
+	right: 1rem;
+}
