@@ -9,6 +9,9 @@
 
 		<title>Linig On: An Online Home Service Application</title>
 
+		<!-- Favicon -->
+		<link rel="icon" type="image/x-icon" href="{{ asset('favicon/favicon.ico') }}">
+
 		<!-- BS-Coreui Styles -->
 		<link href="{{ asset('vendor/bs-coreui/build/bs-coreui.min.css') }}" rel="stylesheet" />
 
@@ -49,7 +52,10 @@
 						</ul>
 						<ul class="navbar-nav ms-auto">
 							<li class="nav-item">
-								<input type="search" id="searchField" class="form-control" placeholder="Search..." style="width: 15rem" />
+								<div class="form-control-icon-end">
+									<input type="search" id="searchField" class="form-control" placeholder="Search..." style="width: 15rem" />
+									<i class="fa fa-solid fa-search text-muted"></i>
+								</div>
 							</li>
 							@guest @if (Auth::check())
 							<li class="nav-item dropdown">
