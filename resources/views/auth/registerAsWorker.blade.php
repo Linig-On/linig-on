@@ -13,13 +13,13 @@
                             <div class="col-1">
                                 <i class="fa-solid fa-user h3"></i>
                             </div>
-                            <a href="/register/individual" role="button" class="w-100 btn btn-primary btn-lg text-uppercase text-decoration-none fw-bold">Individual</a>
+                            <a href="/register/worker/individual" role="button" class="w-100 btn btn-primary btn-lg text-uppercase text-decoration-none fw-bold">Individual</a>
                         </div>
                         <div class="d-flex align-items-center gap-3 col-9">
                             <div class="col-1">
                                 <i class="fa-solid fa-users h3"></i>
                             </div>
-                            <a href="/register/team" role="button" class="w-100 btn btn-secondary btn-lg text-uppercase text-decoration-none fw-bold">Team</a>
+                            <a href="/register/worker/team" role="button" class="w-100 btn btn-secondary btn-lg text-uppercase text-decoration-none fw-bold">Team</a>
                         </div>
                     </div>
                 </div>

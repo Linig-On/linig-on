@@ -12,6 +12,7 @@
                                 <div class="d-flex flex-column gap-3">
                                     <img class="img-fluid" src="{{ asset('svg/upload-photo.svg') }}" alt="">
                                     <button class="btn btn-primary w-100 fw-bold text-uppercase">Upload photo</button>
+                                    <button class="btn btn-secondary w-100 fw-bold text-uppercase">Upload resume</button>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -40,7 +41,7 @@
                 </div>
                 <div class="col-md-5 px-3 py-4">
                     <div class="px-3 py-4">
-                        <h1 class="text-uppercase fw-bolder">Register as a user</h1>
+                        <h1 class="text-uppercase fw-bolder">Register as a solo worker</h1>
                         <br />
                         <form action="" class="d-flex flex-column gap-3">
                             <div class="row">

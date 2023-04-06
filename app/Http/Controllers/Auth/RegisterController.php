@@ -51,6 +51,11 @@ class RegisterController extends Controller
         return view('auth.registerAsWorker');
     }
 
+    public function registerAsWorkerIndividual()
+    {
+        return view('auth.registerAsWorkerInd');
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *

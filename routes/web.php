@@ -25,6 +25,8 @@ Route::get('/about', [HomeController::class, 'aboutUs'])->name('aboutUs');
 
 Route::get('/register/user', [RegisterController::class, 'registerAsUser'])->name('registerAsUser');
 Route::get('/register/worker', [RegisterController::class, 'registerAsWorker'])->name('registerAsWorker');
+Route::get('/register/worker/individual', [RegisterController::class, 'registerAsWorkerIndividual'])->name('registerAsWorkerIndividual');
+Route::get('/register/worker/team', [RegisterController::class, 'registerAsWorkerTeam'])->name('registerAsWorkerTeam');
 
 Route::get('/login/user', [LoginController::class, 'loginAsUser'])->name('loginAsUser');
 Route::get('/login/worker', [LoginController::class, 'loginAsWorker'])->name('loginAsWorker');
