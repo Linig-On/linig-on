@@ -1,7 +1,6 @@
 @extends('layouts.app') 
 @section('content')
 <div class="hero position-relative">
-    <!-- <img src="{{ asset('svg/hero.svg') }}" alt="" width="100%"> -->
     <div class="container fade-in">
         <div class="hero-text position-absolute top-0 p-5">
             <h1 class="display-2 fw-bolder pt-5 mt-5">Your <span class="text-secondary h1 display-2 fw-bolder">local service <br> workers <br></span> to your rescue</h1>
