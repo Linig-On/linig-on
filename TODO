@@ -1,4 +1,11 @@
+--- TODO ---
 [] make the website responsive
-[X] add an icon to searchbar
 [] database design
 [] implement private module
+[] finish register worker
+[] fix pagination: make it so that everything is not hardcoded. extend it to jquery
+
+--- DONE ---
+[X] add an icon to searchbar
+[X] make separate folders for login and register views
+[X] add breadcrumbs (note: it's scuffed)

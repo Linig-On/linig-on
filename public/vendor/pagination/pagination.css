@@ -1,0 +1,46 @@
+.hidden {
+	display: none;
+}
+
+.pagination-container {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	position: relative;
+	bottom: 0;
+	padding: 1rem 0;
+	justify-content: center;
+}
+
+.pagination-number,
+.pagination-button {
+	font-size: 1.1rem;
+	background-color: transparent;
+	border: none;
+	margin: 0.25rem 0.25rem;
+	cursor: pointer;
+	height: 2.5rem;
+	width: 2.5rem;
+	border-radius: 0.2rem;
+}
+
+.pagination-button:not(#prevButton),
+.pagination-button:not(#nextButton) {
+	width: auto;
+}
+
+.pagination-number:hover,
+.pagination-button:not(.disabled):hover {
+	background: #fff;
+}
+
+.pagination-number.active {
+	color: #fff;
+	background: var(--secondary);
+}
+
+ul#paginatedLists {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
