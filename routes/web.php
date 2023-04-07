@@ -28,6 +28,6 @@ Route::get('/register/worker', [RegisterController::class, 'registerAsWorker'])-
 Route::get('/register/worker/individual', [RegisterController::class, 'registerAsWorkerIndividual'])->name('registerAsWorkerIndividual');
 Route::get('/register/worker/team', [RegisterController::class, 'registerAsWorkerTeam'])->name('registerAsWorkerTeam');
 
+Route::get('/login/', [LoginController::class, 'index'])->name('login');
 Route::get('/login/user', [LoginController::class, 'loginAsUser'])->name('loginAsUser');
 Route::get('/login/worker', [LoginController::class, 'loginAsWorker'])->name('loginAsWorker');
-

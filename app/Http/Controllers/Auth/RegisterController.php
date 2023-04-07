@@ -43,17 +43,22 @@ class RegisterController extends Controller
 
     public function registerAsUser()
     {
-        return view('auth.registerAsUser');
+        return view('auth.register.registerAsUser');
     }
 
     public function registerAsWorker()
     {
-        return view('auth.registerAsWorker');
+        return view('auth.register.registerAsWorker');
     }
 
     public function registerAsWorkerIndividual()
     {
-        return view('auth.registerAsWorkerInd');
+        return view('auth.register.registerAsWorkerInd');
+    }
+
+    public function registerAsWorkerTeam()
+    {
+        return view('auth.register.registerAsWorkerTeam');
     }
 
     /**
