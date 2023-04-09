@@ -6,8 +6,8 @@
 				Your
 				<span class="text-secondary h1 display-2 fw-bolder"
 					>local service <br />
-					workers <br
-				/></span>
+					workers <br />
+				</span>
 				to your rescue
 			</h1>
 			<p class="lead">Naga City homeowners trust us in all aspects of home services</p>
@@ -23,7 +23,7 @@
 <div class="container fade-in">
 	<div class="row">
 		<div class="col-md-6">
-			<img src="{{ asset('svg/illust/undraw-login.svg') }}" alt="" width="500" />
+			<img src="{{ asset('svg/illust/undraw-cleaning.svg') }}" alt="" width="500" />
 		</div>
 		<div class="col-md-6">
 			<h2 class="fw-bolder pb-4">LINIG-On! An Online Home Service Application</h2>

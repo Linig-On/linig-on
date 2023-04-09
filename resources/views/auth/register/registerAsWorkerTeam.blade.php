@@ -130,10 +130,10 @@
 </div>
 <div class="spacer"></div>
 
+@endsection @section('javascript')
 <!-- Pagination Script -->
 <script src="{{ asset('vendor/pagination/pagination.js') }}"></script>
 
-@endsection @section('javascript')
 <script type="text/javascript">
 	$("#noOfWorker").change(function () {
 		setTimeout(() => {

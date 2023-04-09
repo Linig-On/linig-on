@@ -23,7 +23,7 @@
 				</div>
 				<div class="col-md-6 d-flex justify-content-center flex-column gap-3">
 					<div class="text-center">
-						<img src="{{ asset('svg/illust/undraw-login.svg') }}" alt="" width="500" />
+						<img src="{{ asset('svg/illust/undraw-cleaning.svg') }}" alt="" width="500" />
 					</div>
 					<h5 class="text-uppercase fw-bolder">LINIG-ON, YOUR TRUSTED HOME SERVICE APPLICATION</h5>
 					<p>Our team provides janitorial services that is easily available within your fingertips, forget the hassle of doing everything by yourself. Sign up now!</p>
