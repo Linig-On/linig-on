@@ -1,6 +1,6 @@
 --- TODO ---
     PRIORITY:
-        [] database design
+        [] add bookings table to db
         [] fix pagination: make it so that everything is not hardcoded. extend it to jquery
     BACKBURNER:
         [] make the website responsive
@@ -13,3 +13,4 @@
 [X] add an icon to searchbar
 [X] make separate folders for login and register views
 [X] add breadcrumbs (note: it's scuffed)
+[X] database design
