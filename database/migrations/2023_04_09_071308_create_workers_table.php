@@ -19,6 +19,10 @@ class CreateWorkersTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->string('resume_url');
             $table->integer('team_id')->nullable();
+            $table->boolean('is_approved')->default(false);
+            $table->string('short_bio');
+            $table->string('service_info');
+            $table->string('nickname');
             $table->timestamps();
         });
     }
