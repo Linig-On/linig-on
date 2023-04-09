@@ -1,6 +1,6 @@
 @extends('layouts.app') @section('content')
 <div class="container">
-	<nav style="--bs-breadcrumb-divider: url('{{ asset('svg/breadcrumb-divider.svg') }}');" aria-label="breadcrumb">
+	<nav style="--bs-breadcrumb-divider: url('{{ asset('svg/icon/breadcrumb-divider.svg') }}');" aria-label="breadcrumb">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
 				<a href="/login" class="fw-bolder">Login</a>
@@ -21,7 +21,7 @@
 						<div class="row gap-3">
 							<div class="col-12">
 								<div class="d-flex flex-column gap-3">
-									<img class="img-fluid" src="{{ asset('svg/upload-photo.svg') }}" alt="" />
+									<img class="img-fluid" src="{{ asset('svg/illust/upload-photo.svg') }}" alt="" />
 									<button class="btn btn-primary w-100 fw-bold text-uppercase">Upload photo</button>
 									<button class="btn btn-secondary w-100 fw-bold text-uppercase">Upload resume</button>
 								</div>
@@ -90,7 +90,7 @@
 				</div>
 
 				<div class="position-relative col-md-5 p-0" style="background-color: #3fd4f8">
-					<img class="bottom-0 end-0 position-absolute" src="{{ asset('svg/undraw-register.svg') }}" alt="" width="95%" />
+					<img class="bottom-0 end-0 position-absolute" src="{{ asset('svg/illust/undraw-register.svg') }}" alt="" width="95%" />
 				</div>
 			</div>
 		</div>
@@ -118,7 +118,7 @@
 	<div id="noRegFormsState">
 		<div class="d-flex justify-content-center py-5">
 			<div class="d-flex flex-column text-center">
-				<img src="{{ asset('svg/no-data.svg') }}" alt="" width="400" />
+				<img src="{{ asset('svg/illust/no-data.svg') }}" alt="" width="400" />
 				<div>
 					<h4 class="fw-bolder text-uppercase mt-5">Register your team!</h4>
 					<p class="p-0">Specify the number of workers that will be on your team to get started.</p>

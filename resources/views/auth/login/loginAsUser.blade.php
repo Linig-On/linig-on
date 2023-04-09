@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <nav style="--bs-breadcrumb-divider: url('{{ asset('svg/breadcrumb-divider.svg') }}');" aria-label="breadcrumb">
+    <nav style="--bs-breadcrumb-divider: url('{{ asset('svg/icon/breadcrumb-divider.svg') }}');" aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/login" class="fw-bolder">Login</a></li>
             <li class="breadcrumb-item active" aria-current="page">As User</li>
@@ -68,7 +68,7 @@
                 </div>
                 <div class="col-md-6 d-flex justify-content-center flex-column gap-3">
                     <div class="text-center">
-                        <img src="{{ asset('svg/undraw-login.svg') }}" alt="" width="500">
+                        <img src="{{ asset('svg/illust/undraw-login.svg') }}" alt="" width="500">
                     </div>
                     <h5 class="text-uppercase fw-bolder">LINIG-ON, YOUR TRUSTED HOME SERVICE APPLICATION</h5>
                     <p>Our team provides janitorial services that is easily available within your fingertips, forget the hassle of doing everything by yourself. Sign up now! </p>

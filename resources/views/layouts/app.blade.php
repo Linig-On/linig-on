@@ -93,7 +93,7 @@
 				<div class="container py-5">
 					<div class="row">
 						<div class="col-2">
-							<img src="{{ asset('svg/logo-compressed.svg') }}" alt="" />
+							<img src="{{ asset('svg/site/logo-compressed.svg') }}" alt="" />
 							<p class="text-white mt-3">© {{ now()->year }} Linig-On.</p>
 						</div>
 						<div class="col">

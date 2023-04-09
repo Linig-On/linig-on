@@ -60,7 +60,7 @@
 						<h5 class="fw-bolder">Phone Number</h5>
 						<p>Contact us through this phone number and our telephone hotline.</p>
 						<div class="d-flex align-items-center gap-2">
-							<img src="{{ asset('svg/phone.svg') }}" alt="" />
+							<img src="{{ asset('svg/icon/phone.svg') }}" alt="" />
 							<p class="my-0">0970 322 4551 / 881-0321</p>
 						</div>
 					</section>
@@ -70,15 +70,15 @@
 						<div class="d-flex align-items-center gap-2">
 							<!-- Facebook -->
 							<a href="#">
-								<img src="{{ asset('svg/facebook.svg') }}" alt="" />
+								<img src="{{ asset('svg/icon/facebook.svg') }}" alt="" />
 							</a>
 							<!-- Messenger -->
 							<a href="#">
-								<img src="{{ asset('svg/messenger.svg') }}" alt="" />
+								<img src="{{ asset('svg/icon/messenger.svg') }}" alt="" />
 							</a>
 							<!-- Instagram -->
 							<a href="#">
-								<img src="{{ asset('svg/instagram.svg') }}" alt="" />
+								<img src="{{ asset('svg/icon/instagram.svg') }}" alt="" />
 							</a>
 						</div>
 					</section>
@@ -135,7 +135,7 @@
 	<div class="container w-50">
 		<div class="d-flex align-items-center gap-2">
 			<h1 class="fw-bolder my-0">MEET THE DEVELOPERS OF</h1>
-			<img src="{{ asset('svg/logo.svg') }}" alt="" width="200" />
+			<img src="{{ asset('svg/site/logo.svg') }}" alt="" width="200" />
 		</div>
 		<div class="row">
 			<div class="col-md-4">
@@ -146,15 +146,15 @@
 				<div class="d-flex align-items-center gap-2 mt-3">
 					<!-- Facebook -->
 					<a href="#">
-						<img src="{{ asset('svg/facebook.svg') }}" alt="" />
+						<img src="{{ asset('svg/icon/facebook.svg') }}" alt="" />
 					</a>
 					<!-- Messenger -->
 					<a href="#">
-						<img src="{{ asset('svg/messenger.svg') }}" alt="" />
+						<img src="{{ asset('svg/icon/messenger.svg') }}" alt="" />
 					</a>
 					<!-- Instagram -->
 					<a href="#">
-						<img src="{{ asset('svg/instagram.svg') }}" alt="" />
+						<img src="{{ asset('svg/icon/instagram.svg') }}" alt="" />
 					</a>
 				</div>
 			</div>
@@ -166,15 +166,15 @@
 				<div class="d-flex align-items-center gap-2 mt-3">
 					<!-- Facebook -->
 					<a href="#">
-						<img src="{{ asset('svg/facebook.svg') }}" alt="" />
+						<img src="{{ asset('svg/icon/facebook.svg') }}" alt="" />
 					</a>
 					<!-- Messenger -->
 					<a href="#">
-						<img src="{{ asset('svg/messenger.svg') }}" alt="" />
+						<img src="{{ asset('svg/icon/messenger.svg') }}" alt="" />
 					</a>
 					<!-- Instagram -->
 					<a href="#">
-						<img src="{{ asset('svg/instagram.svg') }}" alt="" />
+						<img src="{{ asset('svg/icon/instagram.svg') }}" alt="" />
 					</a>
 				</div>
 			</div>
@@ -186,15 +186,15 @@
 				<div class="d-flex align-items-center gap-2 mt-3">
 					<!-- Facebook -->
 					<a href="#">
-						<img src="{{ asset('svg/facebook.svg') }}" alt="" />
+						<img src="{{ asset('svg/icon/facebook.svg') }}" alt="" />
 					</a>
 					<!-- Messenger -->
 					<a href="#">
-						<img src="{{ asset('svg/messenger.svg') }}" alt="" />
+						<img src="{{ asset('svg/icon/messenger.svg') }}" alt="" />
 					</a>
 					<!-- Instagram -->
 					<a href="#">
-						<img src="{{ asset('svg/instagram.svg') }}" alt="" />
+						<img src="{{ asset('svg/icon/instagram.svg') }}" alt="" />
 					</a>
 				</div>
 			</div>
