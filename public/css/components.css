@@ -15,3 +15,27 @@
 	top: 0.65rem;
 	right: 1rem;
 }
+
+.form-control-icon-start {
+	position: relative;
+}
+
+.form-control-icon-start i {
+	position: absolute;
+	top: 0.65rem;
+	left: 1rem;
+}
+
+.dropdown-group {
+	position: relative;
+}
+
+.dropdown-menu {
+	margin-top: 1rem;
+}
+
+.prev-img {
+	width: 100%;
+	height: 150px;
+	object-fit: cover;
+}

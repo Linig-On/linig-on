@@ -18,3 +18,23 @@
 	left: -0.5rem;
 	animation: fadeInNavLinkActive 300ms forwards ease;
 }
+
+.dropdown-menu {
+	width: 100%;
+	box-shadow: 0 3px 5px 0 rgba(21, 60, 107, 0.15);
+	animation: fadeInElement 300ms forwards ease;
+}
+
+.dropdown-menu .dropdown-item {
+	font-size: small;
+	text-decoration: none;
+	transition: font-weight 200ms ease;
+}
+
+.dropdown-menu .dropdown-item:hover {
+	font-weight: bold;
+}
+
+.cursor-pointer:hover {
+	cursor: pointer;
+}
