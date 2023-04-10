@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('contact_number', 11);
             $table->string('address');
-            $table->string('image_url');
+            $table->string('image_url')->nullable();
             $table->char('user_type', 3)->default('USR');
             $table->rememberToken();
             $table->timestamps();

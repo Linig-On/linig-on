@@ -24,6 +24,8 @@ Route::get('/services', [ServiceController::class, 'index'])->name('services');
 Route::get('/about', [HomeController::class, 'aboutUs'])->name('aboutUs');
 
 Route::get('/register/user', [RegisterController::class, 'registerAsUser'])->name('registerAsUser');
+Route::post('/register/user', [RegisterController::class, 'registerUser'])->name('registerUser');
+
 Route::get('/register/worker', [RegisterController::class, 'registerAsWorker'])->name('registerAsWorker');
 Route::get('/register/worker/individual', [RegisterController::class, 'registerAsWorkerIndividual'])->name('registerAsWorkerIndividual');
 Route::get('/register/worker/team', [RegisterController::class, 'registerAsWorkerTeam'])->name('registerAsWorkerTeam');
