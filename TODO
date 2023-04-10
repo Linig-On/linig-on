@@ -1,5 +1,6 @@
 --- TODO ---
     PRIORITY:
+        [] make validations to view on register
         [] add bookings table to db
         [] continue modifying migrations
         [] fix pagination: make it so that everything is not hardcoded. extend it to jquery
@@ -16,3 +17,4 @@
 [X] make separate folders for login and register views
 [X] add breadcrumbs (note: it's scuffed)
 [X] database design
+[X] implement authentication (to register user and login as user)
