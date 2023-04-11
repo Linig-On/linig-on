@@ -58,21 +58,26 @@ class RegisterController extends Controller
      */
     public function registerUser(Request $request)
     {
-        // Validate the incoming request data
         try {
-            // get the filename of image uploaded
-            $filename = $request->img->getClientOriginalName();
+            $filename = null;
 
-            // store in public folder
-            $request->img->move(public_path('img/profile'), $filename);
+            if ($request->img != null) {
+                // get the filename of image uploaded
+                $filename = $request->img->getClientOriginalName();
 
+                // store in public folder
+                $request->img->move(public_path('img/profile'), $filename);
+            }
+
+
+            // Validate the incoming request data
             $validatedData = $request->validate([
                 'first_name' => 'required',
                 'last_name' => 'required',
-                'gender' => 'required',
+                'gender' => 'required|max:1',
                 'email' => 'required',
-                'password' => 'required',
-                'contact_number' => 'required',
+                'password' => 'required|min:8',
+                'contact_number' => 'required|min:11',
                 'address' => 'required',
             ]);
 

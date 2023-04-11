@@ -35,6 +35,11 @@
 	font-weight: bold;
 }
 
+.dropdown-menu .dropdown-item:active {
+	background-color: transparent;
+	color: inherit;
+}
+
 .cursor-pointer:hover {
 	cursor: pointer;
 }

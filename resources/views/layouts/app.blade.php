@@ -36,7 +36,7 @@
 		<div id="app">
 			<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
 				<div class="container">
-					<a class="navbar-brand" href="{{ url('/') }}">
+					<a class="navbar-brand" href="/">
 						<img src="{{ asset('/svg/site/logo.svg') }}" width="150" alt="" />
 					</a>
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -46,13 +46,13 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav ms-auto gap-5">
 							<li class="nav-item">
-								<a href="/" class="nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
+								<a href="/" class="nav-link fw-bold {{ request()->is('/') ? 'active' : '' }}">Home</a>
 							</li>
 							<li class="nav-item">
-								<a href="/services" class="nav-link {{ request()->is('services') ? 'active' : '' }}">Services</a>
+								<a href="/services" class="nav-link fw-bold {{ request()->is('services') ? 'active' : '' }}">Services</a>
 							</li>
 							<li class="nav-item">
-								<a href="/about" class="nav-link {{ request()->is('about') ? 'active' : '' }}">About Us</a>
+								<a href="/about" class="nav-link fw-bold {{ request()->is('about') ? 'active' : '' }}">About Us</a>
 							</li>
 						</ul>
 						<ul class="navbar-nav ms-auto d-flex align-items-center gap-3">
@@ -63,7 +63,10 @@
 								</div>
 							</li>
 							@if (Auth::check())
-							<li class="nav-item dropdown">
+							<li class="nav-item dropdown d-flex align-items-center gap-3">
+								<a role="button" href="#">
+									<i class="fa-regular fa-bell h5 text-primary mt-2"></i>
+								</a>
 								<a id="navbarDropdown" class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									<div class="avatar">
 										@if (Auth::user()->image_url != null)
@@ -73,10 +76,25 @@
 										@endif
 									</div>
 								</a>
-								<div class="dropdown-menu dropdown-menu-end mt-3" aria-labelledby="navbarDropdown">
+								<div class="dropdown-menu fade-in dropdown-menu-end mt-3 px-0 py-3" aria-labelledby="navbarDropdown" style="width: 20rem">
+									<div class="dropdown-header py-2">
+										<small class="fw-bolder text-uppercase">Activity</small>
+									</div>
+									<a class="dropdown-item d-flex align-items-center gap-3" href="/services">
+										<i class="fa fa-solid fa-book ps-3"></i>
+										<small>Book a Service</small>
+									</a>
+									<a class="dropdown-item d-flex align-items-center gap-3" href="">
+										<i class="fa fa-solid fa-bookmark ps-3"></i>
+										<small>My Bookmarks</small>
+									</a>
+									<div class="dropdown-divider"></div>
+									<div class="dropdown-header py-2">
+										<small class="fw-bolder text-uppercase">Accounts</small>
+									</div>
 									<a class="dropdown-item d-flex align-items-center gap-3" href="{{ route('logout') }}" onclick="event.preventDefault(); $('#logout-form').submit();">
-										<i class="fa fa-solid fa-power-off"></i>
-										<span>Logout</span>
+										<i class="fa fa-solid fa-power-off ps-3"></i>
+										<small>Logout</small>
 									</a>
 									<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
 								</div>
@@ -102,13 +120,13 @@
 									<h5 class="text-uppercase text-white mb-4">Sitemap</h5>
 									<ul class="nav flex-column">
 										<li class="nav-item mb-2">
-											<a href="#" class="nav-link p-0 text-white">Home</a>
+											<a href="/" class="nav-link p-0 text-white">Home</a>
 										</li>
 										<li class="nav-item mb-2">
-											<a href="#" class="nav-link p-0 text-white">Services</a>
+											<a href="/services" class="nav-link p-0 text-white">Services</a>
 										</li>
 										<li class="nav-item mb-2">
-											<a href="#" class="nav-link p-0 text-white">About Us</a>
+											<a href="/about" class="nav-link p-0 text-white">About Us</a>
 										</li>
 									</ul>
 								</div>
@@ -116,23 +134,23 @@
 									<h5 class="text-uppercase text-white mb-4">Resources</h5>
 									<ul class="nav flex-column">
 										<li class="nav-item mb-2">
-											<a href="#" class="nav-link p-0 text-white">Figma</a>
+											<a href="https://www.figma.com/" class="nav-link p-0 text-white">Figma</a>
 										</li>
-										<li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Unsplash</a></li>
-										<li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">iStock</a></li>
+										<li class="nav-item mb-2"><a href="https://unsplash.com/" class="nav-link p-0 text-white">Unsplash</a></li>
+										<li class="nav-item mb-2"><a href="https://www.istockphoto.com/" class="nav-link p-0 text-white">iStock</a></li>
 									</ul>
 								</div>
 								<div class="col">
 									<h5 class="text-uppercase text-white mb-4">Help</h5>
 									<ul class="nav flex-column">
 										<li class="nav-item mb-2">
-											<a href="#" class="nav-link p-0 text-white">Getting Started</a>
+											<a href="/" class="nav-link p-0 text-white">Getting Started</a>
 										</li>
 										<li class="nav-item mb-2">
-											<a href="#" class="nav-link p-0 text-white">FAQ</a>
+											<a href="/about" class="nav-link p-0 text-white">FAQ</a>
 										</li>
 										<li class="nav-item mb-2">
-											<a href="#" class="nav-link p-0 text-white">Report Problems</a>
+											<a href="https://github.com/Linig-On/linig-on/issues" class="nav-link p-0 text-white">Report Problems</a>
 										</li>
 									</ul>
 								</div>

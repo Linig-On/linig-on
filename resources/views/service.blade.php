@@ -1,5 +1,5 @@
 @extends('layouts.app') @section('content')
-<div class="container mt-5">
+<div class="container fade-in mt-5">
 	<form action="" class="d-flex flex-column gap-3">
 		<div class="form-control-icon-start">
 			<i class="fa fa-solid fa-search text-muted"></i>
@@ -16,9 +16,9 @@
 								<i class="fa fa-solid fa-angle-down"></i>
 							</div>
 							<ul class="dropdown-menu" aria-labelledby="defaultDropdown">
-								<li><a class="dropdown-item" href="#">All</a></li>
-								<li><a class="dropdown-item" href="#">Top Rated</a></li>
-								<li><a class="dropdown-item" href="#">Menu item</a></li>
+								<li><a class="dropdown-item cursor-pointer" value="All">All</a></li>
+								<li><a class="dropdown-item cursor-pointer" value="Top Rated">Top Rated</a></li>
+								<li><a class="dropdown-item cursor-pointer" value="Menu item">Menu item</a></li>
 							</ul>
 						</div>
 					</div>
@@ -30,8 +30,8 @@
 								<i class="fa fa-solid fa-angle-down"></i>
 							</div>
 							<ul class="dropdown-menu" aria-labelledby="defaultDropdown">
-								<li><a class="dropdown-item" href="#">Solo</a></li>
-								<li><a class="dropdown-item" href="#">Team</a></li>
+								<li><a class="dropdown-item cursor-pointer" value="Solo">Solo</a></li>
+								<li><a class="dropdown-item cursor-pointer" value="Team">Team</a></li>
 							</ul>
 						</div>
 					</div>
@@ -43,9 +43,9 @@
 								<i class="fa fa-solid fa-angle-down"></i>
 							</div>
 							<ul class="dropdown-menu" aria-labelledby="defaultDropdown">
-								<li><a class="dropdown-item" href="#">Menu item</a></li>
-								<li><a class="dropdown-item" href="#">Menu item</a></li>
-								<li><a class="dropdown-item" href="#">Menu item</a></li>
+								<li><a class="dropdown-item cursor-pointer">Menu item</a></li>
+								<li><a class="dropdown-item cursor-pointer">Menu item</a></li>
+								<li><a class="dropdown-item cursor-pointer">Menu item</a></li>
 							</ul>
 						</div>
 					</div>
@@ -60,17 +60,5 @@
 	</form>
 </div>
 @endsection @section('javascript')
-<script type="text/javascript">
-	$(".dropdown-toggle").click(function () {
-		var $dropdownMenu = $(this).closest(".dropdown-group").find(".dropdown-menu");
-		$dropdownMenu.show();
-
-		$(document).mousedown(function (event) {
-			var container = $(".dropdown-menu")[0];
-			if (!container.contains(event.target)) {
-				$dropdownMenu.hide();
-			}
-		});
-	});
-</script>
+<script src="{{ asset('js/input-dropdown.js') }}"></script>
 @endsection
