@@ -9,7 +9,7 @@
 				<a href="/login/worker" class="fw-bolder">Worker</a>
 			</li>
 			<li class="breadcrumb-item">
-				<a href="/register/worker" class="fw-bolder">Register Worker</a>
+				<a href="/register/worker" class="fw-bolder">Register</a>
 			</li>
 			<li class="breadcrumb-item active" aria-current="page">Team</li>
 		</ol>
