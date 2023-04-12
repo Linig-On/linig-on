@@ -5,6 +5,9 @@
 			<li class="breadcrumb-item">
 				<a href="/login" class="fw-bolder">Login</a>
 			</li>
+			<li class="breadcrumb-item">
+				<a href="/login/user" class="fw-bolder">User</a>
+			</li>
 			<li class="breadcrumb-item active" aria-current="page">Register</li>
 		</ol>
 	</nav>
@@ -137,18 +140,8 @@
 </div>
 @endsection @section('javascript')
 <script type="text/javascript">
-	const prevImageOnUpload = function () {
-		$("#img").change(function () {
-			let reader = new FileReader();
-			reader.onload = (e) => {
-				$("#previewImageBeforeUpload").attr("src", e.target.result);
-			};
-			reader.readAsDataURL(this.files[0]);
-		});
-	};
-
 	$(document).ready(function () {
-		prevImageOnUpload();
+		prevImageOnUpload("#img", "#previewImageBeforeUpload");
 	});
 </script>
 @endsection

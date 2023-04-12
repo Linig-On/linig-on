@@ -3,7 +3,7 @@
 	<nav style="--bs-breadcrumb-divider: url('{{ asset('svg/icon/breadcrumb-divider.svg') }}');" aria-label="breadcrumb">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="/login" class="fw-bolder">Login</a></li>
-			<li class="breadcrumb-item active" aria-current="page">As User</li>
+			<li class="breadcrumb-item active" aria-current="page">User</li>
 		</ol>
 	</nav>
 </div>

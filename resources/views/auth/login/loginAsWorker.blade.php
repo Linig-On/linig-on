@@ -7,7 +7,7 @@
 			<li class="breadcrumb-item">
 				<a href="/login" class="fw-bolder">Login</a>
 			</li>
-			<li class="breadcrumb-item active" aria-current="page">As Worker</li>
+			<li class="breadcrumb-item active" aria-current="page">Worker</li>
 		</ol>
 	</nav>
 </div>

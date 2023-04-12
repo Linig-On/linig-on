@@ -5,6 +5,9 @@
 			<li class="breadcrumb-item">
 				<a href="/login" class="fw-bolder">Login</a>
 			</li>
+			<li class="breadcrumb-item">
+				<a href="/login/worker" class="fw-bolder">Worker</a>
+			</li>
 			<li class="breadcrumb-item active" aria-current="page">Register Worker</li>
 		</ol>
 	</nav>

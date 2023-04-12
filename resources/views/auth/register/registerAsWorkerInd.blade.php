@@ -6,6 +6,9 @@
 				<a href="/login" class="fw-bolder">Login</a>
 			</li>
 			<li class="breadcrumb-item">
+				<a href="/login/worker" class="fw-bolder">Worker</a>
+			</li>
+			<li class="breadcrumb-item">
 				<a href="/register/worker" class="fw-bolder">Register Worker</a>
 			</li>
 			<li class="breadcrumb-item active" aria-current="page">Solo</li>
