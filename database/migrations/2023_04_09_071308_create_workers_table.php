@@ -20,9 +20,9 @@ class CreateWorkersTable extends Migration
             $table->string('resume_url');
             $table->integer('team_id')->nullable();
             $table->boolean('is_approved')->default(false);
-            $table->string('short_bio');
-            $table->string('service_info');
-            $table->string('nickname');
+            $table->string('short_bio')->nullable();
+            $table->string('service_info')->nullable();
+            $table->string('nickname')->nullable();
             $table->timestamps();
         });
     }
