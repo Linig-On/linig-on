@@ -139,7 +139,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-4">
-				<img src="{{ asset('img/gene.png') }}" alt="" width="200" />
+				<img src="{{ asset('img/about-us/gene.png') }}" alt="" width="200" />
 				<h5 class="fw-bolder mt-4">Johcel Gene T. Bitara</h5>
 				<p>UI/UX Designer; Frontend-Backend Developer</p>
 				<small>BS-Information Technology</small>
@@ -159,7 +159,7 @@
 				</div>
 			</div>
 			<div class="col-md-4">
-				<img src="{{ asset('img/kim.png') }}" alt="" width="200" />
+				<img src="{{ asset('img/about-us/kim.png') }}" alt="" width="200" />
 				<h5 class="fw-bolder mt-4">Camela Kim P. Quidip</h5>
 				<p>UI/UX Designer; Frontend-Backend Developer</p>
 				<small>BS-Information Technology</small>
@@ -179,7 +179,7 @@
 				</div>
 			</div>
 			<div class="col-md-4">
-				<img src="{{ asset('img/mat.png') }}" alt="" width="200" />
+				<img src="{{ asset('img/about-us/mat.png') }}" alt="" width="200" />
 				<h5 class="fw-bolder mt-4">Mathew P. Talagtag</h5>
 				<p>UI/UX Designer; Frontend-Backend Developer</p>
 				<small>BS-Information Technology</small>
