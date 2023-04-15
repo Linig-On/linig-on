@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container mt-3">
 	<nav style="--bs-breadcrumb-divider: url('{{ asset('svg/icon/breadcrumb-divider.svg') }}');" aria-label="breadcrumb">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
@@ -20,7 +20,7 @@
                     <p>Don't have an account yet? 
                         <a href="/register/worker" class="text-decoration-underline fw-bold">Sign Up</a>
                     </p>
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('login-worker') }}">
                         @csrf
                         <div class="row mb-3">
                             <label for="email" class="small fw-bold">Email Address</label>

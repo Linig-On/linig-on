@@ -1,5 +1,5 @@
 @extends('layouts.app') @section('content')
-<div class="container">
+<div class="container mt-3">
 	<nav style="--bs-breadcrumb-divider: url('{{ asset('svg/icon/breadcrumb-divider.svg') }}');" aria-label="breadcrumb">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">
@@ -21,7 +21,7 @@
 	@enderror
 	<div class="card shadow border border-1 rounded-5 p-0">
 		<div class="card-body p-0">
-			<form method="POST" action="/register/user" enctype="multipart/form-data">
+			<form method="POST" action="{{ route('register-user') }}" enctype="multipart/form-data">
 				@csrf
 				<div class="row">
 					<div class="col-md-2 ps-4 py-4">
@@ -31,7 +31,7 @@
 									<div class="d-flex flex-column gap-3">
 										<img id="previewImageBeforeUpload" class="img-fluid prev-img" src="{{ asset('svg/illust/upload-photo.svg') }}" alt="" />
 										<label for="img" class="btn btn-primary text-uppercase fw-bold">Upload Photo</label>
-										<input id="img" class="form-control d-none" type="file" name="img" value="{{ old('img') }}" />
+										<input id="img" class="form-control d-none" type="file" name="img" value="{{ old('img') }}" accept="image/png, image/gif, image/jpeg" />
 									</div>
 								</div>
 								<div class="col-12">
