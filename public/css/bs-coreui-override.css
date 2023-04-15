@@ -1,0 +1,22 @@
+.sidebar {
+	background: white;
+	border-right: 1px solid rgba(0, 0, 0, 0.2) !important;
+}
+
+.sidebar-brand {
+	background: white;
+}
+
+.sidebar .nav-link,
+.sidebar .nav-title,
+.sidebar .nav-icon {
+	color: var(--primary);
+}
+
+.sidebar .nav-link {
+	border-radius: 5px;
+}
+
+.sidebar .nav-link:hover {
+	background-color: var(--secondary);
+}
