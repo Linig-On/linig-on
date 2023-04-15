@@ -20,6 +20,6 @@ class Worker extends Model
         'is_approved',
         'short_bio',
         'service_info',
-        'nickname',
+        
     ];
 }
