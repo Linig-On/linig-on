@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Worker;
 use App\Providers\RouteServiceProvider;
+use Dotenv\Exception\ValidationException;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -56,6 +60,35 @@ class LoginController extends Controller
     }
 
     /**
+     * POST
+     * @param Request $request
+     */
+    public function loginUser(Request $request)
+    {
+        // validate
+        // check if the user logging in is a user
+        try {
+            $request->validate([
+                'email' => 'required',
+                'password' => 'required',
+            ]);
+
+            $credentials = $request->only('email', 'password');
+
+            if (Auth::attempt($credentials)) {
+                if (Auth::user()->user_type == 'USR' || Auth::user()->user_type == 'ADM')
+                    return redirect("services");
+
+                Auth::logout();
+                return redirect()->back()->withErrors(["msg" => "This credential is for workers."])->withInput();
+            }
+            return redirect()->back()->withErrors(["msg" => "Invalid credentials."]);
+        } catch (ValidationException $ex) {
+            return redirect()->back()->withErrors($ex)->withInput();
+        }
+    }
+
+    /**
      * GET
      */
     public function loginAsWorker()
@@ -72,5 +105,33 @@ class LoginController extends Controller
         // validate
         // check if the worker is already approved
         // throw an error if its not saying its still not approved
+        try {
+            $request->validate([
+                'email' => 'required',
+                'password' => 'required',
+            ]);
+
+            $credentials = $request->only('email', 'password');
+
+            if (Auth::attempt($credentials)) {
+                if (Auth::user()->user_type == 'SVC') {
+
+                    $worker = DB::table('workers')->where('user_id', Auth::user()->id)->first();
+
+                    if ($worker->is_approved == true) {
+                        return redirect()->route('service-dashboard');
+                    }
+
+                    Auth::logout();
+                    return redirect()->back()->withErrors(["msg" => "Your account is yet to be approved."])->withInput();
+                }
+
+                Auth::logout();
+                return redirect()->back()->withErrors(["msg" => "This credential is for users."])->withInput();
+            }
+            return redirect()->back()->withErrors(["msg" => "Invalid credentials."]);
+        } catch (ValidationException $ex) {
+            return redirect()->back()->withErrors($ex)->withInput();
+        }
     }
 }

@@ -17,12 +17,18 @@
 						Don't have an account yet?
 						<a href="/register/user" class="text-decoration-underline fw-bold">Sign Up</a>
 					</p>
-					<form method="POST" action="{{ route('login') }}">
+					@error("msg")
+					<div class="alert alert-danger mb-3 d-flex gap-3 align-items-center" role="alert">
+						<i class="fa-solid fa-circle-info text-danger"></i>
+						<small class="text-danger fw-semibold">{{ $message }}</small>
+					</div>
+					@enderror
+					<form method="POST" action="{{ route('login-user') }}">
 						@csrf
 						<div class="row mb-3">
 							<label for="email" class="small fw-bold">Email Address</label>
 							<div class="col-md-12">
-								<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus />
+								<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" autofocus />
 								@error('email')
 								<span class="invalid-feedback" role="alert">
 									<strong class="small text-danger">{{ $message }}</strong>
@@ -34,7 +40,7 @@
 							<label for="password" class="small fw-bold">Password</label>
 
 							<div class="col-md-12">
-								<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" />
+								<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password" />
 
 								@error('password')
 								<span class="invalid-feedback" role="alert">

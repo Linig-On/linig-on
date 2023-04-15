@@ -10,4 +10,9 @@ class ServiceController extends Controller
     {
         return view('service');
     }
+
+    public function serviceDashboard()
+    {
+        return view('svcDashboard');
+    }
 }
