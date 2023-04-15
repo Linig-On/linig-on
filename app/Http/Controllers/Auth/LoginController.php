@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Request;
 
 class LoginController extends Controller
 {
@@ -38,18 +39,38 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    /**
+     * GET
+     */
     public function index()
     {
         return view('auth.login.login');
     }
 
+    /**
+     * GET
+     */
     public function loginAsUser()
     {
         return view('auth.login.loginAsUser');
     }
 
+    /**
+     * GET
+     */
     public function loginAsWorker()
     {
         return view('auth.login.loginAsWorker');
+    }
+
+    /**
+     * POST
+     * @param Request $request
+     */
+    public function loginWorker(Request $request)
+    {
+        // validate
+        // check if the worker is already approved
+        // throw an error if its not saying its still not approved
     }
 }
