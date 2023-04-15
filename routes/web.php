@@ -22,17 +22,17 @@ use App\Http\Controllers\Auth\WorkerProfileController;
 Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/services', [ServiceController::class, 'index'])->name('services');
-Route::get('/about', [HomeController::class, 'aboutUs'])->name('aboutUs');
+Route::get('/about', [HomeController::class, 'aboutUs'])->name('about-us');
 
-Route::get('/register/user', [RegisterController::class, 'registerAsUser'])->name('registerAsUser');
-Route::post('/register/user', [RegisterController::class, 'registerUser'])->name('registerUser');
+Route::get('/register/user', [RegisterController::class, 'registerAsUser'])->name('register-as-user');
+Route::post('/register/user', [RegisterController::class, 'registerUser'])->name('register-user');
 
-Route::get('/register/worker', [RegisterController::class, 'registerAsWorker'])->name('registerAsWorker');
-Route::get('/register/worker/individual', [RegisterController::class, 'registerAsWorkerIndividual'])->name('registerAsWorkerIndividual');
-Route::get('/register/worker/team', [RegisterController::class, 'registerAsWorkerTeam'])->name('registerAsWorkerTeam');
+Route::get('/register/worker', [RegisterController::class, 'registerAsWorker'])->name('register-as-worker');
+Route::get('/register/worker/individual', [RegisterController::class, 'registerAsWorkerIndividual'])->name('register-as-worker-individual');
+Route::post('/register/worker/individual', [RegisterController::class, 'registerWorkerIndividual'])->name('register-worker-individual');
+Route::get('/register/worker/wait-approval', [RegisterController::class, 'registerWorkerWaitApproval'])->name('register-worker-wait-approval');
 
 Route::get('/login/', [LoginController::class, 'index'])->name('login');
-Route::get('/login/user', [LoginController::class, 'loginAsUser'])->name('loginAsUser');
-Route::get('/login/worker', [LoginController::class, 'loginAsWorker'])->name('loginAsWorker');
-
-Route::get('/services', [WorkerProfileController::class, 'index'])->name('services');
+Route::get('/login/user', [LoginController::class, 'loginAsUser'])->name('login-as-user');
+Route::get('/login/worker', [LoginController::class, 'loginAsWorker'])->name('login-as-worker');
+Route::post('/login/worker', [LoginController::class, 'loginWorker'])->name('login-worker');

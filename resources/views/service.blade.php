@@ -31,21 +31,6 @@
 							</div>
 							<ul class="dropdown-menu" aria-labelledby="defaultDropdown">
 								<li><a class="dropdown-item cursor-pointer" value="Solo">Solo</a></li>
-								<li><a class="dropdown-item cursor-pointer" value="Team">Team</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-3">
-						<label class="fw-bold small" for="">Barangay:</label>
-						<div class="dropdown-group">
-							<div class="form-control-icon-end">
-								<input type="text" class="form-control dropdown-toggle cursor-pointer" type="button" placeholder="--" readonly data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false" />
-								<i class="fa fa-solid fa-angle-down"></i>
-							</div>
-							<ul class="dropdown-menu" aria-labelledby="defaultDropdown">
-								<li><a class="dropdown-item cursor-pointer">Menu item</a></li>
-								<li><a class="dropdown-item cursor-pointer">Menu item</a></li>
-								<li><a class="dropdown-item cursor-pointer">Menu item</a></li>
 							</ul>
 						</div>
 					</div>
