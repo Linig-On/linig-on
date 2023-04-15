@@ -67,4 +67,5 @@ php artisan migrate:fresh
 ```bash
 php artisan make:seeder ProductSeeder
 php artisan make:seeder UserSeeder
+php artisan db:seed
 ```
