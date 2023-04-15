@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\WorkerProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,3 +34,5 @@ Route::get('/register/worker/team', [RegisterController::class, 'registerAsWorke
 Route::get('/login/', [LoginController::class, 'index'])->name('login');
 Route::get('/login/user', [LoginController::class, 'loginAsUser'])->name('loginAsUser');
 Route::get('/login/worker', [LoginController::class, 'loginAsWorker'])->name('loginAsWorker');
+
+Route::get('/services', [WorkerProfileController::class, 'index'])->name('services');

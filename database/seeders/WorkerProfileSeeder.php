@@ -13,6 +13,11 @@ class WorkerProfileSeeder extends Seeder
      */
     public function run()
     {
-        //
+        WorkerProfile::create(
+            [
+
+            ]
+
+        )
     }
 }
