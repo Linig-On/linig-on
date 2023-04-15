@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class WorkerProfileSeeder extends Seeder
+class WorkerSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,11 +13,5 @@ class WorkerProfileSeeder extends Seeder
      */
     public function run()
     {
-        WorkerProfile::create(
-            [
-
-            ]
-
-        )
     }
 }

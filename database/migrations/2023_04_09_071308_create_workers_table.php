@@ -21,7 +21,6 @@ class CreateWorkersTable extends Migration
             $table->boolean('is_approved')->default(false);
             $table->string('short_bio')->nullable();
             $table->string('service_info')->nullable();
-            $table->string('nickname')->nullable();
             $table->timestamps();
         });
     }
