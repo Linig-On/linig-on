@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Worker;
 use Illuminate\Database\QueryException;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -55,6 +56,9 @@ class RegisterController extends Controller
 
     /**
      * POST
+     * @param Request $request
+     * @return /login/user
+     * @return redirect()->back()->withErrors()->input()
      */
     public function registerUser(Request $request)
     {
@@ -121,6 +125,84 @@ class RegisterController extends Controller
     public function registerAsWorkerIndividual()
     {
         return view('auth.register.registerAsWorkerInd');
+    }
+
+    /**
+     * POST
+     * @param Request $request
+     * @return /login/worker
+     * @return redirect()->back()->withErrors()->input()
+     */
+    public function registerWorkerIndividual(Request $request)
+    {
+        try {
+            $imgFileName = null;
+            $resumeFileName = null;
+
+            if ($request->file('img') != null) {
+                // get the filename of file uploaded
+                $imgFileName = $request->file('img')->getClientOriginalName();
+                // store in public folder
+                $request->file('img')->move(public_path('img/profile'), $imgFileName);
+            }
+
+            if ($request->file('resume') != null) {
+                // get the filename of file uploaded
+                $resumeFileName = $request->file('resume')->getClientOriginalName();
+                // store in public folder
+                $request->file('resume')->move(public_path('resume/pending-approval'), $resumeFileName);
+            }
+
+            // Validate the incoming request data
+            $validatedData = $request->validate([
+                'first_name' => 'required',
+                'last_name' => 'required',
+                'gender' => 'required|max:1',
+                'email' => 'required',
+                'password' => 'required|min:8',
+                'contact_number' => 'required|min:11',
+                'address' => 'required',
+            ]);
+
+            // Create a new user object and fill it with the validated data
+            $user = User::create([
+                'first_name' => $validatedData['first_name'],
+                'last_name' => $validatedData['last_name'],
+                'gender' => $validatedData['gender'],
+                'email' => $validatedData['email'],
+                'password' => Hash::make($validatedData['password']),
+                'contact_number' => $validatedData['contact_number'],
+                'address' => $validatedData['address'],
+                'image_url' => $imgFileName,
+                'user_type' => 'SVC',
+            ]);
+
+            Worker::create([
+                'user_id' => $user->id,
+                'resume_url' => $resumeFileName,
+                'is_approved' => false,
+            ]);
+
+            // Redirect the user to a success page
+            return redirect('/register/worker/wait-approval')->with('success', 'Registration successful!');
+        } catch (ValidationException $ex) {
+            return redirect()->back()->withErrors($ex->validator->errors())->withInput();
+        } catch (QueryException $ex) {
+            $errorCode = $ex->errorInfo[1];
+
+            if ($errorCode == 1062) {
+                // we have a duplicate entry problem
+                return redirect()->back()->withErrors(["msg" => "This email address already exists."]);
+            }
+        }
+    }
+
+    /**
+     * GET
+     */
+    public function registerWorkerWaitApproval()
+    {
+        return view('auth.register.waitApproval');
     }
 
     /**

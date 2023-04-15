@@ -22,7 +22,7 @@
 					<div class="d-flex flex-column gap-3">
 						<div class="d-flex align-items-center gap-3 col-9">
 							<div class="col-1">
-								<i class="fa-solid fa-user h3"></i>
+								<i class="fa-solid fa-user h3 mb-0"></i>
 							</div>
 							<a href="/register/worker/individual" role="button" class="w-100 btn btn-primary btn-lg text-uppercase text-decoration-none fw-bold">Individual</a>
 						</div>
