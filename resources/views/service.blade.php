@@ -47,7 +47,7 @@
 					<div id="workerbox" class="rounded border border-light shadow p-3 mb-5 bg-body rounded mt-4 col-md-12 p-2">
 						<h2>Sample</h2>
 							<div class="clearfix">
-							<button class="btn btn-primary mt-4 text-uppercase fw-bold float-end">See more</button>
+						<a href="/services/worker" role="button" class="btn btn-primary mt-4 text-uppercase fw-bold float-end">See More</a>
 							</div>
 					</div>	
 					
