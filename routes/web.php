@@ -5,9 +5,10 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\WorkerProfileController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\WorkerProfileController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,3 +45,5 @@ Route::get('/login/worker', [LoginController::class, 'loginAsWorker'])->name('lo
 Route::post('/login/worker', [LoginController::class, 'loginWorker'])->name('login-worker');
 
 Route::get('/service/dashboard', [ServiceController::class, 'serviceDashboard'])->name('service-dashboard');
+
+Route::get('/services/worker', [ServiceController::class, 'workerProfile'])->name('services-worker');
