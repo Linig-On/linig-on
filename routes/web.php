@@ -26,6 +26,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/services', [ServiceController::class, 'index'])->name('services');
 Route::get('/about', [HomeController::class, 'aboutUs'])->name('about-us');
 
+// authentication
 Route::get('/register/user', [RegisterController::class, 'registerAsUser'])->name('register-as-user');
 Route::post('/register/user', [RegisterController::class, 'registerUser'])->name('register-user');
 
@@ -44,7 +45,8 @@ Route::post('/login/user', [LoginController::class, 'loginUser'])->name('login-u
 Route::get('/login/worker', [LoginController::class, 'loginAsWorker'])->name('login-as-worker');
 Route::post('/login/worker', [LoginController::class, 'loginWorker'])->name('login-worker');
 
+Route::get('/service/worker/{id}', [ServiceController::class, 'workerProfile'])->name('services-worker-profile');
+
 // private module
 Route::get('/service/dashboard', [ServiceController::class, 'serviceDashboard'])->name('service-dashboard');
 Route::get('/service/my-profile', [ServiceController::class, 'serviceMyProfile'])->name('service-my-profile');
-Route::get('/service/worker/{id}', [ServiceController::class, 'workerProfile'])->name('services-worker');
