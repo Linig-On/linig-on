@@ -43,4 +43,6 @@ Route::post('/login/user', [LoginController::class, 'loginUser'])->name('login-u
 Route::get('/login/worker', [LoginController::class, 'loginAsWorker'])->name('login-as-worker');
 Route::post('/login/worker', [LoginController::class, 'loginWorker'])->name('login-worker');
 
+// private module
 Route::get('/service/dashboard', [ServiceController::class, 'serviceDashboard'])->name('service-dashboard');
+Route::get('/service/my-profile', [ServiceController::class, 'serviceMyProfile'])->name('service-my-profile');

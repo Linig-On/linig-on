@@ -48,19 +48,25 @@
 
 	<body>
 		<div class="sidebar sidebar-dark sidebar-fixed min-vh-100" id="sidebar">
-			<div class="sidebar-brand d-none d-md-flex">
+			<div class="sidebar-brand d-none d-md-flex fade-in">
 				<img class="sidebar-brand-full py-3" src="{{ asset('svg/site/logo.svg') }}" alt="" width="150" />
 				<img class="sidebar-brand-narrow" src="{{ asset('svg/site/logo-compressed.svg') }}" alt="" width="35" />
 			</div>
-			<ul class="sidebar-nav" data-coreui="navigation" data-simplebar>
+			<ul class="sidebar-nav fade-in" data-coreui="navigation" data-simplebar>
 				<li class="nav-title">MAIN NAVIGATION</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/">
+					<a class="nav-link" href="{{ route('service-dashboard') }}">
 						<i class="nav-icon cil-gauge"></i>
 						Dashboard
 					</a>
 				</li>
-				<li class="nav-title">TITLE 1</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ route('service-my-profile') }}">
+						<i class="nav-icon cil-user"></i>
+						My Profile
+					</a>
+				</li>
+				<li class="nav-title">ACTION</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">
 						<i class="nav-icon cil-book"></i>
@@ -78,7 +84,7 @@
 		</div>
 		<div class="wrapper d-flex flex-column bg-light">
 			<header class="header header-sticky mb-4 shadow-sm">
-				<div class="container-fluid">
+				<div class="container-fluid fade-in">
 					<button class="header-toggler" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
 						<i class="cil-hamburger-menu"></i>
 					</button>
@@ -118,20 +124,21 @@
 								<div class="dropdown-header bg-light py-2">
 									<div class="fw-semibold">Account</div>
 								</div>
-								<a class="dropdown-item small" href="#"> My Profile</a>
+								<a class="dropdown-item small" href="{{ route('service-my-profile') }}"> My Profile</a>
 								<a class="dropdown-item small" href="#"> Bookings</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item small" href="#"> Logout</a>
+								<a class="dropdown-item small d-flex align-items-center gap-3" href="{{ route('logout') }}" onclick="event.preventDefault(); $('#logout-form').submit();"> Logout </a>
+								<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
 							</div>
 						</li>
 					</ul>
 				</div>
 				<div class="header-divider"></div>
-				<div class="container-fluid">
+				<div class="container-fluid fade-in">
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb my-0 ms-2">
-							<li class="breadcrumb-item small">Home</li>
-							<li class="breadcrumb-item active small">Dashboard</li>
+							<li class="breadcrumb-item small">{{ $bi1 }}</li>
+							<li class="breadcrumb-item active small">{{ $bi2 }}</li>
 						</ol>
 					</nav>
 				</div>

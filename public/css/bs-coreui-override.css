@@ -13,10 +13,12 @@
 	color: var(--primary);
 }
 
-.sidebar .nav-link {
-	border-radius: 5px;
+.sidebar.sidebar-narrow-unfoldable .nav-link.active {
+	border-radius: 0 !important;
 }
-
+.sidebar-nav .nav-link.active {
+	background-color: var(--secondary);
+}
 .sidebar .nav-link:hover {
 	background-color: var(--secondary);
 }
