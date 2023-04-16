@@ -22,12 +22,23 @@
 		<!-- Pagination Styles -->
 		<link href="{{ asset('vendor/pagination/pagination.css') }}" rel="stylesheet" />
 
-		<!-- Site Styles -->
-		<link href="{{ asset('css/bs-coreui-override.css') }}" rel="stylesheet" />
+		<!-- Tagify Styles -->
+		<link href="{{ asset('vendor/tagify/dist/tagify.css') }}" rel="stylesheet" />
+
+		<!-- RichText Styles -->
+		<link rel="stylesheet" href="{{ asset('vendor/rich-text-editor/src/richtext.min.css') }}" />
+
+		<!--  -->
 		<link href="{{ asset('css/site.css') }}" rel="stylesheet" />
 
 		<!-- Jquery -->
 		<script src="{{ mix('js/app.js') }}"></script>
+
+		<!-- Tagify Script -->
+		<script src="{{ asset('vendor/tagify/dist/jQuery.tagify.min.js') }}"></script>
+
+		<!-- RichText Script -->
+		<script src="{{ asset('vendor/rich-text-editor/src/jquery.richtext.min.js') }}"></script>
 
 		<!-- Popper JS -->
 		<script defer src="{{ asset('vendor/bs-coreui/plugins/popperjs/core/dist/umd/popper.min.js') }}"></script>

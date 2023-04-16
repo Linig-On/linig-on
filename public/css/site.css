@@ -2,6 +2,8 @@
 @import url(animation.css);
 @import url(utils.css);
 @import url(bootstrap-override.css);
+@import url(bs-coreui-override.css);
+@import url(rich-text-override.css);
 @import url(components.css);
 
 :root {

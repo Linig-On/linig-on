@@ -1,0 +1,9 @@
+.richText {
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 6px;
+	overflow: hidden;
+}
+
+.richText .richText-editor:focus {
+	border-left: var(--secondary) 4px solid;
+}
