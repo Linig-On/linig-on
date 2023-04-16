@@ -20,4 +20,9 @@ class ServiceController extends Controller
     {
         return view('svcMyProfile');
     }
+    
+    public function workerProfile()
+    {
+        return view('servicePlatform2');
+    }
 }
