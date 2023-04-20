@@ -1,5 +1,5 @@
 @extends('layouts.service', ['bi1' => 'Home', 'bi2' => 'My Profile']) @section('content')
-<div class="container">
+<div class="container fade-in">
 	<h1 class="text-uppercase fw-bolder mb-5">My profile</h1>
 	<form method="POST" action="" enctype="multipart/form-data">
 		<div class="row gx-4">
@@ -20,16 +20,40 @@
 				<div class="d-flex flex-column">
 					<i class="fa-solid fa-quote-left h1 mb-0 text-primary"></i>
 					<label for="shortBio" class="text-primary fw-bold small">Short Bio</label>
-					<textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
+					<textarea class="form-control" name="" id="" cols="30" rows="8">{{ DB::table('workers')->where('user_id', Auth::user()->id)->first()->short_bio }}</textarea>
 				</div>
 				<hr />
 				<div>
 					<h5 class="fw-bolder">Skills</h5>
-					<input id="skills" name="skills" placeholder="Enter Skills" class="form-control w-100" />
+					<input
+						id="skills"
+						name="skills"
+						placeholder="Enter Skills"
+						class="form-control w-100"
+						value="
+						@foreach($workerSkills as $i) 
+							{{ $i->skill }}
+							@if(!$loop->last)
+								,
+							@endif  
+						@endforeach"
+					/>
 				</div>
 				<div>
 					<h5 class="fw-bolder">Socials</h5>
-					<input id="socials" name="socials" placeholder="Enter Socials" class="form-control w-100" />
+					<input
+						id="socials"
+						name="socials"
+						placeholder="Enter Socials"
+						class="form-control w-100"
+						value="
+						@foreach($workerSocials as $i) 
+							{{ $i->social }}
+							@if(!$loop->last)
+								,
+							@endif  
+						@endforeach"
+					/>
 				</div>
 			</div>
 			<div class="col-md-9">
@@ -42,7 +66,7 @@
 									<label for="" class="text-primary text-nowrap fw-bold small">Full Name</label>
 								</div>
 								<div class="col-md-8 z-index-30">
-									<input type="text" class="form-control" />
+									<input type="text" class="form-control" value="{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}" />
 								</div>
 							</div>
 							<div class="row">
@@ -51,7 +75,7 @@
 									<label for="" class="text-primary text-nowrap fw-bold small">Mobile</label>
 								</div>
 								<div class="col-md-8 z-index-30">
-									<input type="text" class="form-control" />
+									<input type="text" class="form-control" value="{{ Auth::user()->contact_number }}" />
 								</div>
 							</div>
 							<div class="row">
@@ -60,12 +84,12 @@
 									<label for="" class="text-primary text-nowrap fw-bold small">Address</label>
 								</div>
 								<div class="col-md-8 z-index-30">
-									<textarea name="" id="" cols="30" rows="5" class="form-control"></textarea>
+									<textarea name="" id="" cols="30" rows="5" class="form-control">{{ Auth::user()->address }}</textarea>
 								</div>
 							</div>
 							<div class="d-flex justify-content-between">
 								<div></div>
-								<button class="btn btn-primary text-uppercase fw-bold z-index-30">
+								<button type="button" class="btn btn-primary text-uppercase fw-bold z-index-30" data-bs-toggle="modal" data-bs-target="#viewResumeModal">
 									View Resume
 									<i class="fa-regular fa-file text-white"></i>
 								</button>
@@ -76,7 +100,7 @@
 				</div>
 				<div class="mt-5">
 					<h5 class="fw-bolder">About Me</h5>
-					<textarea id="serviceInfo" class="content" name=""></textarea>
+					<textarea id="serviceInfo" class="content" name="">{{ DB::table('workers')->where('user_id', Auth::user()->id)->first()->service_info }}</textarea>
 				</div>
 				<div class="d-flex justify-content-between mt-3">
 					<div></div>
@@ -86,6 +110,27 @@
 		</div>
 	</form>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="viewResumeModal" tabindex="-1" aria-labelledby="viewResumeModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="d-flex align-items-center gap-1">
+					<h5 class="modal-title fw-bolder text-uppercase" id="viewResumeModalLabel">My Resume</h5>
+					<i class="fa-solid fa-book text-primary"></i>
+				</div>
+			</div>
+			<div class="modal-body">
+				<embed src="{{ asset('resume/approved/' . DB::table('workers')->where('user_id', Auth::user()->id)->first()->resume_url) }}" width="100%" style="min-height: 75vh" />
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 @endsection @section('javascript')
 <script type="text/javascript">
 	let config = {
@@ -114,7 +159,11 @@
 		backgroundColor: false,
 	};
 
-	$("#skills, #socials").tagify();
-	$("#serviceInfo").richText(config);
+	$(document).ready(function () {
+		var skillsTag = $("[name='skills']").tagify();
+		let $socialsTag = $("#socials").tagify();
+
+		$("#serviceInfo").richText(config);
+	});
 </script>
 @endsection

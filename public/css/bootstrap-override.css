@@ -43,3 +43,7 @@
 .cursor-pointer:hover {
 	cursor: pointer;
 }
+
+.modal {
+	--bs-modal-width: 700px;
+}

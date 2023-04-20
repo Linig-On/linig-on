@@ -1,0 +1,24 @@
+.tagify {
+	--tags-focus-border-color: var(--secondary);
+	--tag-bg: var(--secondary);
+	--tag-hover: var(--primary);
+	--tag-text-color: white;
+	--tag-border-radius: 50rem;
+	--tag-pad: 0.2rem 0.5rem;
+	--tag-inset-shadow-size: 3.1em;
+	--tag-remove-btn-color: white;
+
+	--tag-remove-btn-bg--hover: var(--danger);
+	--tag-invalid-color: var(--danger);
+	--tag-remove-bg: var(--danger);
+	--tag-invalid-bg: var(--danger);
+
+	--placeholder-color: rgba(0, 0, 0, 0.4);
+	--placeholder-color-focus: rgba(0, 0, 0, 0.4);
+}
+
+.tagify__tag-text {
+	color: white;
+	font-size: small;
+	font-weight: bold;
+}

@@ -23,3 +23,7 @@ small {
 .fw-bolder {
 	font-weight: 800 !important;
 }
+
+.richText-editor {
+	font-family: "Montserrat", sans-serif !important;
+}
