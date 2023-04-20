@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
@@ -15,10 +16,25 @@ class UserSeeder extends Seeder
      * @return void
      */
 
-    public function run()
-    {
+     /**
+      * where user is:
+      *      ADM
+      *      USR
+      *      SVC
+      */
 
-        $users = [
+    public function run() 
+    {
+        // Disable foreign key checks
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+
+        // Truncate the table
+        DB::table('users')->truncate();
+
+        // Re-enable foreign key checks
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+
+        $data = [
             [
                 'id' => 1,
                 'first_name' => 'Mark Niño',
@@ -28,8 +44,9 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'contact_number' => '09126451275',
                 'address' => '233 Juniper Drive, South Burlington VT 05403',
-                'user_type' => 'USR', //USR ADM SVC->service
+                'user_type' => 'USR',
                 'image_url' => null,
+                'created_at' => Carbon::now()
             ],
             [
                 'id' => 2,
@@ -40,8 +57,9 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'contact_number' => '09123456789',
                 'address' => '2715 Thornbrook Court, Odenton MD 21113',
-                'user_type' => 'USR', //USR ADM SVC->service
+                'user_type' => 'USR',
                 'image_url' => null,
+                'created_at' => Carbon::now()
             ],
             [
                 'id' => 3,
@@ -52,71 +70,12 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'contact_number' => '09123456788',
                 'address' => '102 Hayes Drive, Pooler GA 31322',
-                'user_type' => 'USR', //USR ADM SVC->service
+                'user_type' => 'USR',
                 'image_url' => null,
+                'created_at' => Carbon::now()
             ],
             [
                 'id' => 4,
-                'first_name' => 'Patrick',
-                'last_name' => 'Dimabugti',
-                'gender' => 'M',
-                'email' => 'pdimabugti@gmail.com',
-                'password' => Hash::make('password'),
-                'contact_number' => '09123456756',
-                'address' => '2961 Vinson Road, Montgomery AL 36110',
-                'user_type' => 'SVC', //USR ADM SVC->service
-                'image_url' => null,
-            ],
-            [
-                'id' => 5,
-                'first_name' => 'Baby',
-                'last_name' => 'Stevens',
-                'gender' => 'F',
-                'email' => 'bstevens@gmail.com',
-                'password' => Hash::make('password'),
-                'contact_number' => '09123456345',
-                'address' => '2307 East 72nd Avenue, Anchorage AK 99507',
-                'user_type' => 'SVC', //USR ADM SVC->service
-                'image_url' => null,
-            ],
-            [
-                'id' => 6,
-                'first_name' => 'Bea',
-                'last_name' => 'Lim',
-                'gender' => 'F',
-                'email' => 'blim@gmail.com',
-                'password' => Hash::make('password'),
-                'contact_number' => '09875456345',
-                'address' => '9009 West Nicolet Avenue, Glendale AZ 85305',
-                'user_type' => 'SVC', //USR ADM SVC->service
-                'image_url' => null,
-            ],
-            [
-                'id' => 7,
-                'first_name' => 'Jim',
-                'last_name' => 'Borkum',
-                'gender' => 'M',
-                'email' => 'jborkum@gmail.com',
-                'password' => Hash::make('password'),
-                'contact_number' => '09878166345',
-                'address' => '67 Steeplechase Drive, Manchester CT 06040',
-                'user_type' => 'SVC', //USR ADM SVC->service
-                'image_url' => null,
-            ],
-            [
-                'id' => 8,
-                'first_name' => 'Rob',
-                'last_name' => 'Nelikina',
-                'gender' => 'M',
-                'email' => 'rnelikina@gmail.com',
-                'password' => Hash::make('password'),
-                'contact_number' => '09879186345',
-                'address' => '130 Old Route 103, Chester VT 05143',
-                'user_type' => 'USR', //USR ADM SVC->service
-                'image_url' => null,
-            ],
-            [
-                'id' => 9,
                 'first_name' => 'Denise',
                 'last_name' => 'Menubo',
                 'gender' => 'F',
@@ -124,11 +83,12 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'contact_number' => '09879198372',
                 'address' => '8673 Burkitt Place Drive, Nolensville TN 37135',
-                'user_type' => 'SVC', //USR ADM SVC->service
+                'user_type' => 'USR',
                 'image_url' => null,
+                'created_at' => Carbon::now()
             ],
             [
-                'id' => 10,
+                'id' => 5,
                 'first_name' => 'Doms',
                 'last_name' => 'Esperida',
                 'gender' => 'M',
@@ -136,12 +96,120 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'contact_number' => '09872639186',
                 'address' => '8757 Lamar Circle, Arvada CO 80003',
-                'user_type' => 'USR', //USR ADM SVC->service
+                'user_type' => 'USR',
                 'image_url' => null,
+                'created_at' => Carbon::now()
+            ],
+            [
+                'id' => 6,
+                'first_name' => 'Patrick',
+                'last_name' => 'Dimabugti',
+                'gender' => 'M',
+                'email' => 'pdimabugti@gmail.com',
+                'password' => Hash::make('password'),
+                'contact_number' => '09123456756',
+                'address' => '2961 Vinson Road, Montgomery AL 36110',
+                'user_type' => 'SVC',
+                'image_url' => null,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'id' => 7,
+                'first_name' => 'Baby',
+                'last_name' => 'Stevens',
+                'gender' => 'F',
+                'email' => 'bstevens@gmail.com',
+                'password' => Hash::make('password'),
+                'contact_number' => '09123456345',
+                'address' => '2307 East 72nd Avenue, Anchorage AK 99507',
+                'user_type' => 'SVC',
+                'image_url' => null,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'id' => 8,
+                'first_name' => 'Bea',
+                'last_name' => 'Lim',
+                'gender' => 'F',
+                'email' => 'blim@gmail.com',
+                'password' => Hash::make('password'),
+                'contact_number' => '09875456345',
+                'address' => '9009 West Nicolet Avenue, Glendale AZ 85305',
+                'user_type' => 'SVC',
+                'image_url' => null,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'id' => 9,
+                'first_name' => 'Jim',
+                'last_name' => 'Borkum',
+                'gender' => 'M',
+                'email' => 'jborkum@gmail.com',
+                'password' => Hash::make('password'),
+                'contact_number' => '09878166345',
+                'address' => '67 Steeplechase Drive, Manchester CT 06040',
+                'user_type' => 'SVC',
+                'image_url' => null,
+                'created_at' => Carbon::now()
+            ],
+            [
+                'id' => 10,
+                'first_name' => 'Rob',
+                'last_name' => 'Nelikina',
+                'gender' => 'M',
+                'email' => 'rnelikina@gmail.com',
+                'password' => Hash::make('password'),
+                'contact_number' => '09879186345',
+                'address' => '130 Old Route 103, Chester VT 05143',
+                'user_type' => 'SVC',
+                'image_url' => null,
+                'created_at' => Carbon::now()
+            ],
+            [
+                'id' => 11,
+                'first_name' => 'Johcel Gene',
+                'last_name' => 'Bitara',
+                'gender' => 'M',
+                'email' => 'gene@gmail.com',
+                'password' => Hash::make('administrator'),
+                'contact_number' => '09701234561',
+                'address' => '642 North New Dr. Hamilton, OH 45011',
+                'user_type' => 'ADM',
+                'image_url' => null,
+                'created_at' => Carbon::now()
+            ],
+            [
+                'id' => 12,
+                'first_name' => 'Camela Kim',
+                'last_name' => 'Quidip',
+                'gender' => 'F',
+                'email' => 'kim@gmail.com',
+                'password' => Hash::make('administrator'),
+                'contact_number' => '09704325661',
+                'address' => '7812 Third St. Fremont, OH 43420',
+                'user_type' => 'ADM',
+                'image_url' => null,
+                'created_at' => Carbon::now()
+            ],
+            [
+                'id' => 13,
+                'first_name' => 'Mathew',
+                'last_name' => 'Talagtag',
+                'gender' => 'M',
+                'email' => 'mat@gmail.com',
+                'password' => Hash::make('administrator'),
+                'contact_number' => '09560192831',
+                'address' => '7312 Bradford Ave. Naples, FL 34116',
+                'user_type' => 'ADM',
+                'image_url' => null,
+                'created_at' => Carbon::now()
             ],
         ];
 
-        foreach ($users as $user) {
+        foreach ($data as $user) {
             DB::table('users')->insert($user);
         }
     }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ServiceController extends Controller
 {
@@ -18,7 +20,10 @@ class ServiceController extends Controller
 
     public function serviceMyProfile()
     {
-        return view('svcMyProfile');
+        $workerSkills = DB::table('skills')->where('user_id', Auth::user()->id)->get();
+        $workerSocials = DB::table('socials')->where('user_id', Auth::user()->id)->get();
+        
+        return view('svcMyProfile')->with('workerSkills', $workerSkills)->with('workerSocials', $workerSocials);
     }
     
     public function workerProfile()
