@@ -20,8 +20,8 @@ class ServiceController extends Controller
 
     public function serviceMyProfile()
     {
-        $workerSkills = DB::table('skills')->where('user_id', Auth::user()->id)->get();
-        $workerSocials = DB::table('socials')->where('user_id', Auth::user()->id)->get();
+        $workerSkills = DB::table('worker_skills')->where('user_id', Auth::user()->id)->get();
+        $workerSocials = DB::table('worker_socials')->where('user_id', Auth::user()->id)->get();
         
         return view('svcMyProfile')->with('workerSkills', $workerSkills)->with('workerSocials', $workerSocials);
     }
