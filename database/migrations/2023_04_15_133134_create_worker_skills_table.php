@@ -15,9 +15,9 @@ class CreateWorkerSkillsTable extends Migration
     {
         Schema::create('worker_skills', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('worker_id');
             $table->string('skill');
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('worker_id')->references('id')->on('workers')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

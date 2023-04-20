@@ -27,37 +27,37 @@ class WorkerSkillSeeder extends Seeder
         $data = [
             [
                 'id' => 1,
-                'user_id' => 6,
+                'worker_id' => 1,
                 'skill' => 'Housemaid',
                 'created_at' => Carbon::now()
             ],
             [
                 'id' => 2,
-                'user_id' => 6,
+                'worker_id' => 1,
                 'skill' => 'Ironing',
                 'created_at' => Carbon::now()
             ],
             [
                 'id' => 3,
-                'user_id' => 6,
+                'worker_id' => 1,
                 'skill' => 'Dish Washing',
                 'created_at' => Carbon::now()
             ],
             [
                 'id' => 4,
-                'user_id' => 7,
+                'worker_id' => 2,
                 'skill' => 'Cleaning',
                 'created_at' => Carbon::now()
             ],
             [
                 'id' => 5,
-                'user_id' => 7,
+                'worker_id' => 2,
                 'skill' => 'Folding & Ironing',
                 'created_at' => Carbon::now()
             ],
             [
                 'id' => 6,
-                'user_id' => 8,
+                'worker_id' => 3,
                 'skill' => 'Laundry',
                 'created_at' => Carbon::now()
             ]
