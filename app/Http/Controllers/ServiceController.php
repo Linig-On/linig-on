@@ -158,4 +158,55 @@ class ServiceController extends Controller
             return redirect()->back()->withErrors($ex->validator->errors());
         }
     }
+
+    /**
+     * GET
+     */
+
+    public function filter(Request $request)
+    {
+        $workers = DB::table('workers')->where('is_approved', true)->get();
+        $model = array();
+
+        switch ($request->input('sort_by')) {
+            case 'All':
+                foreach ($workers as $worker) {
+                    $user = DB::table('users')->where('id', $worker->user_id)->get();
+                    $skills = DB::table('worker_skills')->where('worker_id', $worker->id)->get();
+                    
+                    $item = [
+                        'worker_id' => $worker->id,
+                        'image_url' => $user->first()->image_url,
+                        'first_name' => $user->first()->first_name,
+                        'last_name' => $user->first()->last_name,
+                        'skills' => $skills,
+                        'short_bio' => $worker->short_bio,
+                    ];
+                    
+                    array_push($model, $item);
+                }
+                break;
+            case 'Top Rated':
+                // foreach ($workers as $worker) {
+                //     $user = DB::table('users')->where('id', $worker->user_id)->get();
+                //     $skills = DB::table('worker_skills')->where('worker_id', $worker->id)->get();
+                    
+                //     $item = [
+                //         'worker_id' => $worker->id,
+                //         'image_url' => $user->first()->image_url,
+                //         'first_name' => $user->first()->first_name,
+                //         'last_name' => $user->first()->last_name,
+                //         'skills' => $skills,
+                //         'short_bio' => $worker->short_bio,
+                //     ];
+                    
+                //     array_push($model, $item);
+                // }
+                break;
+        }
+
+        
+
+        return view('service')->with('listOfWorkers', $model);
+    }
 }

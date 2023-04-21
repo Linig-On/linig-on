@@ -1,9 +1,9 @@
 @extends('layouts.app') @section('content')
 <div class="container fade-in mt-5">
-	<form action="" class="d-flex flex-column gap-3">
+	<form method="GET" action="{{ route('service-filter') }}" class="d-flex flex-column gap-3">
 		<div class="form-control-icon-start">
 			<i class="fa fa-solid fa-search text-muted"></i>
-			<input type="text" class="form-control ps-5" placeholder="Search Worker" />
+			<input id="searchWorker" type="text" class="form-control ps-5" placeholder="Search Worker" />
 		</div>
 		<div class="row justify-content-between">
 			<div class="col">
@@ -12,13 +12,12 @@
 						<label class="fw-bold small" for="">Sort By:</label>
 						<div class="dropdown-group">
 							<div class="form-control-icon-end">
-								<input type="text" class="form-control dropdown-toggle cursor-pointer" type="button" value="Relevance" readonly data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false" />
+								<input id="sortBy" name="sort_by" type="text" class="form-control cursor-pointer dropdown-toggle" type="button" value="Relevance" readonly aria-expanded="false" />
 								<i class="fa fa-solid fa-angle-down"></i>
 							</div>
 							<ul class="dropdown-menu" aria-labelledby="defaultDropdown">
 								<li><a class="dropdown-item cursor-pointer" value="All">All</a></li>
 								<li><a class="dropdown-item cursor-pointer" value="Top Rated">Top Rated</a></li>
-								<li><a class="dropdown-item cursor-pointer" value="Menu item">Menu item</a></li>
 							</ul>
 						</div>
 					</div>
@@ -26,7 +25,7 @@
 						<label class="fw-bold small" for="">Worker Type:</label>
 						<div class="dropdown-group">
 							<div class="form-control-icon-end">
-								<input type="text" class="form-control dropdown-toggle cursor-pointer" type="button" value="Solo" readonly data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false" />
+								<input type="text" class="form-control dropdown-toggle cursor-pointer" type="button" value="Solo" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false" />
 								<i class="fa fa-solid fa-angle-down"></i>
 							</div>
 							<ul class="dropdown-menu" aria-labelledby="defaultDropdown">
@@ -38,7 +37,7 @@
 			</div>
 			<div class="col-2">
 				<div class="row">
-					<button type="button" class="btn btn-primary mt-4 text-uppercase fw-bold">Filter</button>
+					<button type="submit" class="btn btn-primary mt-4 text-uppercase fw-bold">Filter</button>
 				</div>
 			</div>
 		</div>
@@ -63,7 +62,7 @@
 											</div>
 										</div>
 										<div class="d-flex flex-column">
-											<h2 class="fw-bolder text-primary">{{ $worker["first_name"] . " " . $worker["last_name"] }}</h2>
+											<h2 worker-name class="fw-bolder text-primary">{{ $worker["first_name"] . " " . $worker["last_name"] }}</h2>
 											<tag-container>
 												@foreach($worker['skills'] as $sk)
 												<div class="view-tag">{{ $sk->skill }}</div>
@@ -76,7 +75,7 @@
 								<div class="col-md-2">
 									<div class="d-flex justify-content-between">
 										<div></div>
-										<a href="{{ route('services-worker-profile', ['id' => $worker['worker_id'] ]) }}" role="button" class="btn btn-primary mt-4 text-uppercase fw-bold text-decoration-none">See More</a>
+										<a href="{{ route('service-worker-profile', ['id' => $worker['worker_id'] ]) }}" role="button" class="btn btn-primary mt-4 text-uppercase fw-bold text-decoration-none">See More</a>
 									</div>
 								</div>
 							</div>
@@ -100,6 +99,10 @@
 	// NOTE: this shi- is confusing to read
 	// NOTE: basically it waits for a few ms before adding the fade-in class
 	$(document).ready(function () {
+		initPagination();
+	});
+
+	function initPagination() {
 		setTimeout(() => {
 			animateList();
 
@@ -110,7 +113,7 @@
 				}, 100);
 			});
 		}, 100);
-	});
+	}
 
 	function animateList() {
 		$("#paginatedList li:not(.hidden)").each(function (i, el) {
@@ -118,6 +121,43 @@
 				$(el).addClass("fade-in");
 			}, i * 150);
 		});
+	}
+
+	const model = {!! json_encode($listOfWorkers) !!};
+	let workerNames = [];
+
+	model.forEach(element => {
+		let fullName = `${element.first_name} ${element.last_name}`;
+		workerNames.push(fullName);
+	});
+
+	$("#searchWorker").keyup(function (el) {
+		const searchTerm = $(this).val().toLowerCase();
+
+		// Filter the list based on the search term
+		const filteredList = workerNames.filter(function(item) {
+	    	return item.toLowerCase().indexOf(searchTerm) > -1;
+	   	});
+
+		console.log(filteredList);
+
+		$("#paginatedList h2[worker-name]").each(function (i, el) {
+
+			if ($(el).text().toLowerCase().indexOf(searchTerm) > -1) {
+				$(this).closest("li").removeClass("hidden").addClass("fade-in");
+			}
+			else {
+				$(this).closest("li").removeClass("fade-in").addClass("hidden");
+			}
+		});
+
+
+		if ($(this).val().length == 0)
+			$("#paginatedList li").slice(3).addClass("hidden");
+	});
+
+	function assignSortBy(element) {
+		$("#sortBy").val(`${$(element).attr("value")}`);
 	}
 </script>
 @endsection

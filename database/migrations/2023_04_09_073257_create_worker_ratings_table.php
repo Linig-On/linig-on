@@ -19,7 +19,7 @@ class CreateWorkerRatingsTable extends Migration
             $table->foreignId('worker_id');
             $table->string('name');
             $table->string('comment');
-            $table->boolean('is_liked');
+            $table->integer('rating');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('worker_id')->references('id')->on('workers')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
