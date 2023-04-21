@@ -72,7 +72,7 @@ class ServiceController extends Controller
      */
     public function workerProfile()
     {
-        return view('servicePlatform2');
+        return view('svcProfile');
     }
 
     /**
