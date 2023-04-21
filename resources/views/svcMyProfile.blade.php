@@ -1,18 +1,31 @@
 @extends('layouts.service', ['bi1' => 'Home', 'bi2' => 'My Profile']) @section('content')
 <div class="container fade-in">
 	<h1 class="text-uppercase fw-bolder mb-5">My profile</h1>
-	<form method="POST" action="" enctype="multipart/form-data">
+	@if (session('success'))
+	<div class="alert alert-success mb-3 d-flex gap-3 align-items-center" role="alert">
+		<i class="fa-solid fa-circle-check text-primary"></i>
+		<small class="text-primary fw-semibold">{{ session("success") }}</small>
+	</div>
+	@endif
+	<form method="POST" action="{{ route('service-update-worker') }}" enctype="multipart/form-data">
+		@csrf
+		<input type="text" name="worker_id" value="{{ $workerId }}" class="d-none" />
 		<div class="row gx-4">
 			<div class="col-md-3 d-flex flex-column gap-3">
 				<div class="w-100 d-flex justify-content-center">
-					<div style="width: 10rem; height: 10rem">
-						<div class="avatar w-100 h-100">
-							@if (Auth::user()->image_url != null)
-							<img class="rounded-circle" src="{{ asset('img/profile') . '/' . Auth::user()->image_url }}" />
-							@else
-							<div class="avatar w-100 h-100 rounded-circle bg-secondary text-white fw-bold">{{ Auth::user()->first_name[0] }}</div>
-							@endif
-						</div>
+					<div style="width: 10rem; height: 10rem" class="border border-1 border-secondary rounded-circle img-fluid prev-img">
+						<img
+							id="previewImageBeforeUpload"
+							src="
+								@if (Auth::user()->image_url != null)
+									{{ asset('img/profile') . '/' . Auth::user()->image_url }}
+								@else
+									{{ asset('svg/illust/upload-photo.svg') }}
+								@endif
+								"
+							alt=""
+							class="avatar w-100 h-100"
+						/>
 					</div>
 				</div>
 				<label for="img" class="btn btn-primary text-uppercase fw-bold">Upload Photo</label>
@@ -20,7 +33,12 @@
 				<div class="d-flex flex-column">
 					<i class="fa-solid fa-quote-left h1 mb-0 text-primary"></i>
 					<label for="shortBio" class="text-primary fw-bold small">Short Bio</label>
-					<textarea class="form-control" name="" id="" cols="30" rows="8">{{ DB::table('workers')->where('user_id', Auth::user()->id)->first()->short_bio }}</textarea>
+					<textarea class="form-control" name="short_bio" id="" cols="30" rows="8">{{ DB::table('workers')->where('user_id', Auth::user()->id)->first()->short_bio }}</textarea>
+					@error('short_bio')
+					<span class="invalid-feedback d-block" role="alert">
+						<strong class="small text-danger">{{ $message }}</strong>
+					</span>
+					@enderror
 				</div>
 				<hr />
 				<div>
@@ -38,6 +56,11 @@
 							@endif  
 						@endforeach"
 					/>
+					@error('skills')
+					<span class="invalid-feedback d-block" role="alert">
+						<strong class="small text-danger">{{ $message }}</strong>
+					</span>
+					@enderror
 				</div>
 				<div>
 					<h5 class="fw-bolder">Socials</h5>
@@ -54,6 +77,11 @@
 							@endif  
 						@endforeach"
 					/>
+					@error('socials')
+					<span class="invalid-feedback d-block" role="alert">
+						<strong class="small text-danger">{{ $message }}</strong>
+					</span>
+					@enderror
 				</div>
 			</div>
 			<div class="col-md-9">
@@ -66,7 +94,7 @@
 									<label for="" class="text-primary text-nowrap fw-bold small">Full Name</label>
 								</div>
 								<div class="col-md-8 z-index-30">
-									<input type="text" class="form-control" value="{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}" />
+									<input disabled type="text" class="form-control" value="{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}" />
 								</div>
 							</div>
 							<div class="row">
@@ -75,7 +103,12 @@
 									<label for="" class="text-primary text-nowrap fw-bold small">Mobile</label>
 								</div>
 								<div class="col-md-8 z-index-30">
-									<input type="text" class="form-control" value="{{ Auth::user()->contact_number }}" />
+									<input name="contact_number" type="text" class="form-control" value="{{ Auth::user()->contact_number }}" maxlength="11" />
+									@error('contact_number')
+									<span class="invalid-feedback d-block" role="alert">
+										<strong class="small text-danger">{{ $message }}</strong>
+									</span>
+									@enderror
 								</div>
 							</div>
 							<div class="row">
@@ -84,7 +117,12 @@
 									<label for="" class="text-primary text-nowrap fw-bold small">Address</label>
 								</div>
 								<div class="col-md-8 z-index-30">
-									<textarea name="" id="" cols="30" rows="5" class="form-control">{{ Auth::user()->address }}</textarea>
+									<textarea name="address" id="" cols="30" rows="5" class="form-control">{{ Auth::user()->address }}</textarea>
+									@error('address')
+									<span class="invalid-feedback d-block" role="alert">
+										<strong class="small text-danger">{{ $message }}</strong>
+									</span>
+									@enderror
 								</div>
 							</div>
 							<div class="d-flex justify-content-between">
@@ -100,16 +138,22 @@
 				</div>
 				<div class="mt-5">
 					<h5 class="fw-bolder">About Me</h5>
-					<textarea id="serviceInfo" class="content" name="">{{ DB::table('workers')->where('user_id', Auth::user()->id)->first()->service_info }}</textarea>
+					<textarea id="serviceInfo" class="content" name="service_info">{{ DB::table('workers')->where('user_id', Auth::user()->id)->first()->service_info }}</textarea>
+					@error('service_info')
+					<span class="invalid-feedback d-block" role="alert">
+						<strong class="small text-danger">{{ $message }}</strong>
+					</span>
+					@enderror
 				</div>
 				<div class="d-flex justify-content-between mt-3">
 					<div></div>
-					<button class="btn btn-primary text-uppercase fw-bold">Update</button>
+					<button type="submit" class="btn btn-primary text-uppercase fw-bold">Update</button>
 				</div>
 			</div>
 		</div>
 	</form>
 </div>
+<div class="spacer"></div>
 
 <!-- Modal -->
 <div class="modal fade" id="viewResumeModal" tabindex="-1" aria-labelledby="viewResumeModalLabel" aria-hidden="true">
@@ -164,6 +208,8 @@
 		let $socialsTag = $("#socials").tagify();
 
 		$("#serviceInfo").richText(config);
+
+		prevImageOnUpload("#img", "#previewImageBeforeUpload", "#defaultAvatar");
 	});
 </script>
 @endsection

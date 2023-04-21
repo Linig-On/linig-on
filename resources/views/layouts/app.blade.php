@@ -49,7 +49,7 @@
 								<a href="/" class="nav-link fw-bold {{ request()->is('/') ? 'active' : '' }}">Home</a>
 							</li>
 							<li class="nav-item">
-								<a href="/services" class="nav-link fw-bold {{ request()->is('services') ? 'active' : '' }}">Services</a>
+								<a href="/service" class="nav-link fw-bold {{ request()->is('service') ? 'active' : '' }}">Service</a>
 							</li>
 							<li class="nav-item">
 								<a href="/about" class="nav-link fw-bold {{ request()->is('about') ? 'active' : '' }}">About Us</a>
@@ -80,7 +80,7 @@
 									<div class="dropdown-header py-2">
 										<small class="fw-bolder text-uppercase">Activity</small>
 									</div>
-									<a class="dropdown-item d-flex align-items-center gap-3" href="/services">
+									<a class="dropdown-item d-flex align-items-center gap-3" href="/service">
 										<i class="fa fa-solid fa-book ps-3"></i>
 										<small>Book a Service</small>
 									</a>
@@ -123,7 +123,7 @@
 											<a href="/" class="nav-link p-0 text-white">Home</a>
 										</li>
 										<li class="nav-item mb-2">
-											<a href="/services" class="nav-link p-0 text-white">Services</a>
+											<a href="/service" class="nav-link p-0 text-white">Service</a>
 										</li>
 										<li class="nav-item mb-2">
 											<a href="/about" class="nav-link p-0 text-white">About Us</a>

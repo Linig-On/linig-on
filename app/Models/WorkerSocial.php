@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Worker extends Model
+class WorkerSocial extends Model
 {
     use HasFactory;
 
@@ -15,10 +15,7 @@ class Worker extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_id',
-        'resume_url',
-        'is_approved',
-        'short_bio',
-        'service_info',
+        'worker_id',
+        'social',
     ];
 }

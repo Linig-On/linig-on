@@ -42,23 +42,50 @@
 				</div>
 			</div>
 		</div>
-			<div id="worker-card">
-				<div id="row">
-					<div id="workerbox" class="rounded border border-light shadow p-3 mb-5 bg-body rounded mt-4 col-md-12 p-2">
-						<h2>Sample</h2>
-							<div class="clearfix">
-						<a href="/services/worker" role="button" class="btn btn-primary mt-4 text-uppercase fw-bold float-end">See More</a>
+		<div id="worker-card">
+			<div id="row">
+				@foreach($listOfWorkers as $worker)
+				<div id="workerbox" class="col-md-12">
+					<div class="card shadow border border-1 mb-4">
+						<div class="card-body px-4 py-3">
+							<div class="row">
+								<div class="col-md-10">
+									<div class="d-flex gap-3">
+										<div class="d-flex justify-content-center">
+											<div style="width: 7rem; height: 7rem">
+												<div class="avatar w-100 h-100">
+													@if ($worker['image_url'] != null)
+													<img class="rounded-circle" src="{{ asset('img/profile') . '/' . $worker['image_url'] }}" />
+													@else
+													<div class="avatar w-100 h-100 rounded-circle bg-secondary text-white fw-bold">{{ $worker["first_name"][0] }}</div>
+													@endif
+												</div>
+											</div>
+										</div>
+										<div class="d-flex flex-column">
+											<h2 class="fw-bolder text-primary">{{ $worker["first_name"] . " " . $worker["last_name"] }}</h2>
+											<tag-container>
+												@foreach($worker['skills'] as $sk)
+												<div class="view-tag">{{ $sk->skill }}</div>
+												@endforeach
+											</tag-container>
+											<p class="mt-4">{{ $worker["short_bio"] }}</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="d-flex justify-content-between">
+										<div></div>
+										<a href="{{ route('services-worker-profile', ['id' => $worker['worker_id'] ]) }}" role="button" class="btn btn-primary mt-4 text-uppercase fw-bold text-decoration-none">See More</a>
+									</div>
+								</div>
 							</div>
-					</div>	
-					
-					<div id="workerbox" class="rounded border border-light shadow p-3 mb-5 bg-body rounded mt-4 col-md-12 p-2">
-						<h2>Sample<h2>
-						<div class="clearfix">
-						<a href="/services/worker" role="button" class="btn btn-primary mt-4 text-uppercase fw-bold float-end">See More</a>
-							</div>
-					</div>	
+						</div>
+					</div>
 				</div>
-			</div>	
+				@endforeach
+			</div>
+		</div>
 	</form>
 </div>
 @endsection @section('javascript')

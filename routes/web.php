@@ -23,7 +23,7 @@ use App\Http\Controllers\Auth\RegisterController;
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/services', [ServiceController::class, 'index'])->name('services');
+Route::get('/service', [ServiceController::class, 'index'])->name('service');
 Route::get('/about', [HomeController::class, 'aboutUs'])->name('about-us');
 
 // authentication
@@ -50,3 +50,4 @@ Route::get('/service/worker/{id}', [ServiceController::class, 'workerProfile'])-
 // private module
 Route::get('/service/dashboard', [ServiceController::class, 'serviceDashboard'])->name('service-dashboard');
 Route::get('/service/my-profile', [ServiceController::class, 'serviceMyProfile'])->name('service-my-profile');
+Route::post('/service/update/worker', [ServiceController::class, 'serviceUpdateWorker'])->name('service-update-worker');

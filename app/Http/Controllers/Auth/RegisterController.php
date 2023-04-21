@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\Worker;
+use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -70,7 +71,7 @@ class RegisterController extends Controller
                 $filename = $request->img->getClientOriginalName();
 
                 // store in public folder
-                $request->img->move(public_path('img/profile'), $filename);
+                $request->img->move(public_path('img/profile'), Carbon::now() . '_' . $filename);
             }
 
 
@@ -106,7 +107,7 @@ class RegisterController extends Controller
 
             if ($errorCode == 1062) {
                 // we have a duplicate entry problem
-                return redirect()->back()->withErrors(["msg" => "This email address already exists."]);
+                return redirect()->back()->withErrors(['msg' => 'This email address already exists.']);
             }
         }
     }
@@ -141,14 +142,14 @@ class RegisterController extends Controller
 
             if ($request->file('img') != null) {
                 // get the filename of file uploaded
-                $imgFileName = $request->file('img')->getClientOriginalName();
+                $imgFileName = time() . '_' . $request->file('img')->getClientOriginalName();
                 // store in public folder
                 $request->file('img')->move(public_path('img/profile'), $imgFileName);
             }
 
             if ($request->file('resume') != null) {
                 // get the filename of file uploaded
-                $resumeFileName = $request->file('resume')->getClientOriginalName();
+                $resumeFileName = time() . '_' . $request->file('resume')->getClientOriginalName();
                 // store in public folder
                 $request->file('resume')->move(public_path('resume/pending-approval'), $resumeFileName);
             }
@@ -163,6 +164,7 @@ class RegisterController extends Controller
                 'contact_number' => 'required|min:11',
                 'address' => 'required',
             ]);
+            
 
             // Create a new user object and fill it with the validated data
             $user = User::create([
@@ -192,7 +194,7 @@ class RegisterController extends Controller
 
             if ($errorCode == 1062) {
                 // we have a duplicate entry problem
-                return redirect()->back()->withErrors(["msg" => "This email address already exists."]);
+                return redirect()->back()->withErrors(['msg' => 'This email address already exists.']);
             }
         }
     }

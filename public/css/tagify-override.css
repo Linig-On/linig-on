@@ -22,3 +22,26 @@
 	font-size: small;
 	font-weight: bold;
 }
+
+.tagify__tag--editable span {
+	color: var(--primary);
+	--tag-remove-btn-color: var(--danger);
+}
+
+tag-container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 100%;
+	gap: 0.5rem;
+}
+
+.view-tag {
+	padding: 0.2rem 1rem;
+	background-color: var(--secondary);
+	width: max-content;
+	border-radius: 1rem;
+	font-size: small;
+	font-weight: bold;
+	color: rgba(21, 60, 107, 60%);
+}

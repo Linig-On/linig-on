@@ -129,7 +129,7 @@ class LoginController extends Controller
                 Auth::logout();
                 return redirect()->back()->withErrors(["msg" => "This credential is for users."])->withInput();
             }
-            return redirect()->back()->withErrors(["msg" => "Invalid credentials."]);
+            return redirect()->back()->withErrors(["msg" => "Invalid credentials."])->withInput();
         } catch (ValidationException $ex) {
             return redirect()->back()->withErrors($ex)->withInput();
         }

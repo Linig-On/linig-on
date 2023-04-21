@@ -85,7 +85,7 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">
+					<a class="nav-link" href="{{ route('about-us') }}">
 						<i class="nav-icon cil-address-book"></i>
 						Contact Us
 					</a>
@@ -172,7 +172,7 @@
 												<a href="/" class="nav-link p-0 text-white">Home</a>
 											</li>
 											<li class="nav-item mb-2">
-												<a href="/services" class="nav-link p-0 text-white">Services</a>
+												<a href="/service" class="nav-link p-0 text-white">Services</a>
 											</li>
 											<li class="nav-item mb-2">
 												<a href="/about" class="nav-link p-0 text-white">About Us</a>

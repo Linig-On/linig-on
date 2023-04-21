@@ -70,7 +70,7 @@
 										<input id="firstName" name="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}" />
 										@error('first_name')
 										<span class="invalid-feedback" role="alert">
-											<strong class="small text-danger">Invalid name.</strong>
+											<strong class="small text-danger">{{ $message }}</strong>
 										</span>
 										@enderror
 									</div>
@@ -79,7 +79,7 @@
 										<input id="lastName" name="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}" />
 										@error('last_name')
 										<span class="invalid-feedback" role="alert">
-											<strong class="small text-danger">Invalid name.</strong>
+											<strong class="small text-danger">{{ $message }}</strong>
 										</span>
 										@enderror
 									</div>
@@ -90,7 +90,7 @@
 										<input id="contactNo" name="contact_number" type="text" class="form-control @error('contact_number') is-invalid @enderror" maxlength="11" value="{{ old('contact_number') }}" />
 										@error('contact_number')
 										<span class="invalid-feedback" role="alert">
-											<strong class="small text-danger">Invalid contact number. A contact number must have at least 8 characters.</strong>
+											<strong class="small text-danger">{{ $message }}</strong>
 										</span>
 										@enderror
 									</div>
@@ -99,7 +99,7 @@
 										<input id="email" name="email" type="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" />
 										@error('email')
 										<span class="invalid-feedback" role="alert">
-											<strong class="small text-danger">Invalid email address.</strong>
+											<strong class="small text-danger">{{ $message }}</strong>
 										</span>
 										@enderror
 									</div>
@@ -108,7 +108,7 @@
 										<input id="password" name="password" type="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}" />
 										@error('password')
 										<span class="invalid-feedback" role="alert">
-											<strong class="small text-danger">Invalid password. Use a password minimum of 8 characters.</strong>
+											<strong class="small text-danger">{{ $message }}</strong>
 										</span>
 										@enderror
 									</div>
@@ -117,7 +117,7 @@
 										<textarea id="address" name="address" cols="30" rows="10" class="form-control @error('address') is-invalid @enderror">{{ old("address") }}</textarea>
 										@error('address')
 										<span class="invalid-feedback" role="alert">
-											<strong class="small text-danger">Invalid address. An address is required.</strong>
+											<strong class="small text-danger">{{ $message }}</strong>
 										</span>
 										@enderror
 									</div>
