@@ -60,7 +60,49 @@ class WorkerSkillSeeder extends Seeder
                 'worker_id' => 3,
                 'skill' => 'Laundry',
                 'created_at' => Carbon::now()
+            ],
+
+            [
+                'id' => 7,
+                'worker_id' => 4,
+                'skill' => 'Housemaid',
+                'created_at' => Carbon::now()
+            ],
+            [
+                'id' => 8,
+                'worker_id' => 4,
+                'skill' => 'Ironing',
+                'created_at' => Carbon::now()
+            ],
+            [
+                'id' => 9,
+                'worker_id' => 5,
+                'skill' => 'Dish Washing',
+                'created_at' => Carbon::now()
+            ],
+            [
+                'id' => 10,
+                'worker_id' => 5,
+                'skill' => 'Cleaning',
+                'created_at' => Carbon::now()
+            ],
+            [
+                'id' => 11,
+                'worker_id' => 6,
+                'skill' => 'Folding & Ironing',
+                'created_at' => Carbon::now()
+            ],
+            [
+                'id' => 12,
+                'worker_id' => 6,
+                'skill' => 'Laundry',
+                'created_at' => Carbon::now()
             ]
+
+
+
+
+
         ];
 
         foreach ($data as $skill) {

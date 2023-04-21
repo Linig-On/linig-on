@@ -42,10 +42,10 @@
 				</div>
 			</div>
 		</div>
-		<div id="worker-card">
-			<div id="row">
+		<section>
+			<ul id="paginatedList" data-current-page="1" aria-live="polite">
 				@foreach($listOfWorkers as $worker)
-				<div id="workerbox" class="col-md-12">
+				<li>
 					<div class="card shadow border border-1 mb-4">
 						<div class="card-body px-4 py-3">
 							<div class="row">
@@ -82,12 +82,42 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</li>
 				@endforeach
-			</div>
-		</div>
+			</ul>
+		</section>
 	</form>
+	<nav class="pagination-container">
+		<button type="button" class="pagination-button btn btn-primary text-white text-uppercase fw-bold px-4" id="prevButton" aria-label="Previous page" title="Previous page">Previous</button>
+		<div id="paginationNumbers"></div>
+		<button type="button" class="pagination-button btn btn-primary text-white text-uppercase fw-bold px-4" id="nextButton" aria-label="Next page" title="Next page">Next</button>
+	</nav>
 </div>
+<div class="spacer"></div>
 @endsection @section('javascript')
 <script src="{{ asset('js/input-dropdown.js') }}"></script>
+<script type="text/javascript">
+	// NOTE: this shi- is confusing to read
+	// NOTE: basically it waits for a few ms before adding the fade-in class
+	$(document).ready(function () {
+		setTimeout(() => {
+			animateList();
+
+			$("#nextButton, #prevButton").click(function () {
+				setTimeout(() => {
+					$("#paginatedList li").removeClass("fade-in");
+					animateList();
+				}, 100);
+			});
+		}, 100);
+	});
+
+	function animateList() {
+		$("#paginatedList li:not(.hidden)").each(function (i, el) {
+			setTimeout(function () {
+				$(el).addClass("fade-in");
+			}, i * 150);
+		});
+	}
+</script>
 @endsection

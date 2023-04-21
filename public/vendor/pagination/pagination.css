@@ -3,7 +3,8 @@
 }
 
 .pagination-container {
-	width: 100%;
+	width: max-content;
+	margin-left: auto;
 	display: flex;
 	align-items: center;
 	position: relative;
@@ -14,14 +15,18 @@
 
 .pagination-number,
 .pagination-button {
-	font-size: 1.1rem;
-	background-color: transparent;
+	font-size: small;
+	/* background-color: transparent; */
 	border: none;
 	margin: 0.25rem 0.25rem;
 	cursor: pointer;
 	height: 2.5rem;
 	width: 2.5rem;
-	border-radius: 0.2rem;
+	border-radius: 6px;
+}
+
+.pagination-button:hover {
+	background-color: var(--primary) !important;
 }
 
 .pagination-button:not(#prevButton),
@@ -39,8 +44,12 @@
 	background: var(--secondary);
 }
 
-ul#paginatedLists {
+#paginatedList {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
+}
+
+#paginatedList li {
+	opacity: 0;
 }

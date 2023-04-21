@@ -61,17 +61,31 @@ class WorkerSeeder extends Seeder
                 'id' => 4,
                 'user_id' => 9,
                 'resume_url' => 'resume3.pdf',
-                'short_bio' => null,
-                'service_info' => null,
+                'short_bio' => 'Hi, I\'m Jim! I\'m a service worker who specialize in cleaning garages. I\'m always focused and always keep the job done',
+                'service_info' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus illum ullam consequuntur, esse assumenda maxime repellat sapiente rem pariatur ut. Accusamus quod qui nemo, quaerat nulla voluptatum explicabo perferendis rerum?',
+                'is_approved' => true,
                 'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
             [
                 'id' => 5,
                 'user_id' => 10,
                 'resume_url' => 'resume4.pdf',
-                'short_bio' => null,
-                'service_info' => null,
+                'short_bio' => 'Hi, I\'m Rob! I\'ve been cleaning households for more than 15 years now. As soon as I pick up my tools and marterials for cleaning, I always make sure to finish my tasks',
+                'service_info' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus illum ullam consequuntur, esse assumenda maxime repellat sapiente rem pariatur ut. Accusamus quod qui nemo, quaerat nulla voluptatum explicabo perferendis rerum?',
+                'is_approved' => true,
                 'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'id' => 6,
+                'user_id' => 14,
+                'resume_url' => 'resume5.pdf',
+                'short_bio' => 'Hi, I\'m Dia! I\'ve been a part of the cleaning community for years now. Once I start cleaning, I always stay focused and finish my tasks on time.',
+                'service_info' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus illum ullam consequuntur, esse assumenda maxime repellat sapiente rem pariatur ut. Accusamus quod qui nemo, quaerat nulla voluptatum explicabo perferendis rerum?',
+                'is_approved' => true,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]
         ];
 

@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 use Carbon\Carbon;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
@@ -15,13 +15,6 @@ class UserSeeder extends Seeder
      *
      * @return void
      */
-
-     /**
-      * where user is:
-      *      ADM
-      *      USR
-      *      SVC
-      */
 
     public function run() 
     {
@@ -207,6 +200,19 @@ class UserSeeder extends Seeder
                 'image_url' => null,
                 'created_at' => Carbon::now()
             ],
+            [
+                'id' => 14,
+                'first_name' => 'Dia',
+                'last_name' => 'Reeves',
+                'gender' => 'F',
+                'email' => 'dreeves@gmail.com',
+                'password' => Hash::make('password'),
+                'contact_number' => '09581672831',
+                'address' => '1234 Ateneo Ave. Oracle, NY 94872',
+                'user_type' => 'SVC',
+                'image_url' => null,
+                'created_at' => Carbon::now()
+            ]
         ];
 
         foreach ($data as $user) {
