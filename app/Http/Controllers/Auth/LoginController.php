@@ -77,7 +77,7 @@ class LoginController extends Controller
 
             if (Auth::attempt($credentials)) {
                 if (Auth::user()->user_type == 'USR' || Auth::user()->user_type == 'ADM')
-                    return redirect("services");
+                    return redirect("service");
 
                 Auth::logout();
                 return redirect()->back()->withErrors(["msg" => "This credential is for workers."])->withInput();

@@ -1,5 +1,5 @@
 @extends('layouts.error') @section('content')
-<div class="container d-flex min-vh-100 align-items-center">
+<div class="container fade-in d-flex min-vh-100 align-items-center">
 	<div class="card shadow border border-1 rounded-5 py-4 px-5">
 		<div class="card-body p-5 text-center d-flex flex-column justif-content-center gap-3">
 			<i class="fa-solid fa-circle-check display-1 text-success"></i>
