@@ -14,41 +14,23 @@
 		<script defer src="pagination.js"></script>
 	</head>
 	<body>
-		<template reg-form>
-			<div class="card">
-				<div class="card-header py-3 px-4">
-					<h4 class="fw-bold"></h4>
-				</div>
-				<div class="card-body">
-					<form action="" class="d-flex flex-column gap-3">
-						<div class="row">
-							<div class="col-6">
-								<input class="form-control" type="text" placeholder="First Name" />
-							</div>
-							<div class="col-6">
-								<input class="form-control" type="text" placeholder="Last Name" />
-							</div>
-						</div>
-						<div class="row">
-							<div class="col">
-								<input class="form-control" type="text" placeholder="Username" />
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</template>
 		<main>
-			<input id="noOfWorker" class="form-control mb-5" type="text" placeholder="Number of Workers" pattern="\d*" maxlength="2" />
-			<ul id="paginatedLists" data-current-page="1" aria-live="polite"></ul>
+			<ul id="paginatedList" data-current-page="1" aria-live="polite">
+				<li>Item 1</li>
+				<li>Item 2</li>
+				<li>Item 3</li>
+				<li>Item 4</li>
+				<li>Item 5</li>
+				<li>Item 6</li>
+				<li>Item 7</li>
+				<li>Item 8</li>
+				<li>Item 9</li>
+				<li>Item 10</li>
+			</ul>
 			<nav class="pagination-container">
-				<button class="pagination-button" id="prevButton" aria-label="Previous page" title="Previous page">
-					<i class="fa fa-solid fa-angle-left"></i>
-				</button>
+				<button class="pagination-button bg-primary text-white fw-bold px-3" id="prevButton" aria-label="Previous page" title="Previous page">Previous</button>
 				<div id="paginationNumbers"></div>
-				<button class="pagination-button" id="nextButton" aria-label="Next page" title="Next page">
-					<i class="fa fa-solid fa-angle-right"></i>
-				</button>
+				<button class="pagination-button bg-primary text-white fw-bold px-3" id="nextButton" aria-label="Next page" title="Next page">Next</button>
 			</nav>
 		</main>
 	</body>

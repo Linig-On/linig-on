@@ -16,6 +16,17 @@
 	}
 }
 
+@keyframes slideInElement {
+	from {
+		opacity: 0;
+		transform: translateX(-100%);
+	}
+	to {
+		opacity: 100;
+		transform: translateX(0);
+	}
+}
+
 .fade-in {
 	animation: fadeInElement 500ms forwards ease-in;
 }

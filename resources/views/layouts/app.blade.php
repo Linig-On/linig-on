@@ -25,11 +25,15 @@
 		<link href="{{ asset('css/site.css') }}" rel="stylesheet" />
 
 		<script src="{{ mix('js/app.js') }}"></script>
+
 		<!-- BS-Coreui Script -->
 		<script defer src="{{ asset('vendor/bs-coreui/build/bs-coreui.min.js') }}"></script>
 
 		<!-- Site Script -->
 		<script defer src="{{ asset('js/site.js') }}"></script>
+
+		<!-- Pagination Script -->
+		<script defer src="{{ asset('vendor/pagination/pagination.js') }}"></script>
 	</head>
 
 	<body>

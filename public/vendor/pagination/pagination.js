@@ -1,13 +1,12 @@
-let paginationNumbers;
-let paginatedList;
-let listItems;
-let nextButton = document.getElementById("nextButton");
-let prevButton = document.getElementById("prevButton");
-let noOfWorker = document.getElementById("noOfWorker");
+const paginationNumbers = document.getElementById("paginationNumbers");
+const paginatedList = document.getElementById("paginatedList");
+const listItems = paginatedList.querySelectorAll("li");
+const nextButton = document.getElementById("nextButton");
+const prevButton = document.getElementById("prevButton");
 
-let paginationLimit;
-let pageCount;
-let currentPage;
+const paginationLimit = 3;
+const pageCount = Math.ceil(listItems.length / paginationLimit);
+let currentPage = 1;
 
 const disableButton = (button) => {
 	button.classList.add("disabled");
@@ -76,65 +75,25 @@ const setCurrentPage = (pageNum) => {
 	});
 };
 
-noOfWorker.addEventListener("change", () => {
-	// region new
-	$("#paginatedLists, #paginationNumbers").empty();
-
-	let value = parseInt(noOfWorker.value);
-
-	for (let i = 0; i < value; i++) {
-		let html = $(`[reg-form]`)[0].content.cloneNode(true).children[0];
-		let h4 = html.querySelectorAll("h4");
-		$(h4).html(`Registration ${i + 1}`);
-
-		const li = $("<li>").html(html);
-		$("#paginatedLists").append(li);
-	}
-	// endregion
-
-	paginationNumbers = document.getElementById("paginationNumbers");
-	paginatedList = document.getElementById("paginatedLists");
-	listItems = paginatedList.querySelectorAll("li");
-
-	paginationLimit = 1;
-	pageCount = Math.ceil(listItems.length / paginationLimit);
-	currentPage = 1;
-
+window.addEventListener("load", () => {
 	getPaginationNumbers();
 	setCurrentPage(1);
 
-	const paginationNumber = document.querySelectorAll(".pagination-number");
-	paginationNumber.forEach((button) => {
+	prevButton.addEventListener("click", () => {
+		setCurrentPage(currentPage - 1);
+	});
+
+	nextButton.addEventListener("click", () => {
+		setCurrentPage(currentPage + 1);
+	});
+
+	document.querySelectorAll(".pagination-number").forEach((button) => {
 		const pageIndex = Number(button.getAttribute("page-index"));
+
 		if (pageIndex) {
 			button.addEventListener("click", () => {
 				setCurrentPage(pageIndex);
-
-				// region new
-				// if its at the last page
-				if (currentPage === pageCount) {
-					$(".register-btn").show();
-				} else {
-					$(".register-btn").hide();
-				}
-				// endregion
 			});
 		}
 	});
-});
-
-prevButton.addEventListener("click", () => {
-	if (listItems != undefined) setCurrentPage(currentPage - 1);
-});
-nextButton.addEventListener("click", () => {
-	if (listItems != undefined) setCurrentPage(currentPage + 1);
-
-	// region new
-	// if its at the last page
-	if (currentPage === pageCount) {
-		$(".register-btn").show();
-	} else {
-		$(".register-btn").hide();
-	}
-	// endregion
 });
