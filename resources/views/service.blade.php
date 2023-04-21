@@ -55,7 +55,7 @@
 											<div style="width: 7rem; height: 7rem">
 												<div class="avatar w-100 h-100">
 													@if ($worker['image_url'] != null)
-													<img class="rounded-circle" src="{{ asset('img/profile') . '/' . $worker['image_url'] }}" />
+													<img class="rounded-circle w-100 h-100" src="{{ asset('img/profile') . '/' . $worker['image_url'] }}" />
 													@else
 													<div class="avatar w-100 h-100 rounded-circle bg-secondary text-white fw-bold">{{ $worker["first_name"][0] }}</div>
 													@endif
