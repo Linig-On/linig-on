@@ -12,7 +12,19 @@
 
 <!-- justify-content-center align-items-center -->
 <div class="row ">
+
   <div class="col-md-4 p-5 ">
+        <div class="w-100 d-flex justify-content-center">
+					<div style="width: 10rem; height: 10rem" class="border border-1 border-secondary rounded-circle img-fluid prev-img">
+						<img
+							id="previewImageBeforeUpload"
+							src="
+								"
+							alt=""
+							class="avatar w-100 h-100"
+						/>
+					</div>
+				</div>
     <i class="fa-solid fa-quote-left fa-2xl"></i>
             <p class="text-center">
             I am a normal paragraph. I am currently explaining about my about me. This is what I do and I like it!
@@ -24,12 +36,12 @@
             </button>
         </div>
             <div class="py-4">
-                <div>
+                <div class="pb-3">
                 <h2>Skills</h2>
                 </div>
                 
-               <h2>Socials</h2>
-               <div class="d-flex justify-content-center gap-3">
+               <h2 class="pb-3">Socials</h2>
+               <div class="d-flex justify-content-center gap-3 pb-3">
                 <i class="fa-brands fa-facebook fa-2xl"></i>
                 <i class="fa-brands fa-facebook-messenger fa-2xl"></i>
                 <i class="fa-brands fa-linkedin fa-2xl"></i>
