@@ -7,6 +7,7 @@
 		</ol>
 	</nav>
 </div>
+
 <div class="container fade-in">
 	<div class="row">
 		<div class="col-md-4">
@@ -122,7 +123,28 @@
 </div>
 <div class="spacer"></div>
 
-<!-- View Resume Modal -->
+<button type="button" class="btn btn-primary text-uppercase fw-bold z-index-30" data-bs-toggle="modal" data-bs-target="#Modal2" >Give Feedback</button>
+
+<div class="modal fade" id="viewResumeModal" tabindex="-1" aria-labelledby="viewResumeModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="d-flex align-items-center gap-1">
+					<h5 class="modal-title fw-bolder text-uppercase" id="viewResumeModalLabel">My Resume</h5>
+					<i class="fa-solid fa-book text-primary"></i>
+				</div>
+			</div>
+			<div class="modal-body">
+				<embed src="{{ asset('resume/approved/' . DB::table('workers')->where('user_id', Auth::user()->id)->first()->resume_url) }}" width="100%" style="min-height: 75vh" />
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Booking Modal -->
 <div class="modal fade" id="bookAservice" tabindex="-1" aria-labelledby="bookAserviceLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -218,9 +240,36 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary text-uppercase fw-bold">Book</button>
+
+                    <div class="modal-footer">
+				            <button type="button" class="btn btn-primary">Book</button>
+			        </div>
+                
 			</div>
 		</div>
 	</div>
 </div>
+
+<!-- Feedback Modal -->
+<div class="modal fade" id="Modal2" tabindex="-1" aria-labelledby="Modal2Label" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="d-flex align-items-center gap-1">
+					<h5 class="modal-title fw-bolder text-uppercase" id="Modal2Label">My Resume</h5>
+					<i class="fa-solid fa-book text-primary"></i>
+				</div>
+			</div>
+			<div class="modal-body">
+				SAMPLE
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
 @endsection
