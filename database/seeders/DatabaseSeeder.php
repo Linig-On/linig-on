@@ -19,7 +19,9 @@ class DatabaseSeeder extends Seeder
             WorkerSkillSeeder::class,
             WorkerSocialSeeder::class,
             NotificationSeeder::class,
-            WorkerRatings::class
+            WorkerRatings::class,
+            BookmarkSeeder::class,
+            BookingSeeder::class
         ]);
     }
 }
