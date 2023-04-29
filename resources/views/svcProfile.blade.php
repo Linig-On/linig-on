@@ -10,11 +10,15 @@
 
 <div class="container fade-in">
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-md-4 position-relative">
+			@if (Auth::user() != null)
+			<button id="bookmarkBtn" class="position-absolute btn shadow-none px-0 pt-2 rounded-0 border-0" style="right: 5rem; top: 3rem">
+				<i class="fa fa-regular fa-bookmark h3 text-primary"></i>
+			</button>
+			@endif
 			<div class="w-100 d-flex justify-content-center p-5">
 				<div style="width: 10rem; height: 10rem" class="border border-1 border-secondary rounded-circle img-fluid prev-img">
 					<img
-						id="previewImageBeforeUpload"
 						src="@if ($userInfo->image_url != null)
                             {{ asset('img/profile') . '/' . $userInfo->image_url }}
                             @else
@@ -29,9 +33,9 @@
 			<p class="text-center">{{ $workerInfo->short_bio }}</p>
 			<div class="d-flex gap-2 w-mc mx-auto">
 				@for ($i = 0; $i < $workerRatingAvg; $i++)
-				<i class="fa fa-solid fa-star"></i>
+				<i class="fa fa-solid fa-star h4 text-warning"></i>
 				@endfor @if ($workerRatingAvg < 5) @for ($i = 0; $i < 5 - $workerRatingAvg; $i++)
-				<i class="fa fa-regular fa-star"></i>
+				<i class="fa fa-regular fa-star h4 text-warning"></i>
 				@endfor @endif
 			</div>
 			<hr />
@@ -40,14 +44,14 @@
 			</div>
 			<div class="py-4">
 				<div class="pb-3">
-					<h2>Skills</h2>
+					<h4 class="fw-bolder text-uppercase">Skills</h4>
 					<div class="d-flex flex-wrap gap-2">
 						@foreach($workerSkills as $i)
 						<div class="view-tag">{{ $i->skill }}</div>
 						@if(!$loop->last) @endif @endforeach
 					</div>
 				</div>
-				<h2 class="pb-3">Socials</h2>
+				<h4 class="fw-bolder text-uppercase">Socials</h4>
 				<div class="d-flex flex-wrap gap-2">
 					@foreach($workerSocials as $i)
 					<div class="view-tag">{{ $i->social }}</div>
@@ -95,7 +99,7 @@
 				</div>
 				<div class="col-md-12 col-sm-8 shadow p-4 mb-5 rounded-5 border border-1">{!! $workerInfo->service_info !!}</div>
 				<div class="col-md-12 col-sm-8">
-					<h2>Reviews</h2>
+					<h3 class="fw-bolder text-uppercase">Reviews</h3>
 					<hr class="divider" />
 					@foreach ($workerRatings as $rating)
 					<div class="card rounded-5 border border-1 shadow mb-3">
@@ -248,4 +252,66 @@
 		</div>
 	</div>
 </div>
+@endsection @section('javascript')
+<script type="text/javascript">
+	const $bookmarkBtn = $("#bookmarkBtn");
+	const $bookmarkBtnIcon = $bookmarkBtn.find("i");
+
+	$(document).ready(function () {
+		bookmarkToggleState();
+		bookmarkHandler();
+	});
+
+	const bookmarkToggleState = function () {
+		const isBookedmarked = "{{ $isBookmarked }}" === "true" ? true : false;
+
+		if (isBookedmarked) {
+			$bookmarkBtnIcon.removeClass("fa-regular").addClass("fa-solid");
+		}
+	};
+
+	const bookmarkHandler = function () {
+		$bookmarkBtn.click(function () {
+			const workerId = parseInt("{{ $workerInfo->id }}");
+			const unBookmarked = $bookmarkBtnIcon.hasClass("fa-regular");
+
+			if (unBookmarked) bookmarkWorker(workerId);
+			else unBookmarkWorker(workerId);
+		});
+	};
+
+	const bookmarkWorker = function (workerId) {
+		$bookmarkBtnIcon.removeClass("fa-regular").addClass("fa-solid");
+
+		$.ajax({
+			url: "{{ route('bookmark-worker') }}",
+			data: {
+				id: workerId,
+				_token: "{{ csrf_token() }}",
+			},
+			type: "POST",
+			success: function (res) {
+				// TODO: clean this
+				console.log(res);
+			},
+		});
+	};
+
+	const unBookmarkWorker = function (workerId) {
+		$bookmarkBtnIcon.removeClass("fa-solid").addClass("fa-regular");
+
+		$.ajax({
+			url: "{{ route('un-bookmark-worker') }}",
+			data: {
+				id: workerId,
+				_token: "{{ csrf_token() }}",
+			},
+			type: "POST",
+			success: function (res) {
+				// TODO: clean this
+				console.log(res);
+			},
+		});
+	};
+</script>
 @endsection

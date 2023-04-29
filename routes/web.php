@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -45,9 +46,15 @@ Route::post('/login/user', [LoginController::class, 'loginUser'])->name('login-u
 Route::get('/login/worker', [LoginController::class, 'loginAsWorker'])->name('login-as-worker');
 Route::post('/login/worker', [LoginController::class, 'loginWorker'])->name('login-worker');
 
+
 // service
 Route::get('/service/worker/{id}', [ServiceController::class, 'workerProfile'])->name('service-worker-profile');
 Route::get('/service/filter', [ServiceController::class, 'filter'])->name('service-filter');
+
+// bookmark a service
+Route::post('/service/worker/add/bookmark', [ServiceController::class, 'bookmarkWorker'])->name('bookmark-worker');
+Route::post('/service/worker/remove/bookmark', [ServiceController::class, 'unBookmarkWorker'])->name('un-bookmark-worker');
+Route::get('/account/my-bookmarks', [AccountController::class, 'myBookmarkedWorkers'])->name('my-bookmarks');
 
 // private module
 Route::get('/service/dashboard', [ServiceController::class, 'serviceDashboard'])->name('service-dashboard');

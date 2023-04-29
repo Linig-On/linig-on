@@ -95,6 +95,8 @@
 <div class="spacer"></div>
 @endsection @section('javascript')
 <script src="{{ asset('js/input-dropdown.js') }}"></script>
+<!-- Pagination Script -->
+<script src="{{ asset('vendor/pagination/pagination.js') }}"></script>
 <script type="text/javascript">
 	// NOTE: this shi- is confusing to read
 	// NOTE: basically it waits for a few ms before adding the fade-in class
@@ -102,7 +104,7 @@
 		initPagination();
 	});
 
-	function initPagination() {
+	const initPagination = function () {
 		setTimeout(() => {
 			animateList();
 
@@ -115,7 +117,7 @@
 		}, 100);
 	}
 
-	function animateList() {
+	const animateList = function () {
 		$("#paginatedList li:not(.hidden)").each(function (i, el) {
 			setTimeout(function () {
 				$(el).addClass("fade-in");
@@ -156,7 +158,7 @@
 			$("#paginatedList li").slice(3).addClass("hidden");
 	});
 
-	function assignSortBy(element) {
+	const assignSortBy = function (element) {
 		$("#sortBy").val(`${$(element).attr("value")}`);
 	}
 </script>
