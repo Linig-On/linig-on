@@ -36,7 +36,7 @@
 			</div>
 			<hr />
 			<div class="d-flex justify-content-center">
-				<button type="button" class="btn btn-primary text-uppercase fw-bold z-index-30" data-bs-toggle="modal" data-bs-target="#bookAservice" >Book A service</button>
+				<button type="button" class="btn btn-primary text-uppercase fw-bold z-index-30" data-bs-toggle="modal" data-bs-target="#bookAservice">Book A service</button>
 			</div>
 			<div class="py-4">
 				<div class="pb-3">
@@ -123,8 +123,6 @@
 </div>
 <div class="spacer"></div>
 
-<button type="button" class="btn btn-primary text-uppercase fw-bold z-index-30" data-bs-toggle="modal" data-bs-target="#Modal2" >Give Feedback</button>
-
 <div class="modal fade" id="viewResumeModal" tabindex="-1" aria-labelledby="viewResumeModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -135,7 +133,7 @@
 				</div>
 			</div>
 			<div class="modal-body">
-				<embed src="{{ asset('resume/approved/' . DB::table('workers')->where('user_id', Auth::user()->id)->first()->resume_url) }}" width="100%" style="min-height: 75vh" />
+				<embed src="{{ asset('resume/approved/' . $workerInfo->resume_url) }}" width="100%" style="min-height: 75vh" />
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
@@ -156,95 +154,78 @@
 			</div>
 			<div class="modal-body">
 				<h4>TYPE OF AREA</h4>
-                    <div class="form-check m-2">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-                            <label class="form-check-label" for="flexCheckDefault">
-                                House
-                            </label>
-                    </div>
-                    <div class="form-check m-2">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Room
-                            </label>
-                    </div>        
-                    <div class="form-check m-2">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Garage
-                            </label>
-                    </div>        
-                    <div class="form-check m-2">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Garden
-                            </label>
-                    </div>
-                    <div class="form-check m-2">        
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Room
-                            </label>
-                    </div>        
-                    <div class="form-check m-2">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> 
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Others
-                            </label>
-                    </div>
+				<div class="form-check m-2">
+					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+					<label class="form-check-label" for="flexCheckDefault"> House </label>
+				</div>
+				<div class="form-check m-2">
+					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+					<label class="form-check-label" for="flexCheckDefault"> Room </label>
+				</div>
+				<div class="form-check m-2">
+					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+					<label class="form-check-label" for="flexCheckDefault"> Garage </label>
+				</div>
+				<div class="form-check m-2">
+					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+					<label class="form-check-label" for="flexCheckDefault"> Garden </label>
+				</div>
+				<div class="form-check m-2">
+					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+					<label class="form-check-label" for="flexCheckDefault"> Room </label>
+				</div>
+				<div class="form-check m-2">
+					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+					<label class="form-check-label" for="flexCheckDefault"> Others </label>
+				</div>
 
-                    <div class="d-flex align-items-center gap-1">
-                        <h4 class="modal-title text-uppercase" id="bookAserviceLabel">address</h4>
-                        <i class="fa-solid fa-xl fa-location-dot text-primary"></i>
-				    </div>
+				<div class="d-flex align-items-center gap-1">
+					<h4 class="modal-title text-uppercase" id="bookAserviceLabel">address</h4>
+					<i class="fa-solid fa-xl fa-location-dot text-primary"></i>
+				</div>
 
-                    <div class="d-flex flex-column">
-                        <h6 class="text-primary fw-bold small">Home Address</h6>
-                        <div class="col-12">
-                            <textarea class="form-control" rows="5" aria-label="With textarea"></textarea>
-                        </div>
-                        <div class="my-3">
-                        <h6 class="text-primary fw-bold small">Landmarks</h6>
-                        <div class="col-12">
-                            <input type="text" class="form-control"/>
-                        </div>
-                    </div>
-                    
+				<div class="d-flex flex-column">
+					<h6 class="text-primary fw-bold small">Home Address</h6>
+					<div class="col-12">
+						<textarea class="form-control" rows="5" aria-label="With textarea"></textarea>
+					</div>
+					<div class="my-3">
+						<h6 class="text-primary fw-bold small">Landmarks</h6>
+						<div class="col-12">
+							<input type="text" class="form-control" />
+						</div>
+					</div>
 
-                    <div class="row d-flex justify-content-center">
-                        <h4 class="text-uppercase">specification</h3>
-                        <div class="col-md-5 flex-column align-items-center mt-4 mx-auto" style="height: 200px;">
-                            <!-- Left content goes here -->
-                            <img id="preview-image-before-upload" 
-                            src="{{ asset('svg/illust/upload-photo.svg') }}"
-                            alt="preview image"
-                            class= "shadow-sm bg-body-tertiary rounded"
-                            style="width: 100%; height: 50%;"
-                            > 
-                            <label for="img" class="btn btn-primary text-uppercase fw-bold p-2 mt-2" style="width:100%; margin-bottom: 10px;">Upload an image of area</label>
-                        </div>
-                        <div class="col-md-7 mx-auto">
-                            <div class="form-group" style="margin-bottom: 10px;">
-                            <label for="message">Other requests/additional details</label>
-                            <textarea class="form-control" id="message" rows="3"></textarea>
-                            </div>
-                            <div class="d-flex align-items-center gap-2">
-                            <div class="col-md-6 mt-2">
-                                <label for="text" class="form-label">Preferred Time</label>
-                                <input type="text" class="form-control" id="time" style="margin-top: 0;">
-                            </div>
-                            <div class="col-md-6 mt-2">
-                                <label for="text" class="form-label">Preferred Date</label>
-                                <input type="text" class="form-control" id="date" style="margin-top: 0;">
-                            </div>
-                            </div>
-                        </div>
-                    </div>
+					<div class="row d-flex justify-content-center">
+						<h4 class="text-uppercase">specification</h4>
+						<div class="col-md-5 flex-column align-items-center mt-4 mx-auto" style="height: 200px">
+							<!-- Left content goes here -->
+							<img id="preview-image-before-upload" src="{{ asset('svg/illust/upload-photo.svg') }}" alt="preview image" class="shadow-sm bg-body-tertiary rounded" style="width: 100%; height: 50%" />
+							<label for="imageOfArea" class="btn btn-primary text-uppercase fw-bold p-2 mt-2" style="width: 100%; margin-bottom: 10px">Upload an image of area</label>
+							<input id="imageOfArea" type="file" class="d-none" />
+						</div>
+						<div class="col-md-7 mx-auto">
+							<div class="form-group" style="margin-bottom: 10px">
+								<label for="message">Other requests/additional details</label>
+								<textarea class="form-control" id="message" rows="3"></textarea>
+							</div>
+							<div class="d-flex align-items-center gap-2">
+								<div class="col-md-6 mt-2">
+									<label for="text" class="form-label">Preferred Time</label>
+									<input type="text" class="form-control" id="time" style="margin-top: 0" />
+								</div>
+								<div class="col-md-6 mt-2">
+									<label for="text" class="form-label">Preferred Date</label>
+									<input type="text" class="form-control" id="date" style="margin-top: 0" />
+								</div>
+							</div>
+						</div>
+					</div>
 
-                    <div class="modal-footer">
-				            <button type="button" class="btn btn-primary">Book</button>
-			        </div>
-                
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary">Book</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -260,16 +241,11 @@
 					<i class="fa-solid fa-book text-primary"></i>
 				</div>
 			</div>
-			<div class="modal-body">
-				SAMPLE
-			</div>
+			<div class="modal-body">SAMPLE</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
 			</div>
 		</div>
 	</div>
 </div>
-
-
-
 @endsection
