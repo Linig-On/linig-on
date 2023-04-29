@@ -101,25 +101,41 @@
 				<div class="col-md-12 col-sm-8">
 					<h3 class="fw-bolder text-uppercase">Reviews</h3>
 					<hr class="divider" />
-					@foreach ($workerRatings as $rating)
-					<div class="card rounded-5 border border-1 shadow mb-3">
-						<div class="card-body">
-							<div class="d-flex gap-3">
-								@if (DB::table('users')->where('id', $rating->user_id)->first()->image_url)
-								<img src="{{ asset('img/profile') . '/' . DB::table('users')->where('id', $rating->user_id)->first()->image_url }}" alt="" />
-								@else
-								<div class="w-mc" style="width: 3rem; height: 3rem">
-									<div class="avatar w-100 h-100 rounded-circle bg-secondary text-white fw-bold">{{ $rating->name[0] }}</div>
-								</div>
-								@endif
-								<div>
-									<h5 class="">{{ $rating->name }}</h5>
-									<p>{{ $rating->comment }}</p>
+					<ul id="paginatedList" data-current-page="1" aria-live="polite">
+						@foreach ($workerRatings as $rating)
+						<li>
+							<div class="card rounded-5 border border-1 shadow mb-3">
+								<div class="card-body">
+									<div class="d-flex gap-3">
+										@if (DB::table('users')->where('id', $rating->user_id)->first()->image_url)
+										<img src="{{ asset('img/profile') . '/' . DB::table('users')->where('id', $rating->user_id)->first()->image_url }}" alt="" />
+										@else
+										<div class="w-mc" style="width: 3rem; height: 3rem">
+											<div class="avatar w-100 h-100 rounded-circle bg-secondary text-white fw-bold">{{ $rating->name[0] }}</div>
+										</div>
+										@endif
+										<div>
+											<h5 class="fw-bolder">{{ $rating->name }}</h5>
+											<p>{{ $rating->comment }}</p>
+											<div class="d-flex gap-2 w-mc">
+												@for ($i = 0; $i < $rating->rating; $i++)
+												<i class="fa fa-solid fa-star h4 text-warning"></i>
+												@endfor @if ($rating->rating < 5) @for ($i = 0; $i < 5 - $rating->rating; $i++)
+												<i class="fa fa-regular fa-star h4 text-warning"></i>
+												@endfor @endif
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-					@endforeach
+						</li>
+						@endforeach
+					</ul>
+					<nav class="pagination-container">
+						<button type="button" class="pagination-button btn btn-primary text-white text-uppercase fw-bold px-4" id="prevButton" aria-label="Previous page" title="Previous page">Previous</button>
+						<div id="paginationNumbers"></div>
+						<button type="button" class="pagination-button btn btn-primary text-white text-uppercase fw-bold px-4" id="nextButton" aria-label="Next page" title="Next page">Next</button>
+					</nav>
 				</div>
 			</div>
 		</div>
@@ -127,6 +143,7 @@
 </div>
 <div class="spacer"></div>
 
+<!-- Resume Modal -->
 <div class="modal fade" id="viewResumeModal" tabindex="-1" aria-labelledby="viewResumeModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -253,6 +270,8 @@
 	</div>
 </div>
 @endsection @section('javascript')
+<!-- Pagination Script -->
+<script src="{{ asset('vendor/pagination/pagination.js') }}"></script>
 <script type="text/javascript">
 	const $bookmarkBtn = $("#bookmarkBtn");
 	const $bookmarkBtnIcon = $bookmarkBtn.find("i");
@@ -260,6 +279,7 @@
 	$(document).ready(function () {
 		bookmarkToggleState();
 		bookmarkHandler();
+		initPagination();
 	});
 
 	const bookmarkToggleState = function () {
