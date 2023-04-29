@@ -40,7 +40,7 @@
 			</div>
 			<hr />
 			<div class="d-flex justify-content-center">
-				<button type="button" class="btn btn-primary text-uppercase fw-bold z-index-30" data-bs-toggle="modal" data-bs-target="#bookAservice">Book A service</button>
+				<button type="button" class="btn btn-primary text-uppercase fw-bold z-index-30" data-bs-toggle="modal" data-bs-target="#bookAService">Book A service</button>
 			</div>
 			<div class="py-4">
 				<div class="pb-3">
@@ -147,44 +147,44 @@
 </div>
 
 <!-- Booking Modal -->
-<div class="modal fade" id="bookAservice" tabindex="-1" aria-labelledby="bookAserviceLabel" aria-hidden="true">
+<div class="modal fade" id="bookAService" tabindex="-1" aria-labelledby="bookAServiceLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<div class="d-flex align-items-center gap-1">
-					<h5 class="modal-title fw-bolder text-uppercase" id="bookAserviceLabel">booking</h5>
+					<h5 class="modal-title fw-bolder text-uppercase" id="bookAServiceLabel">booking</h5>
 					<i class="fa-solid fa-book text-primary"></i>
 				</div>
 			</div>
 			<div class="modal-body">
 				<h4>TYPE OF AREA</h4>
 				<div class="form-check m-2">
-					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-					<label class="form-check-label" for="flexCheckDefault"> House </label>
+					<input class="form-check-input" type="checkbox" value="" id="houseFlexCheckDefault" />
+					<label class="form-check-label" for="houseflexCheckDefault"> House </label>
 				</div>
 				<div class="form-check m-2">
-					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-					<label class="form-check-label" for="flexCheckDefault"> Room </label>
+					<input class="form-check-input" type="checkbox" value="" id="roomFlexCheckDefault" />
+					<label class="form-check-label" for="roomflexCheckDefault"> Room </label>
 				</div>
 				<div class="form-check m-2">
-					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-					<label class="form-check-label" for="flexCheckDefault"> Garage </label>
+					<input class="form-check-input" type="checkbox" value="" id="roomFlexCheckDefault" />
+					<label class="form-check-label" for="roomflexCheckDefault"> Garage </label>
 				</div>
 				<div class="form-check m-2">
-					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-					<label class="form-check-label" for="flexCheckDefault"> Garden </label>
+					<input class="form-check-input" type="checkbox" value="" id="gardenFlexCheckDefault" />
+					<label class="form-check-label" for="gardenFlexCheckDefault"> Garden </label>
 				</div>
 				<div class="form-check m-2">
-					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-					<label class="form-check-label" for="flexCheckDefault"> Room </label>
+					<input class="form-check-input" type="checkbox" value="" id="roomFlexCheckDefault" />
+					<label class="form-check-label" for="roomflexCheckDefault"> Room </label>
 				</div>
 				<div class="form-check m-2">
-					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-					<label class="form-check-label" for="flexCheckDefault"> Others </label>
+					<input class="form-check-input" type="checkbox" value="" id="otherFlexCheckDefault" />
+					<label class="form-check-label" for="otherFlexCheckDefault"> Others </label>
 				</div>
 
 				<div class="d-flex align-items-center gap-1">
-					<h4 class="modal-title text-uppercase" id="bookAserviceLabel">address</h4>
+					<h4 class="modal-title text-uppercase" id="bookAServiceLabel">address</h4>
 					<i class="fa-solid fa-xl fa-location-dot text-primary"></i>
 				</div>
 
@@ -236,7 +236,7 @@
 </div>
 
 <!-- Feedback Modal -->
-<div class="modal fade" id="Modal2" tabindex="-1" aria-labelledby="Modal2Label" aria-hidden="true">
+<div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="Modal2Label" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
