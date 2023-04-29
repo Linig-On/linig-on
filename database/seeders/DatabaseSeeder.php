@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             WorkerSeeder::class,
             WorkerSkillSeeder::class,
             WorkerSocialSeeder::class,
-            NotificationSeeder::class
+            NotificationSeeder::class,
+            WorkerRatings::class
         ]);
     }
 }
