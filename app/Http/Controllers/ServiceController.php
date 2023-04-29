@@ -200,21 +200,24 @@ class ServiceController extends Controller
                 }
                 break;
             case 'Top Rated':
-                // foreach ($workers as $worker) {
-                //     $user = DB::table('users')->where('id', $worker->user_id)->get();
-                //     $skills = DB::table('worker_skills')->where('worker_id', $worker->id)->get();
+                foreach ($workers as $worker) {
+                    $user = DB::table('users')->where('id', $worker->user_id)->get();
+                    $skills = DB::table('worker_skills')->where('worker_id', $worker->id)->get();
+                    $workerRatingAvg = (int)DB::table('worker_ratings')->where('worker_id', $worker->id)->avg('rating');
                     
-                //     $item = [
-                //         'worker_id' => $worker->id,
-                //         'image_url' => $user->first()->image_url,
-                //         'first_name' => $user->first()->first_name,
-                //         'last_name' => $user->first()->last_name,
-                //         'skills' => $skills,
-                //         'short_bio' => $worker->short_bio,
-                //     ];
-                    
-                //     array_push($model, $item);
-                // }
+                    if ($workerRatingAvg >= 4) {
+                        $item = [
+                            'worker_id' => $worker->id,
+                            'image_url' => $user->first()->image_url,
+                            'first_name' => $user->first()->first_name,
+                            'last_name' => $user->first()->last_name,
+                            'skills' => $skills,
+                            'short_bio' => $worker->short_bio,
+                        ];
+                        
+                        array_push($model, $item);
+                    }
+                }
                 break;
         }
 
