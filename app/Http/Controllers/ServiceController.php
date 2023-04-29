@@ -255,6 +255,9 @@ class ServiceController extends Controller
         return response('Successfull.');
     }
 
+    /**
+     * POST
+     */
     public function unBookmarkWorker(Request $request) {
         $worker_id = $request->input('id');
 
