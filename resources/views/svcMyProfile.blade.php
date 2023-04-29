@@ -155,7 +155,7 @@
 </div>
 <div class="spacer"></div>
 
-<!-- Modal -->
+<!-- View Resume Modal -->
 <div class="modal fade" id="viewResumeModal" tabindex="-1" aria-labelledby="viewResumeModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">

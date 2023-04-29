@@ -70,9 +70,22 @@ class ServiceController extends Controller
     /**
      * GET
      */
-    public function workerProfile()
+    public function workerProfile($id)
     {
-        return view('svcProfile');
+        $worker = DB::table('workers')->where('id', (int)$id)->get()->first();
+        $user = DB::table('users')->where('id', $worker->user_id)->get()->first();
+        $workerSkills = DB::table('worker_skills')->where('worker_id', $worker->id)->get();
+        $workerSocials = DB::table('worker_socials')->where('worker_id', $worker->id)->get();
+        $workerRating = DB::table('worker_ratings')->where('worker_id', $worker->id)->get();
+        $workerRatingAvg = DB::table('worker_ratings')->where('worker_id', $worker->id)->avg('rating');
+
+        return view('svcProfile')
+            ->with('workerInfo', $worker)
+            ->with('userInfo', $user)
+            ->with('workerSkills', $workerSkills)
+            ->with('workerSocials', $workerSocials)
+            ->with('workerRatings', $workerRating)
+            ->with('workerRatingAvg', (int)$workerRatingAvg);
     }
 
     /**
