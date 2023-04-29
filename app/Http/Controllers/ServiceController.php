@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bookmark;
 use App\Models\User;
 use App\Models\Worker;
 use App\Models\WorkerSkill;
 use App\Models\WorkerSocial;
 use Carbon\Carbon;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -78,6 +80,14 @@ class ServiceController extends Controller
         $workerSocials = DB::table('worker_socials')->where('worker_id', $worker->id)->get();
         $workerRating = DB::table('worker_ratings')->where('worker_id', $worker->id)->get();
         $workerRatingAvg = DB::table('worker_ratings')->where('worker_id', $worker->id)->avg('rating');
+        $isBookmarked = 'false';
+        
+        if (Auth::user() != null) {
+            $isBookmarked = DB::table('bookmarks')
+                ->where('worker_id', $worker->id)
+                ->where('user_id', Auth::user()->id)
+                ->first() != null ? 'true' : 'false';
+        }
 
         return view('svcProfile')
             ->with('workerInfo', $worker)
@@ -85,7 +95,8 @@ class ServiceController extends Controller
             ->with('workerSkills', $workerSkills)
             ->with('workerSocials', $workerSocials)
             ->with('workerRatings', $workerRating)
-            ->with('workerRatingAvg', (int)$workerRatingAvg);
+            ->with('workerRatingAvg', (int)$workerRatingAvg)
+            ->with('isBookmarked', $isBookmarked);
     }
 
     /**
@@ -224,5 +235,34 @@ class ServiceController extends Controller
         
 
         return view('service')->with('listOfWorkers', $model);
+    }
+
+    /**
+     * POST
+     */
+    public function bookmarkWorker(Request $request) {
+        $worker_id = $request->input('id');
+        
+        try {
+            Bookmark::create([
+                'user_id' => Auth::user()->id,
+                'worker_id' => $worker_id,
+                'created_at' => Carbon::now()
+            ]);
+        } catch (QueryException $th) {
+            return response('Error.');
+        }
+        return response('Successfull.');
+    }
+
+    public function unBookmarkWorker(Request $request) {
+        $worker_id = $request->input('id');
+
+        try {
+            DB::table('bookmarks')->where('worker_id', $worker_id)->delete();
+        } catch (QueryException $th) {
+            return response('Error.');
+        }
+        return response('Successfull.');
     }
 }
