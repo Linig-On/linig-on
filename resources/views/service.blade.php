@@ -95,33 +95,14 @@
 <div class="spacer"></div>
 @endsection @section('javascript')
 <script src="{{ asset('js/input-dropdown.js') }}"></script>
+<!-- Pagination Script -->
+<script src="{{ asset('vendor/pagination/pagination.js') }}"></script>
 <script type="text/javascript">
 	// NOTE: this shi- is confusing to read
 	// NOTE: basically it waits for a few ms before adding the fade-in class
 	$(document).ready(function () {
 		initPagination();
 	});
-
-	function initPagination() {
-		setTimeout(() => {
-			animateList();
-
-			$("#nextButton, #prevButton").click(function () {
-				setTimeout(() => {
-					$("#paginatedList li").removeClass("fade-in");
-					animateList();
-				}, 100);
-			});
-		}, 100);
-	}
-
-	function animateList() {
-		$("#paginatedList li:not(.hidden)").each(function (i, el) {
-			setTimeout(function () {
-				$(el).addClass("fade-in");
-			}, i * 150);
-		});
-	}
 
 	const model = {!! json_encode($listOfWorkers) !!};
 	let workerNames = [];
@@ -156,7 +137,7 @@
 			$("#paginatedList li").slice(3).addClass("hidden");
 	});
 
-	function assignSortBy(element) {
+	const assignSortBy = function (element) {
 		$("#sortBy").val(`${$(element).attr("value")}`);
 	}
 </script>

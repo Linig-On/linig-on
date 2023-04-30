@@ -32,10 +32,71 @@
 	</div>
 </div>
 <div class="spacer"></div>
-<section class="bg-secondary">
+<section class="bg-secondary py-5 position-relative">
+	<img src="{{ asset('svg/illust/bubbles-0.svg') }}" class="position-absolute top-0" alt="" />
+	<img src="{{ asset('svg/illust/bubbles-1.svg') }}" class="position-absolute w-mc end-0 bottom-0" alt="" />
 	<div class="container text-center py-5 fade-in">
-		<h2 class="text-uppercase fw-bolder">Top Rated Workers This Month</h2>
+		<h2 class="text-uppercase fw-bolder text-primary mb-5">Top Rated Workers This Month</h2>
 		<!-- Fetch top rated workers here (use component)... -->
+		<div class="card-group w-75 mx-auto shadow rounded-5">
+			<div class="card py-5 px-3">
+				<div class="card-header bg-transparent border-0">
+					<div class="avatar w-mc" style="width: 5rem; height: 5rem">
+						@if ($topRatedWorkers[0]['image_url'] != null)
+						<img class="rounded-circle w-100 h-100" src="{{ asset('img/profile') . '/' . $topRatedWorkers[0]['image_url'] }}" />
+						@else
+						<div class="avatar w-100 h-100 rounded-circle bg-secondary text-white fw-bold">{{ $topRatedWorkers[0]["name"][0] }}</div>
+						@endif
+					</div>
+				</div>
+				<div class="card-body">
+					<h5 class="card-title fw-bolder text-primary">{{ $topRatedWorkers[0]["name"] }}</h5>
+					<i class="fa-solid fa-quote-left fa-2xl float-start pe-1 text-primary opacity-50"></i>
+					<p class="card-text small">{{ $topRatedWorkers[0]["short_bio"] }}</p>
+				</div>
+				<div class="card-footer bg-transparent border-0">
+					<a role="button" href="{{ route('service-worker-profile', ['id' => $topRatedWorkers[0]['worker_id']]) }}" class="btn btn-outline-secondary text-uppercase fw-bold">View Profile</a>
+				</div>
+			</div>
+			<div class="card py-5 px-3 rounded-5" style="transform: scale(1.1); box-shadow: 0 0px 30px 0 rgba(0, 1, 83, 30%); z-index: 10000000">
+				<div class="card-header bg-transparent border-0">
+					<div class="avatar w-mc" style="width: 5rem; height: 5rem">
+						@if ($topRatedWorkers[1]['image_url'] != null)
+						<img class="rounded-circle w-100 h-100" src="{{ asset('img/profile') . '/' . $topRatedWorkers[1]['image_url'] }}" />
+						@else
+						<div class="avatar w-100 h-100 rounded-circle bg-secondary text-white fw-bold">{{ $topRatedWorkers[0]["name"][0] }}</div>
+						@endif
+					</div>
+				</div>
+				<div class="card-body">
+					<h5 class="card-title fw-bolder text-primary">{{ $topRatedWorkers[1]["name"] }}</h5>
+					<i class="fa-solid fa-quote-left fa-2xl float-start pe-1 text-primary opacity-50"></i>
+					<p class="card-text small">{{ $topRatedWorkers[1]["short_bio"] }}</p>
+				</div>
+				<div class="card-footer bg-transparent border-0">
+					<a role="button" href="{{ route('service-worker-profile', ['id' => $topRatedWorkers[1]['worker_id']]) }}" class="btn btn-outline-secondary text-uppercase fw-bold">View Profile</a>
+				</div>
+			</div>
+			<div class="card py-5 px-3">
+				<div class="card-header bg-transparent border-0">
+					<div class="avatar w-mc" style="width: 5rem; height: 5rem">
+						@if ($topRatedWorkers[2]['image_url'] != null)
+						<img class="rounded-circle w-100 h-100" src="{{ asset('img/profile') . '/' . $topRatedWorkers[2]['image_url'] }}" />
+						@else
+						<div class="avatar w-100 h-100 rounded-circle bg-secondary text-white fw-bold">{{ $topRatedWorkers[0]["name"][0] }}</div>
+						@endif
+					</div>
+				</div>
+				<div class="card-body">
+					<h5 class="card-title fw-bolder text-primary">{{ $topRatedWorkers[2]["name"] }}</h5>
+					<i class="fa-solid fa-quote-left fa-2xl float-start pe-1 text-primary opacity-50"></i>
+					<p class="card-text small">{{ $topRatedWorkers[2]["short_bio"] }}</p>
+				</div>
+				<div class="card-footer bg-transparent border-0">
+					<a role="button" href="{{ route('service-worker-profile', ['id' => $topRatedWorkers[2]['worker_id']]) }}" class="btn btn-outline-secondary text-uppercase fw-bold">View Profile</a>
+				</div>
+			</div>
+		</div>
 	</div>
 </section>
 <div class="spacer"></div>

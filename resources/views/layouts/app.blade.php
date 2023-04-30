@@ -31,9 +31,6 @@
 
 		<!-- Site Script -->
 		<script defer src="{{ asset('js/site.js') }}"></script>
-
-		<!-- Pagination Script -->
-		<script defer src="{{ asset('vendor/pagination/pagination.js') }}"></script>
 	</head>
 
 	<body>
@@ -53,7 +50,7 @@
 								<a href="/" class="nav-link fw-bold {{ request()->is('/') ? 'active' : '' }}">Home</a>
 							</li>
 							<li class="nav-item">
-								<a href="/service" class="nav-link fw-bold {{ request()->is('service') ? 'active' : '' }}">Service</a>
+								<a href="/service" class="nav-link fw-bold {{ request()->is('service') ? 'active' : '' }}">Services</a>
 							</li>
 							<li class="nav-item">
 								<a href="/about" class="nav-link fw-bold {{ request()->is('about') ? 'active' : '' }}">About Us</a>
@@ -88,7 +85,7 @@
 										<i class="fa fa-solid fa-book ps-3"></i>
 										<small>Book a Service</small>
 									</a>
-									<a class="dropdown-item d-flex align-items-center gap-3" href="">
+									<a class="dropdown-item d-flex align-items-center gap-3" href="/account/my-bookmarks">
 										<i class="fa fa-solid fa-bookmark ps-3"></i>
 										<small>My Bookmarks</small>
 									</a>

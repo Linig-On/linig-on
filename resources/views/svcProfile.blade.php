@@ -10,11 +10,15 @@
 
 <div class="container fade-in">
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-md-4 position-relative">
+			@if (Auth::user() != null)
+			<button id="bookmarkBtn" class="position-absolute btn shadow-none px-0 pt-2 rounded-0 border-0" style="right: 5rem; top: 3rem">
+				<i class="fa fa-regular fa-bookmark h3 text-primary"></i>
+			</button>
+			@endif
 			<div class="w-100 d-flex justify-content-center p-5">
 				<div style="width: 10rem; height: 10rem" class="border border-1 border-secondary rounded-circle img-fluid prev-img">
 					<img
-						id="previewImageBeforeUpload"
 						src="@if ($userInfo->image_url != null)
                             {{ asset('img/profile') . '/' . $userInfo->image_url }}
                             @else
@@ -29,9 +33,9 @@
 			<p class="text-center">{{ $workerInfo->short_bio }}</p>
 			<div class="d-flex gap-2 w-mc mx-auto">
 				@for ($i = 0; $i < $workerRatingAvg; $i++)
-				<i class="fa fa-solid fa-star"></i>
+				<i class="fa fa-solid fa-star h4 text-warning"></i>
 				@endfor @if ($workerRatingAvg < 5) @for ($i = 0; $i < 5 - $workerRatingAvg; $i++)
-				<i class="fa fa-regular fa-star"></i>
+				<i class="fa fa-regular fa-star h4 text-warning"></i>
 				@endfor @endif
 			</div>
 			<hr />
@@ -40,14 +44,14 @@
 			</div>
 			<div class="py-4">
 				<div class="pb-3">
-					<h2>Skills</h2>
+					<h4 class="fw-bolder text-uppercase">Skills</h4>
 					<div class="d-flex flex-wrap gap-2">
 						@foreach($workerSkills as $i)
 						<div class="view-tag">{{ $i->skill }}</div>
 						@if(!$loop->last) @endif @endforeach
 					</div>
 				</div>
-				<h2 class="pb-3">Socials</h2>
+				<h4 class="fw-bolder text-uppercase">Socials</h4>
 				<div class="d-flex flex-wrap gap-2">
 					@foreach($workerSocials as $i)
 					<div class="view-tag">{{ $i->social }}</div>
@@ -95,27 +99,43 @@
 				</div>
 				<div class="col-md-12 col-sm-8 shadow p-4 mb-5 rounded-5 border border-1">{!! $workerInfo->service_info !!}</div>
 				<div class="col-md-12 col-sm-8">
-					<h2>Reviews</h2>
+					<h3 class="fw-bolder text-uppercase">Reviews</h3>
 					<hr class="divider" />
-					@foreach ($workerRatings as $rating)
-					<div class="card rounded-5 border border-1 shadow mb-3">
-						<div class="card-body">
-							<div class="d-flex gap-3">
-								@if (DB::table('users')->where('id', $rating->user_id)->first()->image_url)
-								<img src="{{ asset('img/profile') . '/' . DB::table('users')->where('id', $rating->user_id)->first()->image_url }}" alt="" />
-								@else
-								<div class="w-mc" style="width: 3rem; height: 3rem">
-									<div class="avatar w-100 h-100 rounded-circle bg-secondary text-white fw-bold">{{ $rating->name[0] }}</div>
-								</div>
-								@endif
-								<div>
-									<h5 class="">{{ $rating->name }}</h5>
-									<p>{{ $rating->comment }}</p>
+					<ul id="paginatedList" data-current-page="1" aria-live="polite">
+						@foreach ($workerRatings as $rating)
+						<li>
+							<div class="card rounded-5 border border-1 shadow mb-3">
+								<div class="card-body">
+									<div class="d-flex gap-3">
+										@if (DB::table('users')->where('id', $rating->user_id)->first()->image_url)
+										<img src="{{ asset('img/profile') . '/' . DB::table('users')->where('id', $rating->user_id)->first()->image_url }}" alt="" />
+										@else
+										<div class="w-mc" style="width: 3rem; height: 3rem">
+											<div class="avatar w-100 h-100 rounded-circle bg-secondary text-white fw-bold">{{ $rating->name[0] }}</div>
+										</div>
+										@endif
+										<div>
+											<h5 class="fw-bolder">{{ $rating->name }}</h5>
+											<p>{{ $rating->comment }}</p>
+											<div class="d-flex gap-2 w-mc">
+												@for ($i = 0; $i < $rating->rating; $i++)
+												<i class="fa fa-solid fa-star h4 text-warning"></i>
+												@endfor @if ($rating->rating < 5) @for ($i = 0; $i < 5 - $rating->rating; $i++)
+												<i class="fa fa-regular fa-star h4 text-warning"></i>
+												@endfor @endif
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-					@endforeach
+						</li>
+						@endforeach
+					</ul>
+					<nav class="pagination-container">
+						<button type="button" class="pagination-button btn btn-primary text-white text-uppercase fw-bold px-4" id="prevButton" aria-label="Previous page" title="Previous page">Previous</button>
+						<div id="paginationNumbers"></div>
+						<button type="button" class="pagination-button btn btn-primary text-white text-uppercase fw-bold px-4" id="nextButton" aria-label="Next page" title="Next page">Next</button>
+					</nav>
 				</div>
 			</div>
 		</div>
@@ -123,10 +143,7 @@
 </div>
 <div class="spacer"></div>
 
-<button type="button" class="btn btn-primary text-uppercase fw-bold z-index-30" data-bs-toggle="modal" data-bs-target="#workerRatingModal">Worker Rating Placeholder</button>
-<button type="button" class="btn btn-primary text-uppercase fw-bold z-index-30" data-bs-toggle="modal" data-bs-target="#appFeedbackModal">Feedback Placeholder</button>
-
-<!-- View Resume Modal -->
+<!-- Resume Modal -->
 <div class="modal fade" id="viewResumeModal" tabindex="-1" aria-labelledby="viewResumeModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -279,48 +296,69 @@
 	            </div>
     </div>
 </div>
+@endsection @section('javascript')
+<!-- Pagination Script -->
+<script src="{{ asset('vendor/pagination/pagination.js') }}"></script>
+<script type="text/javascript">
+	const $bookmarkBtn = $("#bookmarkBtn");
+	const $bookmarkBtnIcon = $bookmarkBtn.find("i");
 
+	$(document).ready(function () {
+		bookmarkToggleState();
+		bookmarkHandler();
+		initPagination();
+	});
 
-<div class="modal fade" id="appFeedbackModal" tabindex="-1" aria-labelledby="appFeedbackModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header bg-primary text-white"></div>
-			    <div class="modal-body ">
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img src = "{{asset('svg/illust/undraw_logistics_x-4-dc 1.svg')}}" alt="image"/> 
-                            <div class="text-center">
-                                <h3 class="text-uppercase"> Let Us Know How We're Doing! </h3>
-                                <p>Help us improve. Rate your experience while using our application!</p>
-                            </div>
-                    </div>
-                            <div class="d-flex flex-column">
-                                    <h6 class="text-primary fw-bold small">Full Name</h6>
-                                        <div class="col-12">
-                                            <input type="text" class="form-control" />
-                                        </div>
-					                <div class="my-3">
-						                    <h6 class="text-primary fw-bold small">Comment</h6>
-						                <div class="col-12">
-                                            <textarea class="form-control" rows="5" aria-label="With textarea"></textarea>
-						                </div>
-					                </div>    
+	const bookmarkToggleState = function () {
+		const isBookedmarked = "{{ $isBookmarked }}" === "true" ? true : false;
 
-                                <div class="d-flex align-items-center justify-content-between gap-5 m-3">
-								    <div class="d-flex gap-2 me-5">
-								    <i class="fa fa-light fa-thumbs-up"></i> 
-                                    <p>Yes</p>
-                                    <i class="fa fa-sharp fa-light fa-thumbs-down"></i>
-                                    <p>No</p>
-								    </div>
-								        <div class="d-flex gap-2 ms-5">
-                                            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Submit</button>
-								        </div>
-							        </div>
-                                </div>
-		                    </div>
-	            </div>
-    </div>
-</div>
+		if (isBookedmarked) {
+			$bookmarkBtnIcon.removeClass("fa-regular").addClass("fa-solid");
+		}
+	};
 
+	const bookmarkHandler = function () {
+		$bookmarkBtn.click(function () {
+			const workerId = parseInt("{{ $workerInfo->id }}");
+			const unBookmarked = $bookmarkBtnIcon.hasClass("fa-regular");
+
+			if (unBookmarked) bookmarkWorker(workerId);
+			else unBookmarkWorker(workerId);
+		});
+	};
+
+	const bookmarkWorker = function (workerId) {
+		$bookmarkBtnIcon.removeClass("fa-regular").addClass("fa-solid");
+
+		$.ajax({
+			url: "{{ route('bookmark-worker') }}",
+			data: {
+				id: workerId,
+				_token: "{{ csrf_token() }}",
+			},
+			type: "POST",
+			success: function (res) {
+				// TODO: clean this
+				console.log(res);
+			},
+		});
+	};
+
+	const unBookmarkWorker = function (workerId) {
+		$bookmarkBtnIcon.removeClass("fa-solid").addClass("fa-regular");
+
+		$.ajax({
+			url: "{{ route('un-bookmark-worker') }}",
+			data: {
+				id: workerId,
+				_token: "{{ csrf_token() }}",
+			},
+			type: "POST",
+			success: function (res) {
+				// TODO: clean this
+				console.log(res);
+			},
+		});
+	};
+</script>
 @endsection
