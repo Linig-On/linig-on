@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             NotificationSeeder::class,
             WorkerRatings::class,
             BookmarkSeeder::class,
+            BookingSeeder::class
         ]);
     }
 }
