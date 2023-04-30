@@ -177,9 +177,9 @@
 <!-- Booking Modal -->
 <div class="modal fade" id="bookAService" tabindex="-1" aria-labelledby="bookAServiceLabel" aria-hidden="true">
 	<div class="modal-dialog">
-		<div class="modal-content">
+		<div class="modal-content position-relative overflow-hidden">
 			<div class="modal-header bg-primary"></div>
-			<div class="modal-body px-5 py-4">
+			<div class="modal-body px-5 py-4 z-index-20">
 				<div class="d-flex align-items-center gap-1 mb-3">
 					<h2 class="mb-0 fw-bolder text-uppercase" id="bookAServiceLabel">booking</h2>
 					<i class="fa-solid fa-book"></i>
@@ -229,7 +229,7 @@
 							<h4 class="text-uppercase fw-bolder">specification</h4>
 							<div class="col-md-5 flex-column align-items-center mt-4 mx-auto" style="height: 200px">
 								<!-- Left content goes here -->
-								<img id="previewImageBeforeUpload" src="{{ asset('svg/illust/upload-photo.svg') }}" alt="preview image" class="shadow-sm bg-body-tertiary rounded-5 border border-1" style="width: 100%; height: 10rem" />
+								<img id="previewImageBeforeUpload" src="{{ asset('svg/illust/upload-photo.svg') }}" alt="preview image" class="shadow-sm bg-body-tertiary rounded-5 border border-1 img-fluid prev-img" style="width: 100%; height: 10rem" />
 								<label for="imageOfArea" class="btn btn-primary text-uppercase fw-bold p-2 mt-2" style="width: 100%; margin-bottom: 10px">Upload an image of the area</label>
 								<input id="imageOfArea" type="file" class="d-none" />
 							</div>
@@ -257,6 +257,7 @@
 					</div>
 				</section>
 			</div>
+			<img class="opacity-50 position-absolute z-index-10" style="right: -2rem; top: 3rem" width="400" src="{{ asset('svg/illust/no-data.svg') }}" alt="" />
 		</div>
 	</div>
 </div>
@@ -314,6 +315,7 @@
 	const $bookmarkBtnIcon = $bookmarkBtn.find("i");
 
 	$(document).ready(function () {
+		prevImageOnUpload("#imageOfArea", "#previewImageBeforeUpload");
 		bookmarkToggleState();
 		bookmarkHandler();
 		initPagination();
