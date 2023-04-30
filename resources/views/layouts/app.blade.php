@@ -65,9 +65,42 @@
 							</li>
 							@if (Auth::check())
 							<li class="nav-item dropdown d-flex align-items-center gap-3">
-								<a role="button" href="#">
+								<a id="notifButton" class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									<i class="fa-regular fa-bell h5 text-primary mt-2"></i>
 								</a>
+								<!-- start of dropdown div -->
+								<div class="dropdown-menu fade-in dropdown-menu-end mt-3 p-auto" aria-labelledby="notifButton" style="width: 30rem">
+									 <div class="p-auto ms-4 my-2 fw-bolder">
+									 <h3>Notifications</h3>
+									 </div>
+									<div class="p-auto mx-4 my-2 ">
+										<a class="dropdown-item d-flex justify-content-between align-items-center" href="#">
+											<div class="container">
+												<div class="row">
+													<div class="col-sm-12">
+														<div class="row d-flex justify-content-between align-items-center gap-3 ">
+															<div class="col">
+																<small>System</small>
+															</div>
+															<div class="col">
+																<small>Jan 01, 2023 8:00PM</small>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-sm-12">
+																<small class="text-wrap d-block text-muted mb-0">Your recent booking to Ms. Jennifer has finished. Did you enjoy the service? Give us a rating!</small>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</a>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item text-center">All notifications for this week</a>
+									</div>
+								
+								</div>	
+								<!-- start of navbar dropdown -->
 								<a id="navbarDropdown" class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									<div class="avatar">
 										@if (Auth::user()->image_url != null)
