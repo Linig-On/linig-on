@@ -20,12 +20,11 @@ class CreateBookingsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('worker_id')->references('id')->on('workers')->onUpdate('cascade')->onDelete('cascade');
             $table->date('date_booked');
-            $table->date('date_finished');
+            $table->date('date_finished')->nullable();
             $table->string('status');
-            $table->decimal('amount');
             $table->string('client_first_name');
             $table->string('client_last_name');
-            $table->string('client_email_address')->unique();
+            $table->string('client_email_address');
             $table->string('client_contact_number', 11);
             $table->char('client_gender', 1);
             $table->string('client_address');
@@ -33,7 +32,7 @@ class CreateBookingsTable extends Migration
             $table->string('landmarks');
             $table->string('area_image_url')->nullable();
             $table->string('additional_details_requests')->nullable();
-            $table->date('preferred_time');
+            $table->time('preferred_time');
             $table->date('preferred_date');
             $table->timestamps();            
         });
