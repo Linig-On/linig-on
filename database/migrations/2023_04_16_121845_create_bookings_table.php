@@ -33,7 +33,7 @@ class CreateBookingsTable extends Migration
             $table->string('landmarks');
             $table->string('area_image_url')->nullable();
             $table->string('additional_details_requests')->nullable();
-            $table->date('preferred_time');
+            $table->time('preferred_time');
             $table->date('preferred_date');
             $table->timestamps();            
         });
