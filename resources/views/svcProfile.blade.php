@@ -123,6 +123,10 @@
 </div>
 <div class="spacer"></div>
 
+<button type="button" class="btn btn-primary text-uppercase fw-bold z-index-30" data-bs-toggle="modal" data-bs-target="#workerRatingModal">Worker Rating Placeholder</button>
+<button type="button" class="btn btn-primary text-uppercase fw-bold z-index-30" data-bs-toggle="modal" data-bs-target="#appFeedbackModal">Feedback Placeholder</button>
+
+<!-- View Resume Modal -->
 <div class="modal fade" id="viewResumeModal" tabindex="-1" aria-labelledby="viewResumeModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -231,21 +235,92 @@
 	</div>
 </div>
 
-<!-- Feedback Modal -->
-<div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="Modal2Label" aria-hidden="true">
+<!--Worker Rating Modal -->
+<div class="modal fade" id="workerRatingModal" tabindex="-1" aria-labelledby="workerRatingModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
-				<div class="d-flex align-items-center gap-1">
-					<h5 class="modal-title fw-bolder text-uppercase" id="Modal2Label">My Resume</h5>
-					<i class="fa-solid fa-book text-primary"></i>
-				</div>
-			</div>
-			<div class="modal-body">SAMPLE</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
+			<div class="modal-header bg-primary text-white"></div>
+			    <div class="modal-body ">
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                        <img src = "{{asset('svg/illust/undraw_real_time_collaboration_c62i 1.svg')}} " alt="image"/> 
+                            <div class="text-center">
+                                <h3 class="text-uppercase"> Post A Comment! </h3>
+                                <p> Rate <span>{{ $userInfo->first_name . ' ' . $userInfo->last_name }}</span> service. Your feedback is much appreciated in improving their services.</p>
+                            </div>
+                    </div>
+            
+                            <div class="d-flex flex-column">
+                                    <h6 class="text-primary fw-bold small">Full Name</h6>
+                                        <div class="col-12">
+                                            <input type="text" class="form-control" />
+                                        </div>
+					                <div class="my-3">
+						                    <h6 class="text-primary fw-bold small">Comment</h6>
+						                <div class="col-12">
+                                            <textarea class="form-control" rows="5" aria-label="With textarea"></textarea>
+						                </div>
+					                </div>    
+
+                                <div class="d-flex align-items-center justify-content-between gap-5 m-3">
+								    <div class="d-flex gap-2 me-5">
+                                        <i class="fa fa-regular fa-star"></i>
+                                        <i class="fa fa-regular fa-star"></i>
+                                        <i class="fa fa-regular fa-star"></i>
+                                        <i class="fa fa-regular fa-star"></i>
+                                        <i class="fa fa-regular fa-star"></i>
+								    </div>
+								        <div class="d-flex gap-2 ms-5">
+                                            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Submit</button>
+								        </div>
+							        </div>
+                                </div>
+		                    </div>
+	            </div>
+    </div>
 </div>
+
+
+<div class="modal fade" id="appFeedbackModal" tabindex="-1" aria-labelledby="appFeedbackModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header bg-primary text-white"></div>
+			    <div class="modal-body ">
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                        <img src = "{{asset('svg/illust/undraw_logistics_x-4-dc 1.svg')}}" alt="image"/> 
+                            <div class="text-center">
+                                <h3 class="text-uppercase"> Let Us Know How We're Doing! </h3>
+                                <p>Help us improve. Rate your experience while using our application!</p>
+                            </div>
+                    </div>
+                            <div class="d-flex flex-column">
+                                    <h6 class="text-primary fw-bold small">Full Name</h6>
+                                        <div class="col-12">
+                                            <input type="text" class="form-control" />
+                                        </div>
+					                <div class="my-3">
+						                    <h6 class="text-primary fw-bold small">Comment</h6>
+						                <div class="col-12">
+                                            <textarea class="form-control" rows="5" aria-label="With textarea"></textarea>
+						                </div>
+					                </div>    
+
+                                <div class="d-flex align-items-center justify-content-between gap-5 m-3">
+								    <div class="d-flex gap-2 me-5">
+								    <i class="fa fa-light fa-thumbs-up"></i> 
+                                    <p>Yes</p>
+                                    <i class="fa fa-sharp fa-light fa-thumbs-down"></i>
+                                    <p>No</p>
+								    </div>
+								        <div class="d-flex gap-2 ms-5">
+                                            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Submit</button>
+								        </div>
+							        </div>
+                                </div>
+		                    </div>
+	            </div>
+    </div>
+</div>
+
 @endsection
