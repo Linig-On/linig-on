@@ -60,8 +60,8 @@ class ServiceController extends Controller
     public function serviceMyProfile()
     {
         $authId = Auth::user()->id;
-        $worker = DB::table('workers')->where('user_id', $authId)->get();
-        $workerId = $worker->first()->id;
+        $worker = DB::table('workers')->where('user_id', $authId)->first();
+        $workerId = $worker->id;
 
         $workerSkills = DB::table('worker_skills')->where('worker_id', $workerId)->get();
         $workerSocials = DB::table('worker_socials')->where('worker_id', $workerId)->get();

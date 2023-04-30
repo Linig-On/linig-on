@@ -14,6 +14,14 @@ class WorkerRatings extends Seeder
      */
     public function run()
     {
+        // Disable foreign key checks
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+
+        // Truncate the table
+        DB::table('worker_ratings')->truncate();
+
+        // Re-enable foreign key checks
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
         $data = [
             [
                 'user_id' => 6,
