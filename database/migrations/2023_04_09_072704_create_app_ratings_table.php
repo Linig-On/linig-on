@@ -16,12 +16,10 @@ class CreateAppRatingsTable extends Migration
         Schema::create('app_ratings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->foreignId('worker_id');
             $table->string('name');
             $table->string('comment');
             $table->boolean('is_liked');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('worker_id')->references('id')->on('workers')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
