@@ -51,7 +51,7 @@
 						@if(!$loop->last) @endif @endforeach
 					</div>
 				</div>
-				<h4 class="fw-bolder text-uppercase">Socials</h4>
+				<h4 class="fw-bolder text-uppercase mt-3">Socials</h4>
 				<div class="d-flex flex-wrap gap-2">
 					@foreach($workerSocials as $i)
 					<div class="view-tag">{{ $i->social }}</div>
@@ -61,44 +61,55 @@
 		</div>
 		<div class="col-md-8">
 			<div class="row">
-				<div class="col-md-12 col-sm-4 shadow p-3 mb-5 rounded-5 border border-1">
-					<div class="row py-2">
-						<div class="col-md-2 d-flex flex-row gap-3 align-items-center">
-							<i class="fa fa-solid fa-user"></i>
-							<label for="" class="text-primary text-nowrap fw-bold small">Full Name</label>
+				<div class="col-md-12">
+					<div class="position-relative overflow-hidden">
+						<div class="card py-4 px-3 shadow rounded-5 border border-1">
+							<div class="card-body">
+								<div class="row py-2">
+									<div class="col-md-2 d-flex flex-row gap-3 align-items-center">
+										<i class="fa fa-solid fa-user"></i>
+										<label for="" class="text-primary text-nowrap fw-bold small">Full Name</label>
+									</div>
+									<div class="col-md-8 z-index-30">
+										<input disabled type="text" class="form-control" id="floatingInputGrid" placeholder="Full Name" value="{{ $userInfo->first_name . ' ' . $userInfo->last_name }}" />
+									</div>
+								</div>
+								<div class="row py-2">
+									<div class="col-md-2 d-flex flex-row gap-3 align-items-center">
+										<i class="fa fa-solid fa-phone"></i>
+										<label for="" class="text-primary text-nowrap fw-bold small">Mobile</label>
+									</div>
+									<div class="col-md-8 z-index-30">
+										<input disabled type="text" class="form-control" id="floatingInputGrid" placeholder="Full Name" value="{{ $userInfo->contact_number }}" />
+									</div>
+								</div>
+								<div class="row py-2">
+									<div class="col-md-2 d-flex flex-row gap-3 align-items-center">
+										<i class="fa fa-solid fa-location-dot"></i>
+										<label for="" class="text-primary text-nowrap fw-bold small">Address</label>
+									</div>
+									<div class="col-md-8 z-index-30">
+										<input disabled type="text" class="form-control" id="floatingInputGrid" placeholder="Full Name" value="{{ $userInfo->address }}" />
+									</div>
+								</div>
+								<div class="d-flex justify-content-between py-2">
+									<div></div>
+									<button type="button" class="btn btn-primary text-uppercase fw-bold z-index-30" data-bs-toggle="modal" data-bs-target="#workerRatingModal">
+										View Resume
+										<i class="fa-regular fa-file text-white"></i>
+									</button>
+								</div>
+							</div>
 						</div>
-						<div class="col-md-8 z-index-30">
-							<input disabled type="text" class="form-control" id="floatingInputGrid" placeholder="Full Name" value="{{ $userInfo->first_name . ' ' . $userInfo->last_name }}" />
-						</div>
-					</div>
-					<div class="row py-2">
-						<div class="col-md-2 d-flex flex-row gap-3 align-items-center">
-							<i class="fa fa-solid fa-phone"></i>
-							<label for="" class="text-primary text-nowrap fw-bold small">Mobile</label>
-						</div>
-						<div class="col-md-8 z-index-30">
-							<input disabled type="text" class="form-control" id="floatingInputGrid" placeholder="Full Name" value="{{ $userInfo->contact_number }}" />
-						</div>
-					</div>
-					<div class="row py-2">
-						<div class="col-md-2 d-flex flex-row gap-3 align-items-center">
-							<i class="fa fa-solid fa-location-dot"></i>
-							<label for="" class="text-primary text-nowrap fw-bold small">Address</label>
-						</div>
-						<div class="col-md-8 z-index-30">
-							<input disabled type="text" class="form-control" id="floatingInputGrid" placeholder="Full Name" value="{{ $userInfo->address }}" />
-						</div>
-					</div>
-					<div class="d-flex justify-content-between py-2">
-						<div></div>
-						<button type="button" class="btn btn-primary text-uppercase fw-bold z-index-30" data-bs-toggle="modal" data-bs-target="#viewResumeModal">
-							View Resume
-							<i class="fa-regular fa-file text-white"></i>
-						</button>
+						<img class="opacity-50 position-absolute z-index-10 end-0 bottom-0" width="250" src="{{ asset('svg/illust/no-data.svg') }}" alt="" />
 					</div>
 				</div>
-				<div class="col-md-12 col-sm-8 shadow p-4 mb-5 rounded-5 border border-1">{!! $workerInfo->service_info !!}</div>
-				<div class="col-md-12 col-sm-8">
+				<div class="col-md-12 my-4">
+					<div class="card py-4 px-3 shadow rounded-5" style="border: 1px solid var(--bs-border-color); border-left: 5px solid var(--secondary)">
+						<div class="card-body">{!! $workerInfo->service_info !!}</div>
+					</div>
+				</div>
+				<div class="col-md-12">
 					<h3 class="fw-bolder text-uppercase">Reviews</h3>
 					<hr class="divider" />
 					<ul id="paginatedList" data-current-page="1" aria-live="polite">
@@ -167,86 +178,84 @@
 <div class="modal fade" id="bookAService" tabindex="-1" aria-labelledby="bookAServiceLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
-				<div class="d-flex align-items-center gap-1">
-					<h5 class="modal-title fw-bolder text-uppercase" id="bookAServiceLabel">booking</h5>
-					<i class="fa-solid fa-book text-primary"></i>
+			<div class="modal-header bg-primary"></div>
+			<div class="modal-body px-5 py-4">
+				<div class="d-flex align-items-center gap-1 mb-3">
+					<h2 class="mb-0 fw-bolder text-uppercase" id="bookAServiceLabel">booking</h2>
+					<i class="fa-solid fa-book"></i>
 				</div>
-			</div>
-			<div class="modal-body">
-				<h4>TYPE OF AREA</h4>
-				<div class="form-check m-2">
-					<input class="form-check-input" type="checkbox" value="" id="houseFlexCheckDefault" />
-					<label class="form-check-label" for="houseflexCheckDefault"> House </label>
-				</div>
-				<div class="form-check m-2">
-					<input class="form-check-input" type="checkbox" value="" id="roomFlexCheckDefault" />
-					<label class="form-check-label" for="roomflexCheckDefault"> Room </label>
-				</div>
-				<div class="form-check m-2">
-					<input class="form-check-input" type="checkbox" value="" id="roomFlexCheckDefault" />
-					<label class="form-check-label" for="roomflexCheckDefault"> Garage </label>
-				</div>
-				<div class="form-check m-2">
-					<input class="form-check-input" type="checkbox" value="" id="gardenFlexCheckDefault" />
-					<label class="form-check-label" for="gardenFlexCheckDefault"> Garden </label>
-				</div>
-				<div class="form-check m-2">
-					<input class="form-check-input" type="checkbox" value="" id="roomFlexCheckDefault" />
-					<label class="form-check-label" for="roomflexCheckDefault"> Room </label>
-				</div>
-				<div class="form-check m-2">
-					<input class="form-check-input" type="checkbox" value="" id="otherFlexCheckDefault" />
-					<label class="form-check-label" for="otherFlexCheckDefault"> Others </label>
-				</div>
-
-				<div class="d-flex align-items-center gap-1">
-					<h4 class="modal-title text-uppercase" id="bookAServiceLabel">address</h4>
-					<i class="fa-solid fa-xl fa-location-dot text-primary"></i>
-				</div>
-
-				<div class="d-flex flex-column">
-					<h6 class="text-primary fw-bold small">Home Address</h6>
-					<div class="col-12">
-						<textarea class="form-control" rows="5" aria-label="With textarea"></textarea>
+				<section>
+					<h4 class="fw-bolder text-uppercase">Type of Area</h4>
+					<div class="form-check m-2">
+						<input class="form-check-input" type="checkbox" value="" id="houseCheck" />
+						<label class="form-check-label" for="houseCheck">House</label>
 					</div>
+					<div class="form-check m-2">
+						<input class="form-check-input" type="checkbox" value="" id="roomCheck" />
+						<label class="form-check-label" for="roomCheck">Room</label>
+					</div>
+					<div class="form-check m-2">
+						<input class="form-check-input" type="checkbox" value="" id="garageCheck" />
+						<label class="form-check-label" for="garageCheck">Garage</label>
+					</div>
+					<div class="form-check m-2">
+						<input class="form-check-input" type="checkbox" value="" id="gardenCheck" />
+						<label class="form-check-label" for="gardenCheck">Garden</label>
+					</div>
+					<div class="form-check m-2">
+						<input class="form-check-input" type="checkbox" value="" id="poolCheck" />
+						<label class="form-check-label" for="poolCheck">Pool</label>
+					</div>
+					<div class="form-check m-2">
+						<input class="form-check-input" type="checkbox" value="" id="otherCheck" />
+						<label class="form-check-label" for="otherCheck">Others</label>
+					</div>
+				</section>
+				<section>
+					<div class="d-flex align-items-center gap-1">
+						<h4 class="modal-title text-uppercase fw-bolder">address</h4>
+						<i class="fa-solid fa-xl fa-location-dot text-primary"></i>
+					</div>
+					<label for="address" class="text-primary fw-bold small">Home Address</label>
+					<textarea id="address" class="form-control" rows="5" aria-label=""></textarea>
 					<div class="my-3">
-						<h6 class="text-primary fw-bold small">Landmarks</h6>
-						<div class="col-12">
-							<input type="text" class="form-control" />
-						</div>
+						<label for="landmarks" class="text-primary fw-bold small">Landmarks</label>
+						<input id="landmarks" type="text" class="form-control" />
 					</div>
-
-					<div class="row d-flex justify-content-center">
-						<h4 class="text-uppercase">specification</h4>
-						<div class="col-md-5 flex-column align-items-center mt-4 mx-auto" style="height: 200px">
-							<!-- Left content goes here -->
-							<img id="preview-image-before-upload" src="{{ asset('svg/illust/upload-photo.svg') }}" alt="preview image" class="shadow-sm bg-body-tertiary rounded" style="width: 100%; height: 50%" />
-							<label for="imageOfArea" class="btn btn-primary text-uppercase fw-bold p-2 mt-2" style="width: 100%; margin-bottom: 10px">Upload an image of area</label>
-							<input id="imageOfArea" type="file" class="d-none" />
-						</div>
-						<div class="col-md-7 mx-auto">
-							<div class="form-group" style="margin-bottom: 10px">
-								<label for="message">Other requests/additional details</label>
-								<textarea class="form-control" id="message" rows="3"></textarea>
+				</section>
+				<section>
+					<div class="d-flex flex-column">
+						<div class="row d-flex justify-content-center">
+							<h4 class="text-uppercase fw-bolder">specification</h4>
+							<div class="col-md-5 flex-column align-items-center mt-4 mx-auto" style="height: 200px">
+								<!-- Left content goes here -->
+								<img id="previewImageBeforeUpload" src="{{ asset('svg/illust/upload-photo.svg') }}" alt="preview image" class="shadow-sm bg-body-tertiary rounded-5 border border-1" style="width: 100%; height: 10rem" />
+								<label for="imageOfArea" class="btn btn-primary text-uppercase fw-bold p-2 mt-2" style="width: 100%; margin-bottom: 10px">Upload an image of the area</label>
+								<input id="imageOfArea" type="file" class="d-none" />
 							</div>
-							<div class="d-flex align-items-center gap-2">
-								<div class="col-md-6 mt-2">
-									<label for="text" class="form-label">Preferred Time</label>
-									<input type="text" class="form-control" id="time" style="margin-top: 0" />
+							<div class="col-md-7 mx-auto">
+								<div class="form-group">
+									<label for="message" class="small fw-bold">Other requests/additional details</label>
+									<textarea class="form-control" id="message" rows="3"></textarea>
 								</div>
-								<div class="col-md-6 mt-2">
-									<label for="text" class="form-label">Preferred Date</label>
-									<input type="text" class="form-control" id="date" style="margin-top: 0" />
+								<div class="d-flex align-items-center gap-2">
+									<div class="col-md-6 mt-2">
+										<label for="preferredTime" class="small fw-bold">Preferred Time</label>
+										<input type="text" class="form-control" id="preferredTime" />
+									</div>
+									<div class="col-md-6 mt-2">
+										<label for="preferredDate" class="small fw-bold">Preferred Date</label>
+										<input type="text" class="form-control" id="preferredDate" />
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary">Book</button>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary fw-bold text-uppercase">Book</button>
+						</div>
 					</div>
-				</div>
+				</section>
 			</div>
 		</div>
 	</div>
@@ -257,44 +266,45 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header bg-primary text-white"></div>
-			    <div class="modal-body ">
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img src = "{{asset('svg/illust/undraw_real_time_collaboration_c62i 1.svg')}} " alt="image"/> 
-                            <div class="text-center">
-                                <h3 class="text-uppercase"> Post A Comment! </h3>
-                                <p> Rate <span>{{ $userInfo->first_name . ' ' . $userInfo->last_name }}</span> service. Your feedback is much appreciated in improving their services.</p>
-                            </div>
-                    </div>
-            
-                            <div class="d-flex flex-column">
-                                    <h6 class="text-primary fw-bold small">Full Name</h6>
-                                        <div class="col-12">
-                                            <input type="text" class="form-control" />
-                                        </div>
-					                <div class="my-3">
-						                    <h6 class="text-primary fw-bold small">Comment</h6>
-						                <div class="col-12">
-                                            <textarea class="form-control" rows="5" aria-label="With textarea"></textarea>
-						                </div>
-					                </div>    
-
-                                <div class="d-flex align-items-center justify-content-between gap-5 m-3">
-								    <div class="d-flex gap-2 me-5">
-                                        <i class="fa fa-regular fa-star"></i>
-                                        <i class="fa fa-regular fa-star"></i>
-                                        <i class="fa fa-regular fa-star"></i>
-                                        <i class="fa fa-regular fa-star"></i>
-                                        <i class="fa fa-regular fa-star"></i>
-								    </div>
-								        <div class="d-flex gap-2 ms-5">
-                                            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Submit</button>
-								        </div>
-							        </div>
-                                </div>
-		                    </div>
-	            </div>
-    </div>
+			<div class="modal-body px-5 py-5">
+				<div class="d-flex flex-column justify-content-center align-items-center">
+					<img src="{{ asset('svg/illust/undraw-realtime-comm.svg') }} " alt="image" />
+					<div class="text-center">
+						<h3 class="text-uppercase fw-bolder">Post A Comment!</h3>
+						<p>
+							Rate <span>{{ $userInfo->first_name . ' ' . $userInfo->last_name }}</span> service. Your feedback is much appreciated in improving their services.
+						</p>
+					</div>
+				</div>
+				<div class="d-flex flex-column gap-3">
+					<div>
+						<label for="name" class="text-primary fw-bold small">Full Name</label>
+						<input id="name" type="text" class="form-control" />
+					</div>
+					<div>
+						<label for="comment" class="text-primary fw-bold small">Comment</label>
+						<textarea id="comment" class="form-control" rows="5" aria-label="With textarea"></textarea>
+					</div>
+					<div class="d-flex justify-content-between">
+						<div>
+							<label for="" class="text-primary fw-bold small">Rating</label>
+							<div class="d-flex align-items-center gap-2">
+								<i class="fa fa-regular fa-star h4 text-warning"></i>
+								<i class="fa fa-regular fa-star h4 text-warning"></i>
+								<i class="fa fa-regular fa-star h4 text-warning"></i>
+								<i class="fa fa-regular fa-star h4 text-warning"></i>
+								<i class="fa fa-regular fa-star h4 text-warning"></i>
+							</div>
+						</div>
+						<div class="mt-auto">
+							<button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 @endsection @section('javascript')
 <!-- Pagination Script -->
