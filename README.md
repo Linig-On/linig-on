@@ -23,6 +23,8 @@ php artisan key:generate
 ```bash
 composer create-project --prefer-dist laravel/laravel shop "8.*"
 php artisan serve
+# this is for adding helpers.php
+composer dump-autoload
 ```
 
 -   ##### Making authentication using bootstrap
