@@ -27,3 +27,7 @@ small {
 .richText-editor {
 	font-family: "Montserrat", sans-serif !important;
 }
+
+.fs-inherit {
+	font-size: inherit;
+}

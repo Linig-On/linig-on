@@ -35,6 +35,10 @@
 	font-weight: bold;
 }
 
+.no-fw-bold-hvr:hover {
+	font-weight: normal !important;
+}
+
 .dropdown-menu .dropdown-item:active {
 	background-color: transparent;
 	color: inherit;
