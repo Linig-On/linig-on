@@ -102,17 +102,42 @@
 					<a class="header-brand" href="#"></a>
 					<ul class="header-nav ms-auto">
 						<li class="nav-item dropdown">
-							<a class="nav-link py-0 position-relative overflow-visible" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+							<a id="notifButton" class="nav-link" href="#" role="button" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 								<i class="icon icon-lg cil-bell"></i>
-								<div class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-									14
-									<div class="visually-hidden">unread messages</div>
-								</div>
 							</a>
-							<div class="dropdown-menu dropdown-menu-end pt-0 animate slide-in">
-								<div class="dropdown-header bg-light">
-									<span class="fw-semibold">Notifications</span>
-									<hr class="my-2" />
+							<!-- start of dropdown div -->
+							<div class="dropdown-menu fade-in dropdown-menu-end mt-3 p-auto" aria-labelledby="notifButton" style="width: 30rem">
+								<div class="p-auto ms-4 my-2 fw-bolder">
+									<h4>Notifications</h4>
+								</div>
+								<div class="p-auto my-2">
+									@foreach ($listOfNotifications as $notif)
+									<a class="dropdown-item d-flex justify-content-between align-items-center no-fw-bold-hvr" href="">
+										<div class="container">
+											<div class="row">
+												<div class="col-sm-12">
+													<div class="row d-flex justify-content-between align-items-center gap-3">
+														<div class="col">
+															<small class="fw-bold">{{ $notif->heading }}</small>
+														</div>
+														<div class="col">
+															<div class="float-end">
+																<small>{{ $notif->created_at }}</small>
+															</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-sm-12">
+															<small class="text-wrap d-block text-muted mb-0">{{ $notif->message }}</small>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</a>
+									@endforeach
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item text-center no-fw-bold-hvr">All notifications for this week</a>
 								</div>
 							</div>
 						</li>

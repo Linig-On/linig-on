@@ -70,36 +70,39 @@
 								</a>
 								<!-- start of dropdown div -->
 								<div class="dropdown-menu fade-in dropdown-menu-end mt-3 p-auto" aria-labelledby="notifButton" style="width: 30rem">
-									 <div class="p-auto ms-4 my-2 fw-bolder">
-									 <h3>Notifications</h3>
-									 </div>
-									<div class="p-auto mx-4 my-2 ">
-										<a class="dropdown-item d-flex justify-content-between align-items-center" href="#">
+									<div class="p-auto ms-4 my-2 fw-bolder">
+										<h4>Notifications</h4>
+									</div>
+									<div class="p-auto my-2">
+										@foreach ($listOfNotifications as $notif)
+										<a class="dropdown-item d-flex justify-content-between align-items-center no-fw-bold-hvr" href="">
 											<div class="container">
 												<div class="row">
 													<div class="col-sm-12">
-														<div class="row d-flex justify-content-between align-items-center gap-3 ">
+														<div class="row d-flex justify-content-between align-items-center gap-3">
 															<div class="col">
-																<small>System</small>
+																<small class="fw-bold">{{ $notif->heading }}</small>
 															</div>
 															<div class="col">
-																<small>Jan 01, 2023 8:00PM</small>
+																<div class="float-end">
+																	<small>{{ $notif->created_at }}</small>
+																</div>
 															</div>
 														</div>
 														<div class="row">
 															<div class="col-sm-12">
-																<small class="text-wrap d-block text-muted mb-0">Your recent booking to Ms. Jennifer has finished. Did you enjoy the service? Give us a rating!</small>
+																<small class="text-wrap d-block text-muted mb-0">{{ $notif->message }}</small>
 															</div>
 														</div>
 													</div>
 												</div>
 											</div>
 										</a>
+										@endforeach
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item text-center">All notifications for this week</a>
+										<a class="dropdown-item text-center no-fw-bold-hvr">All notifications for this week</a>
 									</div>
-								
-								</div>	
+								</div>
 								<!-- start of navbar dropdown -->
 								<a id="navbarDropdown" class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									<div class="avatar">
