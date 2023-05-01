@@ -12,7 +12,7 @@
 						<label class="fw-bold small" for="">Sort By:</label>
 						<div class="dropdown-group">
 							<div class="form-control-icon-end">
-								<input id="sortBy" name="sort_by" type="text" class="form-control cursor-pointer dropdown-toggle" type="button" value="Relevance" readonly aria-expanded="false" />
+								<input id="sortBy" name="sort_by" type="text" class="form-control cursor-pointer dropdown-toggle" type="button" value="All" readonly aria-expanded="false" />
 								<i class="fa fa-solid fa-angle-down"></i>
 							</div>
 							<ul class="dropdown-menu" aria-labelledby="defaultDropdown">

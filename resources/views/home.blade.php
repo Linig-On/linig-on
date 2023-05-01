@@ -102,9 +102,37 @@
 <div class="spacer"></div>
 <section>
 	<div class="container text-center fade-in">
-		<h2 class="text-uppercase fw-bolder">What Our Customer Say About Us</h2>
-		<!-- Fetch testimonials here (use component)... -->
-		<button class="btn btn-primary btn-lg text-uppercase fw-bold">Get Started!</button>
+		<h2 class="text-uppercase fw-bolder mb-5">What Our Customer Say About Us</h2>
+		<!-- Fetch testimonials here... -->
+		<div class="row">
+			@for ($i = 0; $i < 3; $i++)
+			<div class="col-md-4">
+				<div class="card shadow border border-1">
+					<div class="card-body px-5 py-4 text-start">
+						<i class="fa-solid fa-quote-left fa-2xl float-start pe-1 text-primary opacity-50"></i>
+						<br >
+						<h5 class="text-primary fw-bolder">{{ $appRatings[$i]->name }}</h5>
+						<p>"{{ $appRatings[$i]->comment }}"</p>
+					</div>
+				</div>
+			</div>
+			@endfor
+		</div>
+		<div class="row justify-content-center">
+			@for ($i = 3; $i < 5; $i++)
+			<div class="col-md-4 mt-3">
+				<div class="card shadow border border-1">
+					<div class="card-body px-5 py-4 text-start">
+						<i class="fa-solid fa-quote-left fa-2xl float-start pe-1 text-primary opacity-50"></i>
+						<br >
+						<h5 class="text-primary fw-bolder">{{ $appRatings[$i]->name }}</h5>
+						<p>"{{ $appRatings[$i]->comment }}"</p>
+					</div>
+				</div>
+			</div>
+			@endfor
+		</div>
+		<a role="button" href="/service" class="btn btn-primary btn-lg text-uppercase fw-bold mt-5">Get Started!</a>
 	</div>
 </section>
 <div class="spacer"></div>

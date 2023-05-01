@@ -28,7 +28,10 @@
 		<!-- RichText Styles -->
 		<link rel="stylesheet" href="{{ asset('vendor/rich-text-editor/src/richtext.min.css') }}" />
 
-		<!--  -->
+		<!-- Datatables Styles -->
+		<link href="{{ asset('vendor/datatables.net-dt/css/jquery.dataTables.min.css') }}" rel="stylesheet" />
+
+		<!-- Site Styles -->
 		<link href="{{ asset('css/site.css') }}" rel="stylesheet" />
 
 		<!-- Jquery -->
@@ -79,7 +82,7 @@
 				</li>
 				<li class="nav-title">ACTION</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">
+					<a class="nav-link" href="{{ route('service-bookings') }}">
 						<i class="nav-icon cil-book"></i>
 						Bookings
 					</a>
@@ -161,7 +164,7 @@
 									<div class="fw-semibold">Account</div>
 								</div>
 								<a class="dropdown-item small" href="{{ route('service-my-profile') }}"> My Profile</a>
-								<a class="dropdown-item small" href="#"> Bookings</a>
+								<a class="dropdown-item small" href="{{ route('service-bookings') }}"> Bookings</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item small d-flex align-items-center gap-3" href="{{ route('logout') }}" onclick="event.preventDefault(); $('#logout-form').submit();"> Logout </a>
 								<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>

@@ -10,6 +10,11 @@ class HomeController extends Controller
     public function index()
     {
         $workers = DB::table('workers')->get();
+        $appRatings = DB::table('app_ratings')
+            ->where('is_liked', true)
+            ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
 
         $topRatedWorkers = array();
         $i = 0;
@@ -30,7 +35,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('home')->with('topRatedWorkers', $topRatedWorkers);
+        return view('home')->with('topRatedWorkers', $topRatedWorkers)->with('appRatings', $appRatings);
     }
 
     public function aboutUs()
