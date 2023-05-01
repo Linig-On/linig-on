@@ -1,103 +1,36 @@
-@extends('layouts.service', ['bi1' => 'Home', 'bi2' => 'Dashboard']) @section('content')
+@extends('layouts.service', ['bi1' => 'Home', 'bi2' => 'Bookings']) @section('content')
 <div class="container fade-in">
-	<section>
-		<div class="row">
-			<div class="col-md-2">
-				<div class="card border border-1 shadow-sm h-100">
-					<div class="card-header py-2 bg-primary"></div>
-					<div class="card-body">
-						<h4 class="text-uppercase text-center fw-bolder text-primary">Overall Rating</h4>
-						<div class="mx-auto w-mc d-flex justify-content-center flex-column gap-3">
-							<div class="mx-auto border border-5 rounded-circle d-flex justify-content-center align-items-center" style="width: 8rem; height: 8rem">
-								<h1 class="p-4 mb-0 text-primary fw-bolder">{{ number_format($ratingAvg, 1) }}</h1>
-							</div>
-							<div class="d-flex gap-2 w-mc">
-								@for ($i = 0; $i < (int)$ratingAvg; $i++)
-								<i class="fa fa-solid fa-star h4 text-warning"></i>
-								@endfor @if ((int)$ratingAvg < 5) @for ($i = 0; $i < 5 - (int)$ratingAvg; $i++)
-								<i class="fa fa-regular fa-star h4 text-warning"></i>
-								@endfor @endif
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="card border border-1 shadow-sm h-100">
-					<div class="card-header py-2 bg-primary"></div>
-					<div class="card-body">
-						<h4 class="text-uppercase text-primary fw-bolder">Booking Recieved</h4>
-						<h6 class="fw-bolder text-uppercase text-muted">Total Recieved</h6>
-						<h1 class="p-3 mb-0 text-primary fw-bolder">{{ $bookingStats["recieved"] }}</h1>
-						<h6 class="fw-bolder text-uppercase text-muted">Pending</h6>
-						<h1 class="p-3 mb-0 text-primary fw-bolder">{{ $bookingStats["pending"] }}</h1>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="card border border-1 shadow-sm h-100">
-					<div class="card-header py-2 bg-primary"></div>
-					<div class="card-body">
-						<h4 class="text-uppercase text-primary fw-bolder">Customer Reviews</h4>
-						<div class="d-flex">
-							<div class="col-4">
-								<div class="avatar" style="width: 10rem; height: 10rem">
-									@if ($latestRating->image_url != null)
-									<img class="rounded-circle w-100 h-100" src="{{ asset('img/profile') . '/' . $latestRating->image_url }}" />
-									@else
-									<div class="avatar w-100 h-100 rounded-circle bg-secondary text-white fw-bold">
-										<h2 class="text-white mb-0 fw-bolder">{{ $latestRating->first_name[0] }}</h2>
-									</div>
-									@endif
-								</div>
-							</div>
-							<div class="col">
-								<i class="fa-solid fa-quote-left fa-2xl"></i>
-								<p>{{ $latestRating->comment }}</p>
-								<b
-									><i>- {{ $latestRating->first_name }}</i></b
-								>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section>
-		<div class="spacer"></div>
-		<h2 class="text-primary text-uppercase fw-bolder">Active Bookings</h2>
-		<table id="activeBookingTbl" class="table">
-			<thead>
-				<tr>
-					<th scope="col">Client Name</th>
-					<th scope="col">Status</th>
-					<th scope="col">Date Booked</th>
-					<th scope="col"></th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach ($listOfBookings as $booking)
-				<tr>
-					<td>{{ $booking->client_first_name . ' ' . $booking->client_last_name }}</td>
-					<td>
-						@if ($booking->status == 'Done')
-						<div class="view-tag bg-success text-white">{{ $booking->status }}</div>
-						@endif @if ($booking->status == 'Pending')
-						<div class="view-tag bg-warning text-white">{{ $booking->status }}</div>
-						@endif @if ($booking->status == 'Cancelled')
-						<div class="view-tag bg-danger text-white">{{ $booking->status }}</div>
-						@endif
-					</td>
-					<td>{{ \Carbon\Carbon::parse($booking->date_booked)->format('F j, Y') }}</td>
-					<td>
-						<a href="#" role="button" class="fw-bold text-decoration-underline" data-bs-toggle="modal" data-bs-target="#bookingInfoModal" onclick="viewBookingDetails('{{ json_encode($booking) }}')">View</a>
-					</td>
-				</tr>
-				@endforeach
-			</tbody>
-		</table>
-	</section>
+	<h1 class="text-uppercase fw-bolder">Booking History</h1>
+	<table id="bookingsTbl" class="table">
+		<thead>
+			<tr>
+				<th scope="col">Client Name</th>
+				<th scope="col">Status</th>
+				<th scope="col">Date Booked</th>
+				<th scope="col"></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach ($listOfBookings as $booking)
+			<tr>
+				<td>{{ $booking->client_first_name . ' ' . $booking->client_last_name }}</td>
+				<td>
+					@if ($booking->status == 'Done')
+					<div class="view-tag bg-success text-white">{{ $booking->status }}</div>
+					@endif @if ($booking->status == 'Pending')
+					<div class="view-tag bg-warning text-white">{{ $booking->status }}</div>
+					@endif @if ($booking->status == 'Cancelled')
+					<div class="view-tag bg-danger text-white">{{ $booking->status }}</div>
+					@endif
+				</td>
+				<td>{{ \Carbon\Carbon::parse($booking->date_booked)->format('F j, Y') }}</td>
+				<td>
+					<a href="#" role="button" class="fw-bold text-decoration-underline" data-bs-toggle="modal" data-bs-target="#bookingInfoModal" onclick="viewBookingDetails('{{ json_encode($booking) }}')">View</a>
+				</td>
+			</tr>
+			@endforeach
+		</tbody>
+	</table>
 </div>
 
 <!-- Booking Info Modal -->
@@ -108,6 +41,10 @@
 			<div class="modal-body px-5 py-4 z-index-20 d-flex flex-column gap-4">
 				<div class="d-flex align-items-center gap-1 mb-3">
 					<h2 class="mb-0 fw-bolder text-uppercase" id="bookingInfoModalLabel">booking</h2>
+					<div id="status" class="view-tag text-white"></div>
+					<div class="w-mc ms-auto">
+						<button type="button" class="btn btn-outline-primary fw-bold text-uppercase" data-bs-dismiss="modal">Close</button>
+					</div>
 				</div>
 				<section>
 					<h4 class="fw-bolder text-uppercase">Client Details</h4>
@@ -205,7 +142,54 @@
 <script src="{{ asset('vendor/datatables.net/js/jquery.dataTables.min.js') }}"></script>
 <script type="text/javascript">
 	$(document).ready(function () {
-		$("#activeBookingTbl").DataTable();
+		$("#bookingsTbl").DataTable();
+		$("#typeOfArea").tagify();
 	});
+
+	const viewBookingDetails = function (data) {
+		const booking = JSON.parse(data);
+
+		console.log(booking);
+
+		const $status = $("#status");
+		$status.removeClass();
+
+		switch (booking["status"]) {
+			case "Done":
+				$status.html(booking["status"]);
+				$status.addClass("view-tag bg-success text-white");
+				break;
+			case "Pending":
+				$status.html(booking["status"]);
+				$status.addClass("view-tag bg-warning text-white");
+				break;
+			case "Cancelled":
+				$status.html(booking["status"]);
+				$status.addClass("view-tag bg-danger text-white");
+				break;
+		}
+
+		$("#radioGenderM, #radioGenderF").removeProp("checked");
+		switch (booking["client_gender"]) {
+			case "M":
+				$("#radioGenderM").prop("checked", "checked");
+				break;
+			case "F":
+				$("#radioGenderF").prop("checked", "checked");
+				break;
+		}
+
+		$("#typeOfArea").val(booking["type_of_area"]);
+		$("#firstName").val(booking["client_first_name"]);
+		$("#lastName").val(booking["client_last_name"]);
+		$("#emailAddress").val(booking["client_email_address"]);
+		$("#contactNumber").val(booking["client_contact_number"]);
+
+		$("#address").val(booking["client_address"]);
+		$("#landmarks").val(booking["landmarks"]);
+		$("#message").val(booking["additional_details_requests"]);
+		$("#preferredTime").val(booking["preferred_time"]);
+		$("#preferredDate").val(booking["preferred_date"]);
+	};
 </script>
 @endsection

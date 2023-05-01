@@ -83,6 +83,29 @@
 					</span>
 					@enderror
 				</div>
+				<div class="d-flex flex-wrap gap-2">
+					@foreach($workerSocials as $i) @if(strpos($i->social, 'facebook') !== false)
+					<a href="https://{{ $i->social }}" target="_blank">
+						<img src="{{ asset('svg/icon/facebook.svg') }}" alt="facebook" />
+					</a>
+					@endif @if(strpos($i->social, 'messenger') !== false)
+					<a href="https://{{ $i->social }}" target="_blank">
+						<img src="{{ asset('svg/icon/messenger.svg') }}" alt="messenger" />
+					</a>
+					@endif @if(strpos($i->social, 'instagram') !== false)
+					<a href="https://{{ $i->social }}" target="_blank">
+						<img src="{{ asset('svg/icon/instagram.svg') }}" alt="instagram" />
+					</a>
+					@endif @if(strpos($i->social, 'linkedin') !== false)
+					<a href="https://{{ $i->social }}" target="_blank">
+						<img src="{{ asset('svg/icon/linkedin.svg') }}" alt="linkedin" />
+					</a>
+					@endif @if(strpos($i->social, 'twitter') !== false)
+					<a href="https://{{ $i->social }}" target="_blank">
+						<img src="{{ asset('svg/icon/twitter.svg') }}" alt="twitter" />
+					</a>
+					@endif @endforeach
+				</div>
 			</div>
 			<div class="col-md-9">
 				<div class="card border border-1 shadow overflow-hidden">

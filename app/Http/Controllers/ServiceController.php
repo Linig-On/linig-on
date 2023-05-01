@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use App\Models\Bookmark;
+use App\Models\Notification;
 use App\Models\User;
 use App\Models\Worker;
 use App\Models\WorkerSkill;
 use App\Models\WorkerSocial;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +18,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
+
+use function App\Helpers\createBookingNotification;
+use function App\Helpers\createNewBookingToServiceNotification;
+use function App\Helpers\createNotification;
 
 class ServiceController extends Controller
 {
@@ -51,7 +58,41 @@ class ServiceController extends Controller
      */
     public function serviceDashboard()
     {
-        return view('svcDashboard');
+        $worker = DB::table('workers')
+            ->where('user_id', Auth::user()->id)
+            ->join('users', 'users.id', '=', 'workers.user_id')
+            ->first();
+        
+        $latestRating = DB::table('worker_ratings')
+            ->where('worker_id', Auth::user()->id)
+            ->join('users', 'users.id', '=', 'worker_ratings.user_id')
+            ->orderBy('worker_ratings.created_at', 'desc')
+            ->first();
+        
+        $listOfBookings = DB::table('bookings')
+            ->where('worker_id', Auth::user()->id)
+            ->where('status', 'Pending')
+            ->get();
+
+        $ratingAvg = DB::table('worker_ratings')
+            ->where('worker_id', Auth::user()->id)
+            ->avg('rating');
+        
+        $bookingStats = [
+            'recieved' => DB::table('bookings')
+                ->where('worker_id', Auth::user()->id)
+                ->count(),
+            'pending' => DB::table('bookings')
+                ->where('worker_id', Auth::user()->id)
+                ->where('status', 'Pending')
+                ->count()
+        ];
+        
+        return view('svcDashboard')
+            ->with('listOfBookings', $listOfBookings)
+            ->with('latestRating', $latestRating)
+            ->with('ratingAvg', $ratingAvg)
+            ->with('bookingStats', $bookingStats);
     }
 
     /**
@@ -267,5 +308,87 @@ class ServiceController extends Controller
             return response('Error.');
         }
         return response('Successfull.');
+    }
+
+    /**
+     * POST
+     */
+    public function bookWorker(Request $request) {
+
+        $worker = DB::table('users')->where('id', (int)$request->input('user_id'))->first();
+        $workerName = $worker->first_name . ' '. $worker->last_name;
+
+        $workerUserId = DB::table('workers')->where('id', (int)$request->input('worker_id'))->first();
+        $userWorkerId = DB::table('users')->where('id', $workerUserId->user_id)->first()->id;
+
+        try {
+            $filename = null;
+
+            if ($request->image_of_area != null) {
+                // get the filename of image uploaded
+                $filename = time() . '_' . $request->image_of_area->getClientOriginalName();
+
+                // store in public folder
+                $request->image_of_area->move(public_path('img/booking/img-of-area'), $filename);
+            }
+            
+            $data = $request->validate([
+                'area_type' => 'required',
+                'address' => 'required',
+                'landmarks' => 'required',
+                'preferred_time' => 'required',
+                'preferred_date' => 'required',
+            ]);
+
+            $arr = $request->input('area_type');
+            $typeOfArea = implode(", ", $arr);
+
+            Booking::create([
+                'user_id' => $request->input('user_id'),
+                'worker_id' => $request->input('worker_id'),
+                'date_booked' => date('Y-m-d'),
+                'status' => 'Pending',
+                'client_first_name' => Auth::user()->first_name,
+                'client_last_name' => Auth::user()->last_name,
+                'client_email_address' => Auth::user()->email,
+                'client_contact_number' => Auth::user()->contact_number,
+                'client_gender' => Auth::user()->gender,
+                'client_address' => Auth::user()->address,
+                'type_of_area' => $typeOfArea,
+                'landmarks' => $data['landmarks'],
+                'area_image_url' => $filename,
+                'additional_details_requests' => $request->input('message'),
+                'preferred_time' => $data['preferred_time'],
+                'preferred_date' => $data['preferred_date'],
+            ]);
+
+            // send notifications to the user and service
+            createBookingNotification(Auth::user()->id, $workerName);
+            createNewBookingToServiceNotification($userWorkerId);
+
+            Session::flash('booking-success', 'Successfully booked a service to <span class="fw-bold fs-inherit"> ' . $workerName . '!</span>');
+            return redirect()->back();
+
+        } catch (ValidationException $ex) {
+            Session::flash('booking-missing-fields', $ex->getMessage());
+            return redirect()->back()->withErrors($ex->validator->errors())->withInput();
+        } catch (Exception $ex) {
+            Session::flash('booking-failed', 'An error occured while attempting to book <span class="fw-bold fs-inherit"> ' . $workerName . '.</span>');
+            return redirect()->back();
+        }
+    }
+
+    /**
+     * GET
+     */
+    public function serviceBookings() {
+        $worker = DB::table('workers')
+            ->where('user_id', Auth::user()->id)
+            ->join('users', 'users.id', '=', 'workers.user_id')
+            ->first();
+
+        $listOfBookings = DB::table('bookings')->where('worker_id', $worker->id)->get();
+
+        return view('svcBookings')->with('listOfBookings', $listOfBookings);
     }
 }

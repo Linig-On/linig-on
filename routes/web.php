@@ -46,10 +46,12 @@ Route::post('/login/user', [LoginController::class, 'loginUser'])->name('login-u
 Route::get('/login/worker', [LoginController::class, 'loginAsWorker'])->name('login-as-worker');
 Route::post('/login/worker', [LoginController::class, 'loginWorker'])->name('login-worker');
 
-
 // service
 Route::get('/service/worker/{id}', [ServiceController::class, 'workerProfile'])->name('service-worker-profile');
 Route::get('/service/filter', [ServiceController::class, 'filter'])->name('service-filter');
+
+// booking a service
+Route::post('/service/worker/book', [ServiceController::class, 'bookWorker'])->name('book-worker');
 
 // bookmark a service
 Route::post('/service/worker/add/bookmark', [ServiceController::class, 'bookmarkWorker'])->name('bookmark-worker');
@@ -60,3 +62,4 @@ Route::get('/account/my-bookmarks', [AccountController::class, 'myBookmarkedWork
 Route::get('/service/dashboard', [ServiceController::class, 'serviceDashboard'])->name('service-dashboard');
 Route::get('/service/my-profile', [ServiceController::class, 'serviceMyProfile'])->name('service-my-profile');
 Route::post('/service/update/worker', [ServiceController::class, 'serviceUpdateWorker'])->name('service-update-worker');
+Route::get('/service/bookings', [ServiceController::class, 'serviceBookings'])->name('service-bookings');
