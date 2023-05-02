@@ -70,6 +70,7 @@
 		<table id="activeBookingTbl" class="table">
 			<thead>
 				<tr>
+					<th scope="col">Booking Number</th>
 					<th scope="col">Client Name</th>
 					<th scope="col">Status</th>
 					<th scope="col">Date Booked</th>
@@ -79,6 +80,7 @@
 			<tbody>
 				@foreach ($listOfBookings as $booking)
 				<tr>
+					<td>BK-{{ $booking->id . $booking->user_id . $booking->worker_id }}</td>
 					<td>{{ $booking->client_first_name . ' ' . $booking->client_last_name }}</td>
 					<td>
 						@if ($booking->status == 'For Approval')
@@ -110,6 +112,7 @@
 			<div class="modal-body px-5 py-4 z-index-20 d-flex flex-column gap-4">
 				<div class="d-flex align-items-center gap-1 mb-3">
 					<h2 class="mb-0 fw-bolder text-uppercase" id="bookingInfoModalLabel">booking</h2>
+					<div id="status" class="view-tag text-white"></div>
 				</div>
 				<section>
 					<h4 class="fw-bolder text-uppercase">Client Details</h4>
@@ -155,7 +158,10 @@
 						</div>
 					</div>
 				</section>
-				<input id="typeOfArea" class="form-control w-100" value="" />
+				<section>
+					<h4 class="modal-title text-uppercase fw-bolder">Type of Area</h4>
+					<input id="typeOfArea" class="form-control w-100" value="" />
+				</section>
 				<section>
 					<div class="d-flex align-items-center gap-1">
 						<h4 class="modal-title text-uppercase fw-bolder">address</h4>
@@ -197,6 +203,25 @@
 						</div>
 					</div>
 				</section>
+				<section class="w-100 d-flex">
+					<button type="button" class="btn btn-outline-primary me-auto fw-bold text-uppercase" data-bs-dismiss="modal">Close</button>
+					<div class="w-mc ms-auto">
+						<button id="markDoneBtn" type="button" class="btn btn-success fw-bolder text-uppercase border border-1 text-primary">
+							Mark as Done
+							<i class="fa fa-solid fa-circle-check text-primary"></i>
+						</button>
+					</div>
+					<div id="forApprovalBtns" class="w-mc ms-auto">
+						<button id="acceptBtn" type="button" class="btn btn-success fw-bold text-uppercase border border-1 text-primary">
+							Accept
+							<i class="fa fa-solid fa-circle-check text-primary"></i>
+						</button>
+						<button id="declineBtn" type="button" class="btn btn-danger fw-bold text-uppercase border border-1 text-danger text-white">
+							Decline
+							<i class="fa-regular fa-circle-xmark text-white"></i>
+						</button>
+					</div>
+				</section>
 			</div>
 			<img class="opacity-50 position-absolute z-index-10" style="right: -2rem; top: 3rem" width="400" src="{{ asset('svg/illust/no-data.svg') }}" alt="" />
 		</div>
@@ -208,6 +233,7 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 		$("#activeBookingTbl").DataTable();
+		$("#typeOfArea").tagify();
 	});
 </script>
 @endsection

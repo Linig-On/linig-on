@@ -4,6 +4,7 @@
 	<table id="bookingsTbl" class="table">
 		<thead>
 			<tr>
+				<th scope="col">Booking Number</th>
 				<th scope="col">Client Name</th>
 				<th scope="col">Status</th>
 				<th scope="col">Date Booked</th>
@@ -13,6 +14,7 @@
 		<tbody>
 			@foreach ($listOfBookings as $booking)
 			<tr>
+				<td>BK-{{ $booking->id . $booking->user_id . $booking->worker_id }}</td>
 				<td>{{ $booking->client_first_name . ' ' . $booking->client_last_name }}</td>
 				<td>
 					@if ($booking->status == 'For Approval')
@@ -89,7 +91,10 @@
 						</div>
 					</div>
 				</section>
-				<input id="typeOfArea" class="form-control w-100" value="" />
+				<section>
+					<h4 class="modal-title text-uppercase fw-bolder">Type of Area</h4>
+					<input id="typeOfArea" class="form-control w-100" value="" />
+				</section>
 				<section>
 					<div class="d-flex align-items-center gap-1">
 						<h4 class="modal-title text-uppercase fw-bolder">address</h4>
@@ -131,12 +136,24 @@
 						</div>
 					</div>
 				</section>
-				<section class="w-mc ms-auto">
-					<button type="button" class="btn btn-outline-primary fw-bold text-uppercase" data-bs-dismiss="modal">Close</button>
-					<button id="markDoneBtn" type="button" class="btn btn-success fw-bolder text-uppercase border border-1 text-primary">
-						Mark as Done
-						<i class="fa fa-solid fa-circle-check text-primary"></i>
-					</button>
+				<section class="w-100 d-flex">
+					<button type="button" class="btn btn-outline-primary me-auto fw-bold text-uppercase" data-bs-dismiss="modal">Close</button>
+					<div class="w-mc ms-auto">
+						<button id="markDoneBtn" type="button" class="btn btn-success fw-bolder text-uppercase border border-1 text-primary">
+							Mark as Done
+							<i class="fa fa-solid fa-circle-check text-primary"></i>
+						</button>
+					</div>
+					<div id="forApprovalBtns" class="w-mc ms-auto">
+						<button id="acceptBtn" type="button" class="btn btn-success fw-bold text-uppercase border border-1 text-primary">
+							Accept
+							<i class="fa fa-solid fa-circle-check text-primary"></i>
+						</button>
+						<button id="declineBtn" type="button" class="btn btn-danger fw-bold text-uppercase border border-1 text-danger text-white">
+							Decline
+							<i class="fa-regular fa-circle-xmark text-white"></i>
+						</button>
+					</div>
 				</section>
 			</div>
 			<img class="opacity-50 position-absolute z-index-10" style="right: -2rem; top: 3rem" width="400" src="{{ asset('svg/illust/no-data.svg') }}" alt="" />
@@ -151,58 +168,5 @@
 		$("#bookingsTbl").DataTable();
 		$("#typeOfArea").tagify();
 	});
-
-	const viewBookingDetails = function (data) {
-		const booking = JSON.parse(data);
-
-		const $status = $("#status");
-		const $markDoneBtn = $("#markDoneBtn");
-		$markDoneBtn.hide();
-		$status.removeClass();
-
-		// status checks
-		switch (booking["status"]) {
-			case "Done":
-				$status.html(booking["status"]);
-				$status.addClass("view-tag bg-success text-white");
-				break;
-			case "Pending":
-				$status.html(booking["status"]);
-				$status.addClass("view-tag bg-warning text-white");
-				$markDoneBtn.show();
-				break;
-			case "Cancelled":
-				$status.html(booking["status"]);
-				$status.addClass("view-tag bg-danger text-white");
-				break;
-		}
-
-		// assign client gender
-		$("#radioGenderM, #radioGenderF").removeProp("checked");
-		switch (booking["client_gender"]) {
-			case "M":
-				$("#radioGenderM").prop("checked", "checked");
-				break;
-			case "F":
-				$("#radioGenderF").prop("checked", "checked");
-				break;
-		}
-
-		// assign client details
-		$("#typeOfArea").val(booking["type_of_area"]);
-		$("#firstName").val(booking["client_first_name"]);
-		$("#lastName").val(booking["client_last_name"]);
-		$("#emailAddress").val(booking["client_email_address"]);
-		$("#contactNumber").val(booking["client_contact_number"]);
-
-		// assign client address
-		$("#address").val(booking["client_address"]);
-		$("#landmarks").val(booking["landmarks"]);
-
-		// assign client specification
-		$("#message").val(booking["additional_details_requests"]);
-		$("#preferredTime").val(booking["preferred_time"]);
-		$("#preferredDate").val(booking["preferred_date"]);
-	};
 </script>
 @endsection
