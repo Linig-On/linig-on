@@ -81,12 +81,14 @@
 				<tr>
 					<td>{{ $booking->client_first_name . ' ' . $booking->client_last_name }}</td>
 					<td>
-						@if ($booking->status == 'Done')
-						<div class="view-tag bg-success text-white">{{ $booking->status }}</div>
+						@if ($booking->status == 'For Approval')
+						<div class="view-tag info text-primary">{{ $booking->status }}</div>
+						@endif @if ($booking->status == 'Done')
+						<div class="view-tag success text-white">{{ $booking->status }}</div>
 						@endif @if ($booking->status == 'Pending')
-						<div class="view-tag bg-warning text-white">{{ $booking->status }}</div>
+						<div class="view-tag warning text-white">{{ $booking->status }}</div>
 						@endif @if ($booking->status == 'Cancelled')
-						<div class="view-tag bg-danger text-white">{{ $booking->status }}</div>
+						<div class="view-tag danger text-white">{{ $booking->status }}</div>
 						@endif
 					</td>
 					<td>{{ \Carbon\Carbon::parse($booking->date_booked)->format('F j, Y') }}</td>

@@ -72,6 +72,7 @@ class ServiceController extends Controller
         $listOfBookings = DB::table('bookings')
             ->where('worker_id', Auth::user()->id)
             ->where('status', 'Pending')
+            ->orWhere('status', 'For Approval')
             ->get();
 
         $ratingAvg = DB::table('worker_ratings')
@@ -85,6 +86,7 @@ class ServiceController extends Controller
             'pending' => DB::table('bookings')
                 ->where('worker_id', Auth::user()->id)
                 ->where('status', 'Pending')
+                ->orWhere('status', 'For Approval')
                 ->count()
         ];
         

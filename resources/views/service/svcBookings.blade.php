@@ -15,12 +15,14 @@
 			<tr>
 				<td>{{ $booking->client_first_name . ' ' . $booking->client_last_name }}</td>
 				<td>
-					@if ($booking->status == 'Done')
-					<div class="view-tag bg-success text-white">{{ $booking->status }}</div>
+					@if ($booking->status == 'For Approval')
+					<div class="view-tag info text-primary">{{ $booking->status }}</div>
+					@endif @if ($booking->status == 'Done')
+					<div class="view-tag success text-white">{{ $booking->status }}</div>
 					@endif @if ($booking->status == 'Pending')
-					<div class="view-tag bg-warning text-white">{{ $booking->status }}</div>
+					<div class="view-tag warning text-white">{{ $booking->status }}</div>
 					@endif @if ($booking->status == 'Cancelled')
-					<div class="view-tag bg-danger text-white">{{ $booking->status }}</div>
+					<div class="view-tag danger text-white">{{ $booking->status }}</div>
 					@endif
 				</td>
 				<td>{{ \Carbon\Carbon::parse($booking->date_booked)->format('F j, Y') }}</td>
@@ -42,9 +44,6 @@
 				<div class="d-flex align-items-center gap-1 mb-3">
 					<h2 class="mb-0 fw-bolder text-uppercase" id="bookingInfoModalLabel">booking</h2>
 					<div id="status" class="view-tag text-white"></div>
-					<div class="w-mc ms-auto">
-						<button type="button" class="btn btn-outline-primary fw-bold text-uppercase" data-bs-dismiss="modal">Close</button>
-					</div>
 				</div>
 				<section>
 					<h4 class="fw-bolder text-uppercase">Client Details</h4>
@@ -106,10 +105,10 @@
 					</div>
 				</section>
 				<section>
-					<div class="d-flex flex-column mb-5">
+					<div class="d-flex flex-column">
 						<div class="row d-flex justify-content-center">
 							<h4 class="text-uppercase fw-bolder">specification</h4>
-							<div class="col-md-5 flex-column align-items-center mx-auto" style="height: 200px">
+							<div class="col-md-5 flex-column align-items-center mx-auto">
 								<label for="" class="fw-bold small">Image of the Area</label>
 								<img id="previewImageBeforeUpload" src="{{ asset('svg/illust/upload-photo.svg') }}" alt="preview image" class="shadow-sm bg-body-tertiary rounded-5 border border-1 img-fluid prev-img" style="width: 100%; height: 10rem" />
 							</div>
@@ -132,6 +131,13 @@
 						</div>
 					</div>
 				</section>
+				<section class="w-mc ms-auto">
+					<button type="button" class="btn btn-outline-primary fw-bold text-uppercase" data-bs-dismiss="modal">Close</button>
+					<button id="markDoneBtn" type="button" class="btn btn-success fw-bolder text-uppercase border border-1 text-primary">
+						Mark as Done
+						<i class="fa fa-solid fa-circle-check text-primary"></i>
+					</button>
+				</section>
 			</div>
 			<img class="opacity-50 position-absolute z-index-10" style="right: -2rem; top: 3rem" width="400" src="{{ asset('svg/illust/no-data.svg') }}" alt="" />
 		</div>
@@ -149,11 +155,12 @@
 	const viewBookingDetails = function (data) {
 		const booking = JSON.parse(data);
 
-		console.log(booking);
-
 		const $status = $("#status");
+		const $markDoneBtn = $("#markDoneBtn");
+		$markDoneBtn.hide();
 		$status.removeClass();
 
+		// status checks
 		switch (booking["status"]) {
 			case "Done":
 				$status.html(booking["status"]);
@@ -162,6 +169,7 @@
 			case "Pending":
 				$status.html(booking["status"]);
 				$status.addClass("view-tag bg-warning text-white");
+				$markDoneBtn.show();
 				break;
 			case "Cancelled":
 				$status.html(booking["status"]);
@@ -169,6 +177,7 @@
 				break;
 		}
 
+		// assign client gender
 		$("#radioGenderM, #radioGenderF").removeProp("checked");
 		switch (booking["client_gender"]) {
 			case "M":
@@ -179,14 +188,18 @@
 				break;
 		}
 
+		// assign client details
 		$("#typeOfArea").val(booking["type_of_area"]);
 		$("#firstName").val(booking["client_first_name"]);
 		$("#lastName").val(booking["client_last_name"]);
 		$("#emailAddress").val(booking["client_email_address"]);
 		$("#contactNumber").val(booking["client_contact_number"]);
 
+		// assign client address
 		$("#address").val(booking["client_address"]);
 		$("#landmarks").val(booking["landmarks"]);
+
+		// assign client specification
 		$("#message").val(booking["additional_details_requests"]);
 		$("#preferredTime").val(booking["preferred_time"]);
 		$("#preferredDate").val(booking["preferred_date"]);

@@ -45,3 +45,27 @@ tag-container {
 	font-weight: bold;
 	color: rgba(21, 60, 107, 60%);
 }
+
+.view-tag.info {
+	background: white;
+	color: var(--primary);
+	border: 1px solid var(--primary);
+}
+
+.view-tag.success {
+	background: rgba(0, 150, 0, 0.3);
+	color: rgb(0, 150, 0) !important;
+	border: 1px solid rgba(0, 150, 0, 0.5);
+}
+
+.view-tag.danger {
+	background: rgb(255 99 99 / 30%);
+	color: rgb(255 99 99) !important;
+	border: 1px solid rgb(150 0 0 / 50%);
+}
+
+.view-tag.warning {
+	background: rgb(240 255 0 / 30%);
+	color: rgb(173 115 27) !important;
+	border: 1px solid rgb(114 120 14 / 50%);
+}
