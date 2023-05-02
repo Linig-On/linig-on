@@ -184,7 +184,7 @@
 											<a href="/" class="nav-link p-0 text-white">Getting Started</a>
 										</li>
 										<li class="nav-item mb-2">
-											<a href="/about" class="nav-link p-0 text-white">FAQ</a>
+											<a href="/about#faq" class="nav-link p-0 text-white">FAQ</a>
 										</li>
 										<li class="nav-item mb-2">
 											<a href="https://github.com/Linig-On/linig-on/issues" class="nav-link p-0 text-white">Report Problems</a>

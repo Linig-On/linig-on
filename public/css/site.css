@@ -49,3 +49,7 @@
 ::selection {
 	background: rgba(0, 0, 100, 0.15);
 }
+
+html {
+	scroll-padding-top: 5rem;
+}

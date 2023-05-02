@@ -88,7 +88,7 @@
 	</div>
 </section>
 <div class="spacer"></div>
-<section class="fade-in">
+<section id="faq" class="fade-in">
 	<div class="container w-50">
 		<div class="row">
 			<div class="col">
