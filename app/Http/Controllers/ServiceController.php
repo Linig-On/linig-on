@@ -132,7 +132,7 @@ class ServiceController extends Controller
                 ->first() != null ? 'true' : 'false';
         }
 
-        return view('service.svcProfile')
+        return view('public.svcProfile')
             ->with('workerInfo', $worker)
             ->with('userInfo', $user)
             ->with('workerSkills', $workerSkills)

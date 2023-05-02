@@ -6,6 +6,12 @@
 			<li class="breadcrumb-item active" aria-current="page">Worker</li>
 		</ol>
 	</nav>
+	<div class="ms-auto w-mc my-3 fade-in">
+		<a href="/service" class="fw-bolder">
+			<i class="fa-solid fa-arrow-left-long"></i>
+			Go Back
+		</a>
+	</div>
 </div>
 
 <div class="container fade-in">
