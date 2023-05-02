@@ -26,6 +26,6 @@ class AccountController extends Controller
             array_push($model, $item);
         }
 
-        return view('myBookmarks')->with('userBookmarks', $model);
+        return view('public.myBookmarks')->with('userBookmarks', $model);
     }
 }

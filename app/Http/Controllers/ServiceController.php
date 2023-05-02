@@ -50,7 +50,7 @@ class ServiceController extends Controller
             array_push($model, $item);
         }
 
-        return view('service')->with('listOfWorkers', $model);
+        return view('public.service')->with('listOfWorkers', $model);
     }
 
     /**
@@ -88,7 +88,7 @@ class ServiceController extends Controller
                 ->count()
         ];
         
-        return view('svcDashboard')
+        return view('service.svcDashboard')
             ->with('listOfBookings', $listOfBookings)
             ->with('latestRating', $latestRating)
             ->with('ratingAvg', $ratingAvg)
@@ -107,7 +107,7 @@ class ServiceController extends Controller
         $workerSkills = DB::table('worker_skills')->where('worker_id', $workerId)->get();
         $workerSocials = DB::table('worker_socials')->where('worker_id', $workerId)->get();
         
-        return view('svcMyProfile')->with('workerSkills', $workerSkills)->with('workerSocials', $workerSocials)->with('workerId', $workerId);
+        return view('service.svcMyProfile')->with('workerSkills', $workerSkills)->with('workerSocials', $workerSocials)->with('workerId', $workerId);
     }
     
     /**
@@ -130,7 +130,7 @@ class ServiceController extends Controller
                 ->first() != null ? 'true' : 'false';
         }
 
-        return view('svcProfile')
+        return view('service.svcProfile')
             ->with('workerInfo', $worker)
             ->with('userInfo', $user)
             ->with('workerSkills', $workerSkills)
@@ -275,7 +275,7 @@ class ServiceController extends Controller
 
         
 
-        return view('service')->with('listOfWorkers', $model);
+        return view('public.service')->with('listOfWorkers', $model);
     }
 
     /**
@@ -389,6 +389,6 @@ class ServiceController extends Controller
 
         $listOfBookings = DB::table('bookings')->where('worker_id', $worker->id)->get();
 
-        return view('svcBookings')->with('listOfBookings', $listOfBookings);
+        return view('service.svcBookings')->with('listOfBookings', $listOfBookings);
     }
 }

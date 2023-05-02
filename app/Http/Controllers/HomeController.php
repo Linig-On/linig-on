@@ -35,11 +35,11 @@ class HomeController extends Controller
             }
         }
 
-        return view('home')->with('topRatedWorkers', $topRatedWorkers)->with('appRatings', $appRatings);
+        return view('public.home')->with('topRatedWorkers', $topRatedWorkers)->with('appRatings', $appRatings);
     }
 
     public function aboutUs()
     {
-        return view('aboutUs');
+        return view('public.aboutUs');
     }
 }
