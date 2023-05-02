@@ -39,8 +39,8 @@
 					<div class="card-header py-2 bg-primary"></div>
 					<div class="card-body">
 						<h4 class="text-uppercase text-primary fw-bolder">Customer Reviews</h4>
-						<div class="d-flex">
-							<div class="col-4">
+						<div class="d-flex gap-3">
+							<div class="col-3">
 								<div class="avatar" style="width: 10rem; height: 10rem">
 									@if ($latestRating->image_url != null)
 									<img class="rounded-circle w-100 h-100" src="{{ asset('img/profile') . '/' . $latestRating->image_url }}" />

@@ -25,7 +25,7 @@
 						<label class="fw-bold small" for="">Worker Type:</label>
 						<div class="dropdown-group">
 							<div class="form-control-icon-end">
-								<input type="text" class="form-control dropdown-toggle cursor-pointer" type="button" value="Solo" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false" />
+								<input type="text" class="form-control dropdown-toggle cursor-pointer" type="button" value="Solo" readonly data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false" />
 								<i class="fa fa-solid fa-angle-down"></i>
 							</div>
 							<ul class="dropdown-menu" aria-labelledby="defaultDropdown">

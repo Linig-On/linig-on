@@ -19,10 +19,6 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
-use function App\Helpers\createBookingNotification;
-use function App\Helpers\createNewBookingToServiceNotification;
-use function App\Helpers\createNotification;
-
 class ServiceController extends Controller
 {
     /**
@@ -363,10 +359,6 @@ class ServiceController extends Controller
                 'preferred_time' => $data['preferred_time'],
                 'preferred_date' => $data['preferred_date'],
             ]);
-
-            // send notifications to the user and service
-            createBookingNotification(Auth::user()->id, $workerName);
-            createNewBookingToServiceNotification($userWorkerId);
 
             Session::flash('booking-success', 'Successfully booked a service to <span class="fw-bold fs-inherit"> ' . $workerName . '!</span>');
             return redirect()->back();
