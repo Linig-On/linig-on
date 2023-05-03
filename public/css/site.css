@@ -6,6 +6,7 @@
 @import url(rich-text-override.css);
 @import url(datatables-override.css);
 @import url(tagify-override.css);
+@import url(responsive.css);
 @import url(components.css);
 
 :root {
