@@ -22,10 +22,10 @@
 <div class="spacer"></div>
 <div class="container fade-in">
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-6 col-sm-12 col-xs-12">
 			<img src="{{ asset('svg/illust/undraw-cleaning.svg') }}" alt="" width="500" />
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-6 col-sm-12 col-xs-12">
 			<h2 class="fw-bolder pb-4">LINIG-On! An Online Home Service Application</h2>
 			<p>From the bikol word, “linigon” is a website that offers home cleaning services provided by local service workers. It aims to shorten the gap between customers and service workers. Through this website, you can forget the hassle of finding reliable people to solve your cleaning problems!</p>
 		</div>

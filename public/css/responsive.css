@@ -1,0 +1,27 @@
+@media (max-width: 767px) {
+	.mobile-scroll {
+		overflow-x: scroll;
+		white-space: nowrap;
+	}
+
+	.navbar-collapse .navbar-nav .nav-link span {
+		display: none;
+		padding-bottom: 0;
+	}
+
+	.navbar-nav.ms-auto.gap-5 {
+		gap: 0rem !important;
+	}
+
+	.nav-item {
+		width: 100%;
+	}
+
+	.form-control {
+		width: 100% !important;
+	}
+
+	/* .position-relative {
+		position: static !important;
+	} */
+}
