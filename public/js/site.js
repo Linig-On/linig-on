@@ -91,6 +91,9 @@ const viewBookingDetails = function (data) {
 	$("#emailAddress").val(booking["client_email_address"]);
 	$("#contactNumber").val(booking["client_contact_number"]);
 
+	// assign image of the area
+	if (booking["area_image_url"] === null) $("#imageOfArea").attr("src", "../svg/illust/upload-photo.svg");
+	else $("#imageOfArea").attr("src", "../img/booking/img-of-area/" + booking["area_image_url"]);
 	// assign client address
 	$("#address").val(booking["client_address"]);
 	$("#landmarks").val(booking["landmarks"]);

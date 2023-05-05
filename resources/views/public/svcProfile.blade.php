@@ -182,7 +182,8 @@
 </div>
 <div class="spacer"></div>
 
-<!-- <button type="button" class="btn btn-primary text-uppercase fw-bold z-index-30" data-bs-toggle="modal" data-bs-target="#appFeedbackModal">AppFeedbackPlaceholder</button> -->
+<button class="my-4 btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#workerRatingModal">Launch Modal</button>
+
 <!-- Resume Modal -->
 <div class="modal fade" id="viewResumeModal" tabindex="-1" aria-labelledby="viewResumeModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -318,40 +319,40 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header bg-primary text-white"></div>
-			<div class="modal-body">
+			<div class="modal-body mx-4 py-5 px-5">
 				<div class="d-flex flex-column justify-content-center align-items-center">
-					<img src="{{ asset('svg/illust/undraw_real_time_collaboration_c62i 1.svg') }} " alt="image" />
+					<img src="{{ asset('svg/illust/undraw-realtime-comm.svg') }} " alt="image" />
 					<div class="text-center">
-						<h3 class="text-uppercase">Post A Comment!</h3>
+						<h3 class="text-uppercase fw-bolder mt-5">Post A Comment!</h3>
 						<p>
 							Rate <span>{{ $userInfo->first_name . ' ' . $userInfo->last_name }}</span> service. Your feedback is much appreciated in improving their services.
 						</p>
 					</div>
 				</div>
 
-				<div class="d-flex flex-column">
-					<h6 class="text-primary fw-bold small">Full Name</h6>
+				<div class="d-flex flex-column gap-3">
 					<div class="col-12">
+						<label class="text-primary fw-bold small">Full Name</label>
 						<input type="text" class="form-control" />
 					</div>
-					<div class="my-3">
-						<h6 class="text-primary fw-bold small">Comment</h6>
-						<div class="col-12">
-							<textarea class="form-control" rows="5" aria-label="With textarea"></textarea>
-						</div>
+					<div class="col-12">
+						<label class="text-primary fw-bold small">Comment</label>
+						<textarea class="form-control" rows="5" aria-label="With textarea"></textarea>
 					</div>
-
-					<div class="d-flex align-items-center justify-content-between gap-5 m-3">
-						<div class="d-flex gap-2 me-5">
-							<i class="fa fa-regular fa-star"></i>
-							<i class="fa fa-regular fa-star"></i>
-							<i class="fa fa-regular fa-star"></i>
-							<i class="fa fa-regular fa-star"></i>
-							<i class="fa fa-regular fa-star"></i>
+					<div class="d-flex align-items-center justify-content-between gap-5">
+						<div>
+							<label class="text-primary fw-bold small">Rating</label>
+							<div id="starRatingContainer" class="d-flex gap-2 me-5">
+								<i class="fa fa-regular fa-star h4 text-warning"></i>
+								<i class="fa fa-regular fa-star h4 text-warning"></i>
+								<i class="fa fa-regular fa-star h4 text-warning"></i>
+								<i class="fa fa-regular fa-star h4 text-warning"></i>
+								<i class="fa fa-regular fa-star h4 text-warning"></i>
+							</div>
 						</div>
-						<div class="d-flex gap-2 ms-5">
-							<button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">Submit</button>
+						<div class="w-mc gap-2 mt-3">
+							<button type="button" class="btn btn-outline-primary fw-bold text-uppercase" data-bs-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary fw-bold text-uppercase">Submit</button>
 						</div>
 					</div>
 				</div>
@@ -359,43 +360,49 @@
 		</div>
 	</div>
 </div>
-@endif
 
 <!-- App Feedback Modal -->
 <div class="modal fade" id="appFeedbackModal" tabindex="-1" aria-labelledby="appFeedbackModalLabel" aria-hidden="true">
-	<div class="modal-dialog p-auto">
+	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header bg-primary text-white"></div>
-			<div class="modal-body p-5">
+			<div class="modal-body mx-4 py-5 px-5">
 				<div class="d-flex flex-column justify-content-center align-items-center">
 					<img src="{{ asset('svg/illust/undraw-logistics.svg') }} " alt="image" />
 					<div class="text-center">
-						<h3 class="text-uppercase">Let Us Know How We're Doing</h3>
+						<h3 class="text-uppercase fw-bolder mt-5">Let Us Know How We're Doing!</h3>
 						<p>Help us improve. Rate your experience while using our application!</p>
 					</div>
 				</div>
-				<div class="d-flex flex-column">
-					<h6 class="text-primary fw-bold small">Full Name</h6>
+				<div class="d-flex flex-column gap-3">
 					<div class="col-12">
+						<label class="text-primary fw-bold small">Full Name</label>
 						<input type="text" class="form-control" />
 					</div>
-					<div class="my-3">
-						<h6 class="text-primary fw-bold small">Comment</h6>
-						<div class="col-12">
-							<textarea class="form-control" rows="5" aria-label="With textarea"></textarea>
-						</div>
+					<div class="col-12">
+						<label class="text-primary fw-bold small">Comment</label>
+						<textarea class="form-control" rows="5" aria-label="With textarea"></textarea>
 					</div>
-
-					<div class="d-flex align-items-center justify-content-between gap-5 m-3">
-						<div class="d-flex gap-2 me-5">
-							<span class="icon"><i class="fa fa-thumbs-up"></i></span>
-							<span class="label-text">Yes</span>
-							<i class="fa-solid fa-thumbs-down"></i>
-							<span>No</span>
+					<div class="col-12">
+						<div class="d-flex align-items-center justify-content-between">
+							<div class="d-flex gap-4">
+								<div class="d-flex align-items-center gap-2">
+									<button id="likeBtn" class="btn border-0 px-0 shadow-none">
+										<img src="{{ asset('svg/icon/thumbs-up-regular.svg') }}" alt="" />
+									</button>
+									<label class="small fw-bold text-primary">Yes</label>
+								</div>
+								<div class="d-flex align-items-center gap-2">
+									<button id="dislikeBtn" class="btn border-0 px-0 shadow-none">
+										<img src="{{ asset('svg/icon/thumbs-down-regular.svg') }}" alt="" />
+									</button>
+									<label class="small fw-bold text-primary">No</label>
+								</div>
+							</div>
 						</div>
-						<div class="d-flex gap-2 ms-5">
-							<button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">Submit</button>
+						<div class="w-mc ms-auto">
+							<button type="button" class="btn btn-outline-primary fw-bold text-uppercase" data-bs-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary fw-bold text-uppercase">Submit</button>
 						</div>
 					</div>
 				</div>
@@ -403,8 +410,7 @@
 		</div>
 	</div>
 </div>
-
-@endsection @section('javascript')
+@endif @endsection @section('javascript')
 <!-- Pagination Script -->
 <script src="{{ asset('vendor/pagination/pagination.js') }}"></script>
 <script type="text/javascript">
@@ -416,6 +422,9 @@
 		bookmarkToggleState();
 		bookmarkHandler();
 		initPagination();
+
+		// modals
+		starRatingHandler();
 	});
 
 	const bookmarkToggleState = function () {
@@ -468,6 +477,22 @@
 				console.log(res);
 			},
 		});
+	};
+
+	const starRatingHandler = function () {
+		$("#starRatingContainer i").each(function (i, el) {
+			$(el).hover(function () {
+				$(el).removeClass().addClass("fa fa-solid fa-star h4 text-warning cursor-pointer");
+			});
+		});
+	};
+	const likeHandler = function () {
+		const $likeBtn = $("#likeBtn");
+		const $dislikeBtn = $("#dislikeBtn");
+		$likeBtn.click(function () {
+			$likeBtn;
+		});
+		$dislikeBtn.click(function () {});
 	};
 </script>
 @endsection

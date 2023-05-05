@@ -119,7 +119,7 @@
 							<h4 class="text-uppercase fw-bolder">specification</h4>
 							<div class="col-md-5 flex-column align-items-center mx-auto" style="height: 200px">
 								<label for="" class="fw-bold small">Image of the Area</label>
-								<img id="previewImageBeforeUpload" src="{{ asset('svg/illust/upload-photo.svg') }}" alt="preview image" class="shadow-sm bg-body-tertiary rounded-5 border border-1 img-fluid prev-img" style="width: 100%; height: 10rem" />
+								<img id="imageOfArea" src="{{ asset('svg/illust/upload-photo.svg') }}" alt="preview image" class="shadow-sm bg-body-tertiary rounded-5 border border-1 img-fluid prev-img" style="width: 100%; height: 10rem" />
 							</div>
 							<div class="col-md-7 mx-auto">
 								<div class="form-group">
