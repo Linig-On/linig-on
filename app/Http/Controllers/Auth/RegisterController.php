@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Helpers\NotificationHandler;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
@@ -71,9 +72,8 @@ class RegisterController extends Controller
                 $filename = $request->img->getClientOriginalName();
 
                 // store in public folder
-                $request->img->move(public_path('img/profile'), Carbon::now() . '_' . $filename);
+                $request->img->move(public_path('img/profile'), time() . '_' . $filename);
             }
-
 
             // Validate the incoming request data
             $validatedData = $request->validate([
@@ -87,7 +87,7 @@ class RegisterController extends Controller
             ]);
 
             // Create a new user object and fill it with the validated data
-            User::create([
+            $user = User::create([
                 'first_name' => $validatedData['first_name'],
                 'last_name' => $validatedData['last_name'],
                 'gender' => $validatedData['gender'],
@@ -97,6 +97,9 @@ class RegisterController extends Controller
                 'address' => $validatedData['address'],
                 'image_url' => $filename,
             ]);
+
+            // Send notification
+            NotificationHandler::createOnRegister($user->id);
 
             // Redirect the user to a success page
             return redirect('/login/user')->with('success', 'Registration successful!');

@@ -407,7 +407,10 @@ class ServiceController extends Controller
 
             DB::table('bookings')
                 ->where('id', (int)$request->input('id'))
-                ->update(['status' => 'Pending']);
+                ->update([
+                    'status' => 'Pending', 
+                    'updated_at' => Carbon::now()
+                ]);
             
             $workerUserId = DB::table('workers')
                 ->join('users', 'users.id', '=', 'workers.user_id')
@@ -437,7 +440,10 @@ class ServiceController extends Controller
 
             DB::table('bookings')
                 ->where('id', (int)$request->input('id'))
-                ->update(['status' => 'Cancelled']);
+                ->update([
+                    'status' => 'Cancelled',
+                    'updated_at' => Carbon::now()
+                ]);
             
             $workerUserId = DB::table('workers')
                 ->join('users', 'users.id', '=', 'workers.user_id')
@@ -467,7 +473,11 @@ class ServiceController extends Controller
 
             DB::table('bookings')
                 ->where('id', (int)$request->input('id'))
-                ->update(['status' => 'Done']);
+                ->update([
+                    'status' => 'Done',
+                    'updated_at' => Carbon::now(),
+                    'date_finished' => date('Y-m-d')
+                ]);
     
             $workerUserId = DB::table('workers')
                 ->join('users', 'users.id', '=', 'workers.user_id')
