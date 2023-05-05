@@ -1,5 +1,9 @@
 @extends('layouts.service', ['bi1' => 'Home', 'bi2' => 'Bookings']) @section('content')
 <div class="container fade-in">
+	<div id="loader" class="d-none my-4 d-flex justify-content-center gap-3 align-items-center w-100 h-100" style="z-index: 1000000">
+		<i class="fw-bold">Please wait. Updating Table...</i>
+		<i class="fa-solid fa-circle-notch fa-spin h4 text-primary"></i>
+	</div>
 	<h1 class="text-uppercase fw-bolder">Booking History</h1>
 	<table id="bookingsTbl" class="table">
 		<thead>
@@ -13,7 +17,7 @@
 		</thead>
 		<tbody>
 			@foreach ($listOfBookings as $booking)
-			<tr>
+			<tr id="bk-{{ $booking->id }}">
 				<td>BK-{{ $booking->id . $booking->user_id . $booking->worker_id }}</td>
 				<td>{{ $booking->client_first_name . ' ' . $booking->client_last_name }}</td>
 				<td>
@@ -29,7 +33,7 @@
 				</td>
 				<td>{{ \Carbon\Carbon::parse($booking->date_booked)->format('F j, Y') }}</td>
 				<td>
-					<a href="#" role="button" class="fw-bold text-decoration-underline" data-bs-toggle="modal" data-bs-target="#bookingInfoModal" onclick="viewBookingDetails('{{ json_encode($booking) }}')">View</a>
+					<a href="#" role="button" class="fw-bold text-decoration-underline" data-bs-toggle="modal" data-bs-target="#bookingInfoModal" onclick="setBkId('{{ $booking->id }}'); viewBookingDetails('{{ json_encode($booking) }}')">View</a>
 				</td>
 			</tr>
 			@endforeach
@@ -113,9 +117,9 @@
 					<div class="d-flex flex-column">
 						<div class="row d-flex justify-content-center">
 							<h4 class="text-uppercase fw-bolder">specification</h4>
-							<div class="col-md-5 flex-column align-items-center mx-auto">
+							<div class="col-md-5 flex-column align-items-center mx-auto" style="height: 200px">
 								<label for="" class="fw-bold small">Image of the Area</label>
-								<img id="previewImageBeforeUpload" src="{{ asset('svg/illust/upload-photo.svg') }}" alt="preview image" class="shadow-sm bg-body-tertiary rounded-5 border border-1 img-fluid prev-img" style="width: 100%; height: 10rem" />
+								<img id="imageOfArea" src="{{ asset('svg/illust/upload-photo.svg') }}" alt="preview image" class="shadow-sm bg-body-tertiary rounded-5 border border-1 img-fluid prev-img" style="width: 100%; height: 10rem" />
 							</div>
 							<div class="col-md-7 mx-auto">
 								<div class="form-group">
@@ -137,19 +141,19 @@
 					</div>
 				</section>
 				<section class="w-100 d-flex">
-					<button type="button" class="btn btn-outline-primary me-auto fw-bold text-uppercase" data-bs-dismiss="modal">Close</button>
+					<button id="closeBtn" type="button" class="btn btn-outline-primary me-auto fw-bold text-uppercase" data-bs-dismiss="modal">Close</button>
 					<div class="w-mc ms-auto">
-						<button id="markDoneBtn" type="button" class="btn btn-success fw-bolder text-uppercase border border-1 text-primary">
+						<button id="markDoneBtn" onclick="completeBooking()" type="button" class="btn btn-success fw-bolder text-uppercase border border-1 text-primary">
 							Mark as Done
 							<i class="fa fa-solid fa-circle-check text-primary"></i>
 						</button>
 					</div>
 					<div id="forApprovalBtns" class="w-mc ms-auto">
-						<button id="acceptBtn" type="button" class="btn btn-success fw-bold text-uppercase border border-1 text-primary">
+						<button id="acceptBtn" onclick="acceptBooking()" type="button" class="btn btn-success fw-bold text-uppercase border border-1 text-primary">
 							Accept
 							<i class="fa fa-solid fa-circle-check text-primary"></i>
 						</button>
-						<button id="declineBtn" type="button" class="btn btn-danger fw-bold text-uppercase border border-1 text-danger text-white">
+						<button id="declineBtn" onclick="declineBooking()" type="button" class="btn btn-danger fw-bold text-uppercase border border-1 text-danger text-white">
 							Decline
 							<i class="fa-regular fa-circle-xmark text-white"></i>
 						</button>
@@ -164,9 +168,96 @@
 @endsection @section('javascript')
 <script src="{{ asset('vendor/datatables.net/js/jquery.dataTables.min.js') }}"></script>
 <script type="text/javascript">
+	let bookingId = 0;
+
 	$(document).ready(function () {
 		$("#bookingsTbl").DataTable();
 		$("#typeOfArea").tagify();
 	});
+
+	const setBkId = function (bookId) {
+		bookingId = bookId;
+	};
+
+	const acceptBooking = function () {
+		$.ajax({
+			url: "{{ route('accept-booking') }}",
+			data: {
+				id: bookingId,
+				_token: "{{ csrf_token() }}",
+			},
+			type: "POST",
+			success: function (res) {
+				const data = JSON.parse(res);
+
+				$("#closeBtn").trigger("click");
+
+				reloadDataTable(() => {
+					$("#loader").removeClass("d-none");
+					$(`#bk-${bookingId} [status]>div`).html("Pending").removeClass().addClass("view-tag warning text-white");
+					setTimeout(() => {
+						location.reload();
+					}, 1000);
+				});
+			},
+			error: function (res) {
+				console.log(res);
+			},
+		});
+	};
+
+	const completeBooking = function () {
+		$.ajax({
+			url: "{{ route('complete-booking') }}",
+			data: {
+				id: bookingId,
+				_token: "{{ csrf_token() }}",
+			},
+			type: "POST",
+			success: function (res) {
+				const data = JSON.parse(res);
+
+				$("#closeBtn").trigger("click");
+
+				reloadDataTable(() => {
+					$("#loader").removeClass("d-none");
+					$(`#bk-${bookingId}`).remove();
+					setTimeout(() => {
+						location.reload();
+					}, 1000);
+				});
+			},
+			error: function (res) {
+				console.log(res);
+			},
+		});
+	};
+
+	const declineBooking = function () {
+		$.ajax({
+			url: "{{ route('cancel-booking') }}",
+			data: {
+				id: bookingId,
+				_token: "{{ csrf_token() }}",
+			},
+			type: "POST",
+			success: function (res) {
+				const data = JSON.parse(res);
+
+				$("#closeBtn").trigger("click");
+
+				reloadDataTable(() => {
+					$("#loader").removeClass("d-none");
+					$(`#bk-${bookingId}`).remove();
+					setTimeout(() => {
+						location.reload();
+					}, 1000);
+				});
+			},
+			error: function (res) {
+				console.log(res);
+			},
+		});
+	};
 </script>
 @endsection

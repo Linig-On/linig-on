@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use App\Models\Bookmark;
-use App\Models\Notification;
+use App\Helpers\NotificationHandler;
 use App\Models\User;
 use App\Models\Worker;
 use App\Models\WorkerSkill;
@@ -55,32 +55,33 @@ class ServiceController extends Controller
     public function serviceDashboard()
     {
         $worker = DB::table('workers')
-            ->where('user_id', Auth::user()->id)
             ->join('users', 'users.id', '=', 'workers.user_id')
+            ->where('workers.user_id', Auth::user()->id)
+            ->select('workers.id as worker_id', 'users.id as user_id', 'users.*', 'workers.*')
             ->first();
         
         $latestRating = DB::table('worker_ratings')
-            ->where('worker_id', Auth::user()->id)
+            ->where('worker_id', $worker->worker_id)
             ->join('users', 'users.id', '=', 'worker_ratings.user_id')
             ->orderBy('worker_ratings.created_at', 'desc')
             ->first();
         
         $listOfBookings = DB::table('bookings')
-            ->where('worker_id', Auth::user()->id)
+            ->where('worker_id', $worker->worker_id)
             ->where('status', 'Pending')
             ->orWhere('status', 'For Approval')
             ->get();
 
         $ratingAvg = DB::table('worker_ratings')
-            ->where('worker_id', Auth::user()->id)
+            ->where('worker_id', $worker->worker_id)
             ->avg('rating');
         
         $bookingStats = [
             'recieved' => DB::table('bookings')
-                ->where('worker_id', Auth::user()->id)
+                ->where('worker_id', $worker->worker_id)
                 ->count(),
             'pending' => DB::table('bookings')
-                ->where('worker_id', Auth::user()->id)
+                ->where('worker_id', $worker->worker_id)
                 ->where('status', 'Pending')
                 ->orWhere('status', 'For Approval')
                 ->count()
@@ -313,12 +314,13 @@ class ServiceController extends Controller
      */
     public function bookWorker(Request $request) {
 
-        $worker = DB::table('users')->where('id', (int)$request->input('user_id'))->first();
+        $worker = DB::table('workers')
+            ->join('users', 'users.id', '=', 'workers.user_id')
+            ->where('workers.id', '=', (int)$request->input('worker_id'))
+            ->first();
+
         $workerName = $worker->first_name . ' '. $worker->last_name;
-
-        $workerUserId = DB::table('workers')->where('id', (int)$request->input('worker_id'))->first();
-        $userWorkerId = DB::table('users')->where('id', $workerUserId->user_id)->first()->id;
-
+        
         try {
             $filename = null;
 
@@ -345,7 +347,7 @@ class ServiceController extends Controller
                 'user_id' => $request->input('user_id'),
                 'worker_id' => $request->input('worker_id'),
                 'date_booked' => date('Y-m-d'),
-                'status' => 'Pending',
+                'status' => 'For Approval',
                 'client_first_name' => Auth::user()->first_name,
                 'client_last_name' => Auth::user()->last_name,
                 'client_email_address' => Auth::user()->email,
@@ -360,6 +362,12 @@ class ServiceController extends Controller
                 'preferred_date' => $data['preferred_date'],
             ]);
 
+            $clientName = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+
+            // send notifications
+            NotificationHandler::createOnBookingToUser($request->input('user_id'));
+            NotificationHandler::createOnBookingToWorker($worker->user_id, $clientName);
+            
             Session::flash('booking-success', 'Successfully booked a service to <span class="fw-bold fs-inherit"> ' . $workerName . '!</span>');
             return redirect()->back();
 
@@ -367,7 +375,7 @@ class ServiceController extends Controller
             Session::flash('booking-missing-fields', $ex->getMessage());
             return redirect()->back()->withErrors($ex->validator->errors())->withInput();
         } catch (Exception $ex) {
-            Session::flash('booking-failed', 'An error occured while attempting to book <span class="fw-bold fs-inherit"> ' . $workerName . '.</span>');
+            Session::flash('booking-failed', 'An error occured while attempting to book <span class="fw-bold fs-inherit text-danger"> ' . $workerName . '.</span>');
             return redirect()->back();
         }
     }
@@ -379,10 +387,112 @@ class ServiceController extends Controller
         $worker = DB::table('workers')
             ->where('user_id', Auth::user()->id)
             ->join('users', 'users.id', '=', 'workers.user_id')
+            ->select('workers.id as worker_id', 'users.id as user_id', 'users.*', 'workers.*')
             ->first();
-
-        $listOfBookings = DB::table('bookings')->where('worker_id', $worker->id)->get();
+        
+        $listOfBookings = DB::table('bookings')->where('worker_id', $worker->worker_id)->get();
 
         return view('service.svcBookings')->with('listOfBookings', $listOfBookings);
+    }
+
+    /**
+     * POST
+     */
+    public function acceptBooking(Request $request) {
+
+        try {
+            $booking = DB::table('bookings')->where('id', (int)$request->input('id'))->first();
+            $clientName = $booking->client_first_name . ' ' . $booking->client_last_name;
+            $workerName = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+
+            DB::table('bookings')
+                ->where('id', (int)$request->input('id'))
+                ->update([
+                    'status' => 'Pending', 
+                    'updated_at' => Carbon::now()
+                ]);
+            
+            $workerUserId = DB::table('workers')
+                ->join('users', 'users.id', '=', 'workers.user_id')
+                ->where('workers.id', Auth::user()->id)
+                ->select('workers.id as worker_id', 'users.id as user_id', 'users.*', 'workers.*')
+                ->first()
+                ->id;
+
+            // send notifications
+            NotificationHandler::createOnBookingAcceptToUser($booking->user_id, $clientName);
+            NotificationHandler::createOnBookingAcceptToWorker($workerUserId, $clientName);
+
+            return response(json_encode(['message' => 'You have successfully accepted a booking!']), 200);
+        } catch (Exception $th) {
+            return response(json_encode(['message' => $th->getMessage()]), 410);
+        }
+    }
+
+    /**
+     * POST
+     */
+    public function cancelBooking(Request $request) {
+
+        try {
+            $booking = DB::table('bookings')->where('id', (int)$request->input('id'))->first();
+            $clientName = $booking->client_first_name . ' ' . $booking->client_last_name;
+
+            DB::table('bookings')
+                ->where('id', (int)$request->input('id'))
+                ->update([
+                    'status' => 'Cancelled',
+                    'updated_at' => Carbon::now()
+                ]);
+            
+            $workerUserId = DB::table('workers')
+                ->join('users', 'users.id', '=', 'workers.user_id')
+                ->where('workers.id', Auth::user()->id)
+                ->select('workers.id as worker_id', 'users.id as user_id', 'users.*', 'workers.*')
+                ->first()
+                ->id;
+    
+            // send notifications
+            NotificationHandler::createOnBookingCanceledToUser($booking->user_id);
+            NotificationHandler::createOnBookingCanceledToWorker($workerUserId, $clientName);
+
+            return response(json_encode(['message' => 'You have successfully cancelled a booking.']), 200);
+        } catch (Exception $th) {
+            return response(json_encode(['message' => $th->getMessage()]), 410);
+        }
+    }
+
+    /**
+     * POST
+     */
+    public function completeBooking(Request $request) {
+
+        try {
+            $booking = DB::table('bookings')->where('id', (int)$request->input('id'))->first();
+            $workerName = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+
+            DB::table('bookings')
+                ->where('id', (int)$request->input('id'))
+                ->update([
+                    'status' => 'Done',
+                    'updated_at' => Carbon::now(),
+                    'date_finished' => date('Y-m-d')
+                ]);
+    
+            $workerUserId = DB::table('workers')
+                ->join('users', 'users.id', '=', 'workers.user_id')
+                ->where('workers.id', Auth::user()->id)
+                ->select('workers.id as worker_id', 'users.id as user_id', 'users.*', 'workers.*')
+                ->first()
+                ->id;
+
+                // send notifications
+            NotificationHandler::createOnBookingCompleteToUser($booking->user_id, $workerName);
+            NotificationHandler::createOnBookingCompleteToWorker($workerUserId);
+            
+            return response(json_encode(['message' => 'Great! You have completed a booking.']), 200);
+        } catch (Exception $th) {
+            return response(json_encode(['message' => $th->getMessage()]), 410);
+        }
     }
 }
