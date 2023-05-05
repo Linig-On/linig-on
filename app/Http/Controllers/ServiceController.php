@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use App\Models\Bookmark;
-use App\Models\Notification;
+use App\Helpers\NotificationHandler;
 use App\Models\User;
 use App\Models\Worker;
 use App\Models\WorkerSkill;
@@ -384,5 +384,65 @@ class ServiceController extends Controller
         $listOfBookings = DB::table('bookings')->where('worker_id', $worker->id)->get();
 
         return view('service.svcBookings')->with('listOfBookings', $listOfBookings);
+    }
+
+    /**
+     * POST
+     */
+    public function acceptBooking(Request $request) {
+
+        try {
+            $booking = DB::table('bookings')->where('id', (int)$request->input('id'))->first();
+
+            DB::table('bookings')
+                ->where('id', (int)$request->input('id'))
+                ->update(['status' => 'Pending']);
+    
+            // send notifications
+
+            return response(json_encode(['message' => 'You have successfully accepted a booking!']), 200);
+        } catch (Exception $th) {
+            return response(json_encode(['message' => $th->getMessage()]), 410);
+        }
+    }
+
+    /**
+     * POST
+     */
+    public function cancelBooking(Request $request) {
+
+        try {
+            $booking = DB::table('bookings')->where('id', (int)$request->input('id'))->first();
+
+            DB::table('bookings')
+                ->where('id', (int)$request->input('id'))
+                ->update(['status' => 'Cancelled']);
+    
+            // send notifications
+
+            return response(json_encode(['message' => 'You have successfully cancelled a booking.']), 200);
+        } catch (Exception $th) {
+            return response(json_encode(['message' => $th->getMessage()]), 410);
+        }
+    }
+
+    /**
+     * POST
+     */
+    public function completeBooking(Request $request) {
+
+        try {
+            $booking = DB::table('bookings')->where('id', (int)$request->input('id'))->first();
+
+            DB::table('bookings')
+                ->where('id', (int)$request->input('id'))
+                ->update(['status' => 'Done']);
+    
+            // send notifications
+            
+            return response(json_encode(['message' => 'Great! You have completed a booking.']), 200);
+        } catch (Exception $th) {
+            return response(json_encode(['message' => $th->getMessage()]), 410);
+        }
     }
 }

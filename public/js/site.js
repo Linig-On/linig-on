@@ -33,6 +33,14 @@ const animateList = function () {
 	});
 };
 
+const reloadDataTable = function (changes) {
+	$("#activeBookingTbl").DataTable().destroy();
+	if (typeof changes === "function") {
+		changes();
+	}
+	$("#activeBookingTbl").DataTable();
+};
+
 const viewBookingDetails = function (data) {
 	const booking = JSON.parse(data);
 

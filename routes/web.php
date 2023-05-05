@@ -62,4 +62,9 @@ Route::get('/account/my-bookmarks', [AccountController::class, 'myBookmarkedWork
 Route::get('/service/dashboard', [ServiceController::class, 'serviceDashboard'])->name('service-dashboard');
 Route::get('/service/my-profile', [ServiceController::class, 'serviceMyProfile'])->name('service-my-profile');
 Route::post('/service/update/worker', [ServiceController::class, 'serviceUpdateWorker'])->name('service-update-worker');
+
 Route::get('/service/bookings', [ServiceController::class, 'serviceBookings'])->name('service-bookings');
+
+Route::post('/service/bookings/cancel', [ServiceController::class, 'cancelBooking'])->name('cancel-booking');
+Route::post('/service/bookings/accept', [ServiceController::class, 'acceptBooking'])->name('accept-booking');
+Route::post('/service/bookings/complete', [ServiceController::class, 'completeBooking'])->name('complete-booking');
