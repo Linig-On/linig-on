@@ -26,6 +26,7 @@
 	.text-uppercase.fw-bolder {
 		gap: 2rem !important;
 	}
+
 	.mobile-scroll {
 		overflow-x: scroll;
 		white-space: nowrap;
@@ -104,6 +105,31 @@
 	}
 	.ceiling {
 		padding-top: 0.25rem !important;
+	}
+
+	.container.fade-in.position-relative {
+		width: 100%;
+	}
+
+	#cardRowInDashboard {
+		gap: 10px;
+	}
+
+	#avatarDashboard {
+		width: 50% !important;
+		height: 50% !important;
+		margin-left: 25%;
+		margin-top: 10%;
+	}
+
+	#activeBookingTbl {
+		align-items: center;
+		max-width: fit-content;
+		margin-left: -25px;
+	}
+
+	#spacerDashboard {
+		margin-top: -50px;
 	}
 }
 
