@@ -98,47 +98,47 @@
 <!-- Pagination Script -->
 <script src="{{ asset('vendor/pagination/pagination.js') }}"></script>
 <script type="text/javascript">
-	// NOTE: this shi- is confusing to read
-	// NOTE: basically it waits for a few ms before adding the fade-in class
-	$(document).ready(function () {
-		initPagination();
-	});
+    // NOTE: this shi- is confusing to read
+    // NOTE: basically it waits for a few ms before adding the fade-in class
+    $(document).ready(function() {
+        initPagination();
+    });
 
-	const model = {!! json_encode($listOfWorkers) !!};
-	let workerNames = [];
+    const model = {!! json_encode($listOfWorkers) !!};
+    
+    let workerNames = [];
 
-	model.forEach(element => {
-		let fullName = `${element.first_name} ${element.last_name}`;
-		workerNames.push(fullName);
-	});
+    model.forEach(element => {
+        let fullName = `${element.first_name} ${element.last_name}`;
+        workerNames.push(fullName);
+    });
 
-	$("#searchWorker").keyup(function (el) {
-		const searchTerm = $(this).val().toLowerCase();
+    $("#searchWorker").keyup(function(el) {
+        const searchTerm = $(this).val().toLowerCase();
 
-		// Filter the list based on the search term
-		const filteredList = workerNames.filter(function(item) {
-	    	return item.toLowerCase().indexOf(searchTerm) > -1;
-	   	});
+        // Filter the list based on the search term
+        const filteredList = workerNames.filter(function(item) {
+            return item.toLowerCase().indexOf(searchTerm) > -1;
+        });
 
-		console.log(filteredList);
+        console.log(filteredList);
 
-		$("#paginatedList h2[worker-name]").each(function (i, el) {
+        $("#paginatedList h2[worker-name]").each(function(i, el) {
 
-			if ($(el).text().toLowerCase().indexOf(searchTerm) > -1) {
-				$(this).closest("li").removeClass("hidden").addClass("fade-in");
-			}
-			else {
-				$(this).closest("li").removeClass("fade-in").addClass("hidden");
-			}
-		});
+            if ($(el).text().toLowerCase().indexOf(searchTerm) > -1) {
+                $(this).closest("li").removeClass("hidden").addClass("fade-in");
+            } else {
+                $(this).closest("li").removeClass("fade-in").addClass("hidden");
+            }
+        });
 
 
-		if ($(this).val().length == 0)
-			$("#paginatedList li").slice(3).addClass("hidden");
-	});
+        if ($(this).val().length == 0)
+            $("#paginatedList li").slice(3).addClass("hidden");
+    });
 
-	const assignSortBy = function (element) {
-		$("#sortBy").val(`${$(element).attr("value")}`);
-	}
+    const assignSortBy = function(element) {
+        $("#sortBy").val(`${$(element).attr("value")}`);
+    }
 </script>
 @endsection

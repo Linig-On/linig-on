@@ -773,6 +773,28 @@ class BookingSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
+            [//book ni doms to dia
+                'id' => 34,
+                'user_id' => 5,
+                'worker_id' => 6,
+                'date_booked' => '2023-01-30',
+                'date_finished' => '2023-03-30',
+                'status' => 'Done', //Pending, Done, Cancelled
+                'client_first_name' => 'Doms',
+                'client_last_name' => 'Esperida',
+                'client_email_address' => 'desperida@gmail.com',
+                'client_contact_number' => '09872639186',
+                'client_gender' => 'M',
+                'client_address' => '8757 Lamar Circle, Arvada CO 80003',
+                'type_of_area' => 'Room',
+                'landmarks' => 'Near Caldiz',
+                'area_image_url' => null, //NULL
+                'additional_details_requests' => null, //NULL
+                'preferred_time' => '08:30:00',
+                'preferred_date' => '2023-03-30',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
         ];
 
         foreach ($data as $booking) {
