@@ -5,7 +5,7 @@
 		<i class="fa-solid fa-circle-notch fa-spin h4 text-primary"></i>
 	</div>
 	<section>
-		<div class="row">
+		<div class="row" id="cardRowInDashboard">
 			<div class="col-md-2">
 				<div class="card border border-1 shadow-sm h-100">
 					<div class="card-header py-2 bg-primary"></div>
@@ -45,7 +45,7 @@
 						<h4 class="text-uppercase text-primary fw-bolder">Customer Reviews</h4>
 						<div class="d-flex gap-3">
 							<div class="col-3">
-								<div class="avatar" style="width: 10rem; height: 10rem">
+								<div class="avatar" id= "avatarDashboard" style="width: 10rem; height: 10rem">
 									@if ($latestRating->image_url != null)
 									<img class="rounded-circle w-100 h-100" src="{{ asset('img/profile') . '/' . $latestRating->image_url }}" />
 									@else
@@ -69,7 +69,7 @@
 		</div>
 	</section>
 	<section>
-		<div class="spacer"></div>
+		<div class="spacer" id="spacerDashboard"></div>
 		<h2 class="text-primary text-uppercase fw-bolder">Active Bookings</h2>
 		<table id="activeBookingTbl" class="table">
 			<thead>
