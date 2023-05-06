@@ -130,7 +130,7 @@
 		</div>
 		<div class="col-md-8">
 			<div class="row">
-				<div class="col-md-12 col-sm-4 shadow p-3 mb-5 rounded-5 border border-1" style="float: none; width: 100%;">
+				<div class="col-md-12 col-sm-4 shadow p-3 mb-5 rounded-5 border border-1" style="float: none; width: 100%">
 					<div class="row py-2">
 						<div class="col-md-2 d-flex flex-row gap-3 align-items-center">
 							<i class="fa fa-solid fa-user"></i>
@@ -166,8 +166,8 @@
 						</button>
 					</div>
 				</div>
-				<div class="col-md-12 col-sm-8 shadow p-4 mb-5 rounded-5 border border-1">{!! $workerInfo->service_info !!}</div>
-				<div class="col-md-12 col-sm-8">
+				<div class="col-md-12 shadow p-4 mb-5 rounded-5 border border-1">{!! $workerInfo->service_info !!}</div>
+				<div class="col-md-12">
 					<div class="d-flex justify-content-between">
 						<h3 class="fw-bolder text-uppercase">Reviews</h3>
 						@if ($canComment)
