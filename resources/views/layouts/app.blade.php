@@ -55,82 +55,82 @@
 								<a href="/about" class="nav-link fw-bold {{ request()->is('about') ? 'active' : '' }}">About Us</a>
 							</li>
 						</ul>
-						<ul class="navbar-nav ms-5">
-							@if (Auth::check())
-							<li class="nav-item dropdown d-flex align-items-center gap-3">
-								<a id="notifButton" class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<i class="fa-regular fa-bell h5 text-primary mt-2"></i>
-								</a>
-								<!-- start of dropdown div -->
-								<div class="dropdown-menu fade-in dropdown-menu-end mt-3 p-auto position-absolute" aria-labelledby="notifButton" style="width: 30rem">
-									<div class="p-auto ms-4 my-2 fw-bolder">
-										<h4>Notifications</h4>
-									</div>
-									<div class="p-auto my-2">
-										@foreach ($listOfNotifications as $notif)
-										<a class="dropdown-item d-flex justify-content-between align-items-center no-fw-bold-hvr" href="">
-											<div class="container">
-												<div class="row">
-													<div class="col-sm-12">
-														<div class="row d-flex justify-content-between align-items-center gap-3">
-															<div class="col">
-																<small class="fw-bold">{{ $notif->heading }}</small>
-															</div>
-															<div class="col">
-																<div class="float-end">
-																	<small>{{ $notif->created_at }}</small>
-																</div>
+					</div>
+					<ul class="navbar-nav">
+						@if (Auth::check())
+						<li class="nav-item dropdown d-flex align-items-center gap-3">
+							<a id="notifButton" class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="fa-regular fa-bell h5 text-primary mt-2"></i>
+							</a>
+							<!-- start of dropdown div -->
+							<div class="dropdown-menu fade-in dropdown-menu-end mt-3 p-auto position-absolute" aria-labelledby="notifButton" style="width: 30rem">
+								<div class="p-auto ms-4 my-2 fw-bolder">
+									<h4>Notifications</h4>
+								</div>
+								<div class="p-auto my-2">
+									@foreach ($listOfNotifications as $notif)
+									<a class="dropdown-item d-flex justify-content-between align-items-center no-fw-bold-hvr" href="">
+										<div class="container">
+											<div class="row">
+												<div class="col-sm-12">
+													<div class="row d-flex justify-content-between align-items-center gap-3">
+														<div class="col">
+															<small class="fw-bold">{{ $notif->heading }}</small>
+														</div>
+														<div class="col">
+															<div class="float-end">
+																<small>{{ $notif->created_at }}</small>
 															</div>
 														</div>
-														<div class="row">
-															<div class="col-sm-12">
-																<small class="text-wrap d-block text-muted mb-0">{{ $notif->message }}</small>
-															</div>
+													</div>
+													<div class="row">
+														<div class="col-sm-12">
+															<small class="text-wrap d-block text-muted mb-0">{{ $notif->message }}</small>
 														</div>
 													</div>
 												</div>
 											</div>
-										</a>
-										@endforeach
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item text-center no-fw-bold-hvr">All notifications for this week</a>
-									</div>
-								</div>
-								<!-- start of navbar dropdown -->
-								<a id="navbarDropdown" class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<div class="avatar">
-										@if (Auth::user()->image_url != null)
-										<img class="avatar-img avatar-lg" src="{{ asset('img/profile') . '/' . Auth::user()->image_url }}" /> @else
-										<div class="avatar bg-secondary text-white fw-bold">{{ Auth::user()->first_name[0] }}</div>
-										@endif
-									</div>
-								</a>
-								<div class="dropdown-menu fade-in dropdown-menu-end mt-3 px-0 py-3 position-absolute" aria-labelledby="navbarDropdown" style="width: 20rem">
-									<div class="dropdown-header py-2">
-										<small class="fw-bolder text-uppercase">Activity</small>
-									</div>
-									<a class="dropdown-item d-flex align-items-center gap-3" href="/service">
-										<i class="fa fa-solid fa-book ps-3"></i>
-										<small>Book a Service</small>
+										</div>
 									</a>
-									<a class="dropdown-item d-flex align-items-center gap-3" href="/account/my-bookmarks">
-										<i class="fa fa-solid fa-bookmark ps-3"></i>
-										<small>My Bookmarks</small>
-									</a>
+									@endforeach
 									<div class="dropdown-divider"></div>
-									<div class="dropdown-header py-2">
-										<small class="fw-bolder text-uppercase">Accounts</small>
-									</div>
-									<a class="dropdown-item d-flex align-items-center gap-3" href="{{ route('logout') }}" onclick="event.preventDefault(); $('#logout-form').submit();">
-										<i class="fa fa-solid fa-power-off ps-3"></i>
-										<small>Logout</small>
-									</a>
-									<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
+									<a class="dropdown-item text-center no-fw-bold-hvr">All notifications for this week</a>
 								</div>
-							</li>
-							@endif
-						</ul>
-					</div>
+							</div>
+							<!-- start of navbar dropdown -->
+							<a id="navbarDropdown" class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<div class="avatar">
+									@if (Auth::user()->image_url != null)
+									<img class="avatar-img avatar-lg" src="{{ asset('img/profile') . '/' . Auth::user()->image_url }}" /> @else
+									<div class="avatar bg-secondary text-white fw-bold">{{ Auth::user()->first_name[0] }}</div>
+									@endif
+								</div>
+							</a>
+							<div class="dropdown-menu fade-in dropdown-menu-end mt-3 px-0 py-3 position-absolute" aria-labelledby="navbarDropdown" style="width: 20rem">
+								<div class="dropdown-header py-2">
+									<small class="fw-bolder text-uppercase">Activity</small>
+								</div>
+								<a class="dropdown-item d-flex align-items-center gap-3" href="/service">
+									<i class="fa fa-solid fa-book ps-3"></i>
+									<small>Book a Service</small>
+								</a>
+								<a class="dropdown-item d-flex align-items-center gap-3" href="/account/my-bookmarks">
+									<i class="fa fa-solid fa-bookmark ps-3"></i>
+									<small>My Bookmarks</small>
+								</a>
+								<div class="dropdown-divider"></div>
+								<div class="dropdown-header py-2">
+									<small class="fw-bolder text-uppercase">Accounts</small>
+								</div>
+								<a class="dropdown-item d-flex align-items-center gap-3" href="{{ route('logout') }}" onclick="event.preventDefault(); $('#logout-form').submit();">
+									<i class="fa fa-solid fa-power-off ps-3"></i>
+									<small>Logout</small>
+								</a>
+								<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
+							</div>
+						</li>
+						@endif
+					</ul>
 				</div>
 			</nav>
 

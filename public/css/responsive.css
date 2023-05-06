@@ -71,8 +71,13 @@
 		display: none;
 		padding-bottom: 0;
 	}
-	.navbar-nav.ms-auto.gap-5 {
+	.navbar-nav.mx-auto.gap-5 {
 		gap: 0rem !important;
+	}
+	.acc-option {
+		position: absolute;
+		top: 2rem;
+		right: 2rem;
 	}
 	.nav-item {
 		width: 100%;
