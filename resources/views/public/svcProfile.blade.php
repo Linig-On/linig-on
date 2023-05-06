@@ -383,11 +383,11 @@
 								<label class="text-primary fw-bold small">Rating</label>
 								<div id="starRatingContainer">
 									<div class="d-flex gap-2 me-5">
-										<i data-value="1" class="fa fa-regular fa-star h4 text-warning"></i>
-										<i data-value="2" class="fa fa-regular fa-star h4 text-warning"></i>
-										<i data-value="3" class="fa fa-regular fa-star h4 text-warning"></i>
-										<i data-value="4" class="fa fa-regular fa-star h4 text-warning"></i>
-										<i data-value="5" class="fa fa-regular fa-star h4 text-warning"></i>
+										<i data-value="1" class="fa fa-regular fa-star h4 text-warning cursor-pointer"></i>
+										<i data-value="2" class="fa fa-regular fa-star h4 text-warning cursor-pointer"></i>
+										<i data-value="3" class="fa fa-regular fa-star h4 text-warning cursor-pointer"></i>
+										<i data-value="4" class="fa fa-regular fa-star h4 text-warning cursor-pointer"></i>
+										<i data-value="5" class="fa fa-regular fa-star h4 text-warning cursor-pointer"></i>
 									</div>
 									<input id="rating" name="rating" value="" class="d-none" />
 								</div>

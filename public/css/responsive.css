@@ -1,140 +1,136 @@
 #spacerGetInTouch {
-    display: none;
+	display: none;
 }
 
 @media (max-width: 767px) {
-    .mobile-scroll {
-        overflow-x: scroll;
-        white-space: nowrap;
-    }
-    .navbar-collapse .navbar-nav .nav-link span {
-        display: none;
-        padding-bottom: 0;
-    }
-    .navbar-nav.ms-auto.gap-5 {
-        gap: 0rem !important;
-    }
-    .nav-item {
-        width: 100%;
-    }
-    .form-control {
-        width: 100% !important;
-    }
-    .card-group {
-        flex-direction: column !important;
-    }
-    .text-uppercase.fw-bolder {
-        gap: 2rem !important;
-    }
-    .container {
-        width: 50%;
-        margin: 0 auto;
-    }
-    .mobile-scroll {
-        overflow-x: scroll;
-        white-space: nowrap;
-    }
-    .navbar-collapse .navbar-nav .nav-link span {
-        display: none;
-        padding-bottom: 0;
-    }
-    .navbar-nav.ms-auto.gap-5 {
-        gap: 0rem !important;
-    }
-    .nav-item {
-        width: 100%;
-    }
-    .form-control {
-        width: 100% !important;
-    }
-    .card-group {
-        flex-flow: column wrap;
-    }
-    .testi-card-group {
-        margin-top: 0.5rem !important;
-        margin-bottom: 0.5rem !important;
-    }
-    .newsletter {
-        margin-top: 1.5rem !important;
-    }
-    .worker-type {
-        display: flex;
-    }
-    .alignment {
-        text-align: center !important;
-        margin-bottom: 1.5rem !important;
-    }
-    .ceiling {
-        padding-top: .25rem !important;
-    }
-    .mobile-scroll {
-        overflow-x: scroll;
-        white-space: nowrap;
-    }
-    .navbar-collapse .navbar-nav .nav-link span {
-        display: none;
-        padding-bottom: 0;
-    }
-    .navbar-nav.ms-auto.gap-5 {
-        gap: 0rem !important;
-    }
-    .nav-item {
-        width: 100%;
-    }
-    .form-control {
-        width: 100% !important;
-    }
-    .card-group {
-        flex-flow: column wrap;
-    }
-    .testi-card-group {
-        margin-top: 0.5rem !important;
-        margin-bottom: 0.5rem !important;
-    }
-    .newsletter {
-        margin-top: 1.5rem !important;
-    }
-    .worker-type {
-        display: flex;
-    }
-    .alignment {
-        text-align: center !important;
-        margin-bottom: 1.5rem !important;
-    }
-    .ceiling {
-        padding-top: .25rem !important;
-    }
+	.mobile-scroll {
+		overflow-x: scroll;
+		white-space: nowrap;
+	}
+	.navbar-collapse .navbar-nav .nav-link span {
+		display: none;
+		padding-bottom: 0;
+	}
+	.navbar-nav.ms-auto.gap-5 {
+		gap: 0rem !important;
+	}
+	.nav-item {
+		width: 100%;
+	}
+	.form-control {
+		width: 100% !important;
+	}
+	.card-group {
+		flex-direction: column !important;
+	}
+	.text-uppercase.fw-bolder {
+		gap: 2rem !important;
+	}
 
-	.container.fade-in.position-relative{
+	.mobile-scroll {
+		overflow-x: scroll;
+		white-space: nowrap;
+	}
+	.navbar-collapse .navbar-nav .nav-link span {
+		display: none;
+		padding-bottom: 0;
+	}
+	.navbar-nav.ms-auto.gap-5 {
+		gap: 0rem !important;
+	}
+	.nav-item {
+		width: 100%;
+	}
+	.form-control {
+		width: 100% !important;
+	}
+	.card-group {
+		flex-flow: column wrap;
+	}
+	.testi-card-group {
+		margin-top: 0.5rem !important;
+		margin-bottom: 0.5rem !important;
+	}
+	.newsletter {
+		margin-top: 1.5rem !important;
+	}
+	.worker-type {
+		display: flex;
+	}
+	.alignment {
+		text-align: center !important;
+		margin-bottom: 1.5rem !important;
+	}
+	.ceiling {
+		padding-top: 0.25rem !important;
+	}
+	.mobile-scroll {
+		overflow-x: scroll;
+		white-space: nowrap;
+	}
+	.navbar-collapse .navbar-nav .nav-link span {
+		display: none;
+		padding-bottom: 0;
+	}
+	.navbar-nav.ms-auto.gap-5 {
+		gap: 0rem !important;
+	}
+	.nav-item {
+		width: 100%;
+	}
+	.form-control {
+		width: 100% !important;
+	}
+	.card-group {
+		flex-flow: column wrap;
+	}
+	.testi-card-group {
+		margin-top: 0.5rem !important;
+		margin-bottom: 0.5rem !important;
+	}
+	.newsletter {
+		margin-top: 1.5rem !important;
+	}
+	.worker-type {
+		display: flex;
+	}
+	.alignment {
+		text-align: center !important;
+		margin-bottom: 1.5rem !important;
+	}
+	.ceiling {
+		padding-top: 0.25rem !important;
+	}
+
+	.container.fade-in.position-relative {
 		width: 100%;
 	}
 
-	#cardRowInDashboard{
+	#cardRowInDashboard {
 		gap: 10px;
 	}
 
-	#avatarDashboard{
+	#avatarDashboard {
 		width: 50% !important;
 		height: 50% !important;
 		margin-left: 25%;
 		margin-top: 10%;
 	}
 
-	#activeBookingTbl{
+	#activeBookingTbl {
 		align-items: center;
 		max-width: fit-content;
 		margin-left: -25px;
-		
 	}
 
-	#spacerDashboard{
+	#spacerDashboard {
 		margin-top: -50px;
 	}
 }
 
 @media (max-width: 950px) {
-    #spacerGetInTouch {
-        display: inline-block;
-        margin-bottom: 20%;
-    }
+	#spacerGetInTouch {
+		display: inline-block;
+		margin-bottom: 20%;
+	}
 }
