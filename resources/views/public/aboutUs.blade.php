@@ -2,12 +2,14 @@
 
 <section>
 	<div class="position-relative">
-		<div class="position-absolute w-100 fade-in" style="z-index: 10; top: 10rem"">
+		<div class="position-absolute w-100 fade-in" style="z-index: 10; top: 10rem">
 		<div class="container w-50 mx-auto">
+			<div id="aboutUs">
 			<h1 class="text-uppercase fw-bolder">About Us.</h1>
 			<p>
 				<b>From the bikol word, <i>“linigon”</i> is a website that offers home cleaning services provided by local service workers. It aims to shorten the gap between customers and service workers.</b> Through this website, you can forget the hassle of finding reliable people to solve your cleaning problems!
 			</p>
+			</div>
 		</div>
 	</div>
 	<div class="position-relative">
@@ -24,12 +26,14 @@
 		</svg>
 	</div>
 </section>
+<div class="spacer" id="spacerGetInTouch"></div>
 <section class="fade-in">
-	<div class="container w-50">
-		<h1 class="text-uppercase fw-bolder">Get in Touch.</h1>
-		<label for="" class="fw-bold">Send us a Message</label>
-		<p>Have something to say? Send us your concerns!</p>
-
+	<div class="container w-50" id="getInTouch">
+		<div class="row">
+			<h1 class="text-uppercase fw-bolder">Get in Touch.</h1>
+				<label for="" class="fw-bold">Send us a Message</label>
+			<p>Have something to say? Send us your concerns!</p>
+		</div>
 		<div class="row gx-5">
 			<div class="col">
 				<form action="" class="d-flex flex-column gap-3">

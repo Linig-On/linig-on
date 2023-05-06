@@ -106,7 +106,7 @@
 		<!-- Fetch testimonials here... -->
 		<div class="row">
 			@for ($i = 0; $i < 3; $i++)
-			<div class="col-md-4">
+			<div class="col-md-4 mt-3">
 				<div class="card shadow border border-1">
 					<div class="card-body px-5 py-4 text-start">
 						<i class="fa-solid fa-quote-left fa-2xl float-start pe-1 text-primary opacity-50"></i>

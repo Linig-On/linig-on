@@ -8,7 +8,7 @@
 		<div class="row justify-content-between">
 			<div class="col">
 				<div class="row">
-					<div class="col-3">
+					<div class="col-md-3 col-sm-6">
 						<label class="fw-bold small" for="">Sort By:</label>
 						<div class="dropdown-group">
 							<div class="form-control-icon-end">
@@ -21,7 +21,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-3">
+					<div class="col-md-3 col-sm-6">
 						<label class="fw-bold small" for="">Worker Type:</label>
 						<div class="dropdown-group">
 							<div class="form-control-icon-end">
@@ -35,7 +35,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-2">
+			<div class="col-md-2">
 				<div class="row">
 					<button type="submit" class="btn btn-primary mt-4 text-uppercase fw-bold">Filter</button>
 				</div>

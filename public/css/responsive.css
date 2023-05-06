@@ -1,3 +1,7 @@
+#spacerGetInTouch {
+	display: none;
+}
+
 @media (max-width: 767px) {
 	.mobile-scroll {
 		overflow-x: scroll;
@@ -24,4 +28,32 @@
 	/* .position-relative {
 		position: static !important;
 	} */
+
+	.card-group {
+		flex-direction: column !important;
+	}
+
+	.text-uppercase.fw-bolder {
+		gap: 2rem !important;
+	}
+
+	.container {
+		width: 50%;
+		margin: 0 auto;
+	}
+
+	/* #aboutUs {
+		margin-bottom: 20rem;
+	}
+
+	#getInTouch {
+		margin-top: 20rem;
+	} */
+}
+
+@media (max-width: 950px) {
+	#spacerGetInTouch {
+		display: inline-block;
+		margin-bottom: 20%;
+	}
 }
