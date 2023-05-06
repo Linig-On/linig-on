@@ -31,3 +31,8 @@ small {
 .fs-inherit {
 	font-size: inherit;
 }
+
+button:focus i.fa-solid.hvr-white,
+button:hover i.fa-solid.hvr-white {
+	color: white;
+}

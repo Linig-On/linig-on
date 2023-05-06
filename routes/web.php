@@ -58,6 +58,10 @@ Route::post('/service/worker/add/bookmark', [ServiceController::class, 'bookmark
 Route::post('/service/worker/remove/bookmark', [ServiceController::class, 'unBookmarkWorker'])->name('un-bookmark-worker');
 Route::get('/account/my-bookmarks', [AccountController::class, 'myBookmarkedWorkers'])->name('my-bookmarks');
 
+// rating
+Route::post('/service/worker/rate', [ServiceController::class, 'rateWorker'])->name('rate-worker');
+Route::post('/service/worker/rate-app', [ServiceController::class, 'rateApp'])->name('rate-app');
+
 // private module
 Route::get('/service/dashboard', [ServiceController::class, 'serviceDashboard'])->name('service-dashboard');
 Route::get('/service/my-profile', [ServiceController::class, 'serviceMyProfile'])->name('service-my-profile');

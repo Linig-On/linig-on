@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use App\Models\Bookmark;
 use App\Helpers\NotificationHandler;
+use App\Models\AppRating;
 use App\Models\User;
 use App\Models\Worker;
+use App\Models\WorkerRating;
 use App\Models\WorkerSkill;
 use App\Models\WorkerSocial;
 use Carbon\Carbon;
@@ -118,15 +120,22 @@ class ServiceController extends Controller
         $user = DB::table('users')->where('id', $worker->user_id)->get()->first();
         $workerSkills = DB::table('worker_skills')->where('worker_id', $worker->id)->get();
         $workerSocials = DB::table('worker_socials')->where('worker_id', $worker->id)->get();
-        $workerRating = DB::table('worker_ratings')->where('worker_id', $worker->id)->get();
+        $workerRating = DB::table('worker_ratings')->where('worker_id', $worker->id)->orderBy('created_at', 'DESC')->get();
         $workerRatingAvg = DB::table('worker_ratings')->where('worker_id', $worker->id)->avg('rating');
         $isBookmarked = 'false';
+        $hasBookingComplete = false;
         
         if (Auth::user() != null) {
             $isBookmarked = DB::table('bookmarks')
                 ->where('worker_id', $worker->id)
                 ->where('user_id', Auth::user()->id)
                 ->first() != null ? 'true' : 'false';
+            
+            $hasBookingComplete = DB::table('bookings')
+                ->where('worker_id', $worker->id)
+                ->where('user_id', Auth::user()->id)
+                ->where('status', 'Done')
+                ->first() != null ? true : false;
         }
 
         return view('public.svcProfile')
@@ -136,7 +145,85 @@ class ServiceController extends Controller
             ->with('workerSocials', $workerSocials)
             ->with('workerRatings', $workerRating)
             ->with('workerRatingAvg', (int)$workerRatingAvg)
-            ->with('isBookmarked', $isBookmarked);
+            ->with('isBookmarked', $isBookmarked)
+            ->with('canComment', $hasBookingComplete);
+    }
+
+    /**
+     * POST
+     */
+    public function rateWorker(Request $request) 
+    {
+        $worker = DB::table('workers')
+            ->join('users', 'users.id', '=', 'workers.user_id')
+            ->where('workers.id', $request->input('worker_id'))
+            ->first();
+
+        try {
+            // validating fields
+            $data = $request->validate([
+                'user_id' => 'required',
+                'worker_id' => 'required',
+                'full_name' => 'required',
+                'comment' => 'required',
+                'rating' => 'required',
+            ]);
+
+            WorkerRating::create([
+                'user_id' => $data['user_id'],
+                'worker_id' => $data['worker_id'],
+                'name' => $data['full_name'],
+                'comment' => $data['comment'],
+                'rating' => $data['rating'],
+                'created_at' => Carbon::now(),
+            ]);
+
+            // send notifications
+
+            Session::flash('worker-rating-success', 'Thank you for your feedback! You have successfully rated ' . $worker->first_name . ' ' . $worker->last_name);
+            return redirect()->back();
+        } catch (ValidationException $th) {
+            Session::flash('worker-rating-failed-missing-fields', 'Uh oh! Rating ' . $worker->first_name . ' ' . $worker->last_name . ' was not successful. Please make sure to fill in the required fields.');
+            return redirect()->back();
+        } catch (QueryException $th) {
+            Session::flash('worker-rating-failed', 'Uh oh! Rating ' . $worker->first_name . ' ' . $worker->last_name . ' was not successful!');
+            return redirect()->back();
+        }
+    }
+
+    /**
+     * POST
+     */
+    public function rateApp(Request $request) 
+    {
+        try {
+            // validating fields
+            $data = $request->validate([
+                'user_id' => 'required',
+                'full_name' => 'required',
+                'comment' => 'required',
+                'is_liked' => 'required',
+            ]);
+
+            AppRating::create([
+                'user_id' => $data['user_id'],
+                'name' => $data['full_name'],
+                'comment' => $data['comment'],
+                'is_liked' => $data['is_liked'],
+                'created_at' => Carbon::now(),
+            ]);
+
+            // send notifications
+
+            Session::flash('app-rating-success', 'Thank you for your feedback! Your feedback will helps us improve our website.');
+            return redirect()->back();
+        } catch (ValidationException $th) {
+            Session::flash('app-rating-failed-missing-fields', 'Uh oh! Your rating was not successful. Please make sure to fill in the required fields.');
+            return redirect()->back();
+        } catch (QueryException $th) {
+            Session::flash('app-rating-failed', 'Uh oh! Your rating was not successful...');
+            return redirect()->back();
+        }
     }
 
     /**

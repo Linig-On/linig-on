@@ -15,14 +15,44 @@
 </div>
 
 <div class="container fade-in">
-	@if (session('booking-success'))
+	@if (session('worker-rating-success'))
+	<div class="alert alert-success mb-3 d-flex gap-3 align-items-center" role="alert">
+		<i class="fa-solid fa-circle-check text-primary"></i>
+		<small class="text-primary fw-semibold">{!! session("worker-rating-success") !!}</small>
+	</div>
+	@endif @if (session("worker-rating-failed"))
+	<div class="alert alert-danger mb-3 d-flex gap-3 align-items-center" role="alert">
+		<i class="fa-solid fa-circle-xmark text-danger"></i>
+		<small class="text-danger fw-semibold">{!! session("worker-rating-failed") !!}</small>
+	</div>
+	@endif @if (session("worker-rating-failed-missing-fields"))
+	<div class="alert alert-danger mb-3 d-flex gap-3 align-items-center" role="alert">
+		<i class="fa-solid fa-circle-xmark text-danger"></i>
+		<small class="text-danger fw-semibold">{!! session("worker-rating-failed-missing-fields") !!}</small>
+	</div>
+	@endif @if (session('app-rating-success'))
+	<div class="alert alert-success mb-3 d-flex gap-3 align-items-center" role="alert">
+		<i class="fa-solid fa-circle-check text-primary"></i>
+		<small class="text-primary fw-semibold">{!! session("app-rating-success") !!}</small>
+	</div>
+	@endif @if (session("app-rating-failed"))
+	<div class="alert alert-danger mb-3 d-flex gap-3 align-items-center" role="alert">
+		<i class="fa-solid fa-circle-xmark text-danger"></i>
+		<small class="text-danger fw-semibold">{!! session("app-rating-failed") !!}</small>
+	</div>
+	@endif @if (session("app-rating-failed-missing-fields"))
+	<div class="alert alert-danger mb-3 d-flex gap-3 align-items-center" role="alert">
+		<i class="fa-solid fa-circle-xmark text-danger"></i>
+		<small class="text-danger fw-semibold">{!! session("app-rating-failed-missing-fields") !!}</small>
+	</div>
+	@endif @if (session('booking-success'))
 	<div class="alert alert-success mb-3 d-flex gap-3 align-items-center" role="alert">
 		<i class="fa-solid fa-circle-check text-primary"></i>
 		<small class="text-primary fw-semibold">{!! session("booking-success") !!}</small>
 	</div>
 	@endif @if (session('booking-failed'))
 	<div class="alert alert-danger mb-3 d-flex gap-3 align-items-center" role="alert">
-		<i class="fa-solid fa-circle-x text-danger"></i>
+		<i class="fa-solid fa-circle-xmark text-danger"></i>
 		<small class="text-danger fw-semibold">{!! session("booking-failed") !!}</small>
 	</div>
 	@endif
@@ -130,7 +160,7 @@
 					</div>
 					<div class="d-flex justify-content-between py-2">
 						<div></div>
-						<button type="button" class="btn btn-primary text-uppercase fw-bold z-index-30" data-bs-toggle="modal" data-bs-target="#appFeedbackModal">
+						<button type="button" class="btn btn-primary text-uppercase fw-bold z-index-30" data-bs-toggle="modal" data-bs-target="#viewResumeModal">
 							View Resume
 							<i class="fa-regular fa-file text-white"></i>
 						</button>
@@ -138,7 +168,14 @@
 				</div>
 				<div class="col-md-12 col-sm-8 shadow p-4 mb-5 rounded-5 border border-1">{!! $workerInfo->service_info !!}</div>
 				<div class="col-md-12 col-sm-8">
-					<h3 class="fw-bolder text-uppercase">Reviews</h3>
+					<div class="d-flex justify-content-between">
+						<h3 class="fw-bolder text-uppercase">Reviews</h3>
+						@if ($canComment)
+						<button class="btn btn-outline-primary px-3" data-bs-toggle="modal" data-bs-target="#workerRatingModal">
+							<i class="fa-solid fa-pen-to-square hvr-white"></i>
+						</button>
+						@endif
+					</div>
 					<hr class="divider" />
 					<ul id="paginatedList" data-current-page="1" aria-live="polite">
 						@foreach ($workerRatings as $rating)
@@ -180,9 +217,8 @@
 		</div>
 	</div>
 </div>
+<button id="feedbackBtnTrg" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#appFeedbackModal">Click</button>
 <div class="spacer"></div>
-
-<button class="my-4 btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#workerRatingModal">Launch Modal</button>
 
 <!-- Resume Modal -->
 <div class="modal fade" id="viewResumeModal" tabindex="-1" aria-labelledby="viewResumeModalLabel" aria-hidden="true">
@@ -316,101 +352,122 @@
 
 <!--Worker Rating Modal -->
 <div class="modal fade" id="workerRatingModal" tabindex="-1" aria-labelledby="workerRatingModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header bg-primary text-white"></div>
-			<div class="modal-body mx-4 py-5 px-5">
-				<div class="d-flex flex-column justify-content-center align-items-center">
-					<img src="{{ asset('svg/illust/undraw-realtime-comm.svg') }} " alt="image" />
-					<div class="text-center">
-						<h3 class="text-uppercase fw-bolder mt-5">Post A Comment!</h3>
-						<p>
-							Rate <span>{{ $userInfo->first_name . ' ' . $userInfo->last_name }}</span> service. Your feedback is much appreciated in improving their services.
-						</p>
-					</div>
-				</div>
-
-				<div class="d-flex flex-column gap-3">
-					<div class="col-12">
-						<label class="text-primary fw-bold small">Full Name</label>
-						<input type="text" class="form-control" />
-					</div>
-					<div class="col-12">
-						<label class="text-primary fw-bold small">Comment</label>
-						<textarea class="form-control" rows="5" aria-label="With textarea"></textarea>
-					</div>
-					<div class="d-flex align-items-center justify-content-between gap-5">
-						<div>
-							<label class="text-primary fw-bold small">Rating</label>
-							<div id="starRatingContainer" class="d-flex gap-2 me-5">
-								<i class="fa fa-regular fa-star h4 text-warning"></i>
-								<i class="fa fa-regular fa-star h4 text-warning"></i>
-								<i class="fa fa-regular fa-star h4 text-warning"></i>
-								<i class="fa fa-regular fa-star h4 text-warning"></i>
-								<i class="fa fa-regular fa-star h4 text-warning"></i>
-							</div>
+	<form method="POST" action="{{ route('rate-worker') }}">
+		@csrf
+		<input type="text" class="d-none" name="user_id" value="{{ Auth::user()->id }}" />
+		<input type="text" class="d-none" name="worker_id" value="{{ $workerInfo->id }}" />
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header bg-primary text-white"></div>
+				<div class="modal-body mx-4 py-5 px-5">
+					<div class="d-flex flex-column justify-content-center align-items-center">
+						<img src="{{ asset('svg/illust/undraw-realtime-comm.svg') }} " alt="image" />
+						<div class="text-center">
+							<h3 class="text-uppercase fw-bolder mt-5">Post A Comment!</h3>
+							<p>
+								Rate <span>{{ $userInfo->first_name . ' ' . $userInfo->last_name }}</span> service. Your feedback is much appreciated in improving their services.
+							</p>
 						</div>
-						<div class="w-mc gap-2 mt-3">
-							<button type="button" class="btn btn-outline-primary fw-bold text-uppercase" data-bs-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary fw-bold text-uppercase">Submit</button>
+					</div>
+					<div class="d-flex flex-column gap-3">
+						<div class="col-12">
+							<label class="text-primary fw-bold small">Full Name</label>
+							<input name="full_name" type="text" class="form-control" />
+						</div>
+						<div class="col-12">
+							<label class="text-primary fw-bold small">Comment</label>
+							<textarea name="comment" class="form-control" rows="5" aria-label="With textarea"></textarea>
+						</div>
+						<div class="d-flex align-items-center justify-content-between gap-5">
+							<div>
+								<label class="text-primary fw-bold small">Rating</label>
+								<div id="starRatingContainer">
+									<div class="d-flex gap-2 me-5">
+										<i data-value="1" class="fa fa-regular fa-star h4 text-warning"></i>
+										<i data-value="2" class="fa fa-regular fa-star h4 text-warning"></i>
+										<i data-value="3" class="fa fa-regular fa-star h4 text-warning"></i>
+										<i data-value="4" class="fa fa-regular fa-star h4 text-warning"></i>
+										<i data-value="5" class="fa fa-regular fa-star h4 text-warning"></i>
+									</div>
+									<input id="rating" name="rating" value="" class="d-none" />
+								</div>
+							</div>
+							<div class="w-mc gap-2 mt-3">
+								<button type="button" class="btn btn-outline-primary fw-bold text-uppercase" data-bs-dismiss="modal">Close</button>
+								<button type="submit" class="btn btn-primary fw-bold text-uppercase">Submit</button>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</form>
 </div>
 
 <!-- App Feedback Modal -->
+@if (session('worker-rating-success') || session('app-rating-failed') || session('app-rating-failed-missing-fields'))
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("#feedbackBtnTrg").click();
+	});
+</script>
 <div class="modal fade" id="appFeedbackModal" tabindex="-1" aria-labelledby="appFeedbackModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header bg-primary text-white"></div>
-			<div class="modal-body mx-4 py-5 px-5">
-				<div class="d-flex flex-column justify-content-center align-items-center">
-					<img src="{{ asset('svg/illust/undraw-logistics.svg') }} " alt="image" />
-					<div class="text-center">
-						<h3 class="text-uppercase fw-bolder mt-5">Let Us Know How We're Doing!</h3>
-						<p>Help us improve. Rate your experience while using our application!</p>
+	<form method="POST" action="{{ route('rate-app') }}">
+		@csrf
+		<input type="text" class="d-none" name="user_id" value="{{ Auth::user()->id }}" />
+		<input type="text" />
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header bg-primary text-white"></div>
+				<div class="modal-body mx-4 py-5 px-5">
+					<div class="d-flex flex-column justify-content-center align-items-center">
+						<img src="{{ asset('svg/illust/undraw-logistics.svg') }} " alt="image" />
+						<div class="text-center">
+							<h3 class="text-uppercase fw-bolder mt-5">Let Us Know How We're Doing!</h3>
+							<p>Help us improve. Rate your experience while using our application!</p>
+						</div>
 					</div>
-				</div>
-				<div class="d-flex flex-column gap-3">
-					<div class="col-12">
-						<label class="text-primary fw-bold small">Full Name</label>
-						<input type="text" class="form-control" />
-					</div>
-					<div class="col-12">
-						<label class="text-primary fw-bold small">Comment</label>
-						<textarea class="form-control" rows="5" aria-label="With textarea"></textarea>
-					</div>
-					<div class="col-12">
-						<div class="d-flex align-items-center justify-content-between">
-							<div class="d-flex gap-4">
-								<div class="d-flex align-items-center gap-2">
-									<button id="likeBtn" class="btn border-0 px-0 shadow-none">
-										<img src="{{ asset('svg/icon/thumbs-up-regular.svg') }}" alt="" />
-									</button>
-									<label class="small fw-bold text-primary">Yes</label>
-								</div>
-								<div class="d-flex align-items-center gap-2">
-									<button id="dislikeBtn" class="btn border-0 px-0 shadow-none">
-										<img src="{{ asset('svg/icon/thumbs-down-regular.svg') }}" alt="" />
-									</button>
-									<label class="small fw-bold text-primary">No</label>
+					<div class="d-flex flex-column gap-3">
+						<div class="col-12">
+							<label class="text-primary fw-bold small">Full Name</label>
+							<input name="full_name" type="text" class="form-control" />
+						</div>
+						<div class="col-12">
+							<label class="text-primary fw-bold small">Comment</label>
+							<textarea name="comment" class="form-control" rows="5" aria-label="With textarea"></textarea>
+						</div>
+						<div class="col-12">
+							<div class="d-flex align-items-center justify-content-between">
+								<div class="d-flex align-items-center justify-content-between">
+									<div class="d-flex gap-4">
+										<div class="d-flex align-items-center gap-2">
+											<button type="button" id="likeBtn" class="btn border-0 px-0 shadow-none likeBtnGroup fw-bold text-primary">
+												<i class="fa-regular fa-thumbs-up text-primary fa-2xl"></i>
+												Yes
+											</button>
+										</div>
+										<div class="d-flex align-items-center gap-2">
+											<button type="button" id="dislikeBtn" class="btn border-0 px-0 shadow-none likeBtnGroup fw-bold text-primary">
+												<i class="fa-regular fa-thumbs-up fa-flip-vertical text-primary fa-2xl"></i>
+												No
+											</button>
+										</div>
+										<input name="is_liked" type="text" class="d-none" value="" />
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="w-mc ms-auto">
-							<button type="button" class="btn btn-outline-primary fw-bold text-uppercase" data-bs-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary fw-bold text-uppercase">Submit</button>
+							<div class="w-mc ms-auto">
+								<button type="button" class="btn btn-outline-primary fw-bold text-uppercase" data-bs-dismiss="modal">Close</button>
+								<button type="submit" class="btn btn-primary fw-bold text-uppercase">Submit</button>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</form>
 </div>
-@endif @endsection @section('javascript')
+@endif @endif @endsection @section('javascript')
 <!-- Pagination Script -->
 <script src="{{ asset('vendor/pagination/pagination.js') }}"></script>
 <script type="text/javascript">
@@ -425,6 +482,7 @@
 
 		// modals
 		starRatingHandler();
+		likeHandler();
 	});
 
 	const bookmarkToggleState = function () {
@@ -480,19 +538,70 @@
 	};
 
 	const starRatingHandler = function () {
-		$("#starRatingContainer i").each(function (i, el) {
-			$(el).hover(function () {
-				$(el).removeClass().addClass("fa fa-solid fa-star h4 text-warning cursor-pointer");
-			});
+		$("#starRatingContainer .fa-star").hover(
+			function () {
+				var value = $(this).data("value");
+				$(this).prevAll().addBack().removeClass("fa-regular").addClass("fa-solid");
+				$(this).nextAll().removeClass("fa-solid").addClass("fa-regular");
+			},
+			function () {
+				var value = $("#starRatingContainer #rating").val();
+				if (!value) {
+					$(this).prevAll().addBack().removeClass("fa-solid").addClass("fa-regular");
+				} else {
+					$("#starRatingContainer .fa-star[data-value='" + value + "']")
+						.prevAll()
+						.addBack()
+						.removeClass("fa-regular")
+						.addClass("fa-solid");
+					$("#starRatingContainer .fa-star[data-value='" + value + "']")
+						.nextAll()
+						.removeClass("fa-solid")
+						.addClass("fa-regular");
+				}
+			}
+		);
+
+		$("#starRatingContainer .fa-star").click(function () {
+			var value = $(this).data("value");
+			$("#starRatingContainer #rating").val(value);
+			$(this).prevAll().addBack().removeClass("fa-regular").addClass("fa-solid");
+			$(this).nextAll().removeClass("fa-solid").addClass("fa-regular");
 		});
 	};
+
 	const likeHandler = function () {
-		const $likeBtn = $("#likeBtn");
-		const $dislikeBtn = $("#dislikeBtn");
-		$likeBtn.click(function () {
-			$likeBtn;
+		$("#likeBtn").click(function () {
+			$("input[name='is_liked']").val(true);
+
+			if (!$(this).hasClass("active")) {
+				$(this).addClass("active");
+				$(this).find("i").removeClass("fa-regular").addClass("fa-solid");
+				$("#dislikeBtn").removeClass("active");
+				$("#dislikeBtn").find("i").removeClass("fa-solid").addClass("fa-regular");
+				$("input[name=is_liked]").val("1");
+			} else {
+				$(this).removeClass("active");
+				$(this).find("i").removeClass("fa-solid").addClass("fa-regular");
+				$("input[name=is_liked]").val("");
+			}
 		});
-		$dislikeBtn.click(function () {});
+
+		$("#dislikeBtn").click(function () {
+			$("input[name='is_liked']").val(false);
+
+			if (!$(this).hasClass("active")) {
+				$(this).addClass("active");
+				$(this).find("i").removeClass("fa-regular").addClass("fa-solid");
+				$("#likeBtn").removeClass("active");
+				$("#likeBtn").find("i").removeClass("fa-solid").addClass("fa-regular");
+				$("input[name=is_liked]").val("0");
+			} else {
+				$(this).removeClass("active");
+				$(this).find("i").removeClass("fa-solid").addClass("fa-regular");
+				$("input[name=is_liked]").val("");
+			}
+		});
 	};
 </script>
 @endsection
