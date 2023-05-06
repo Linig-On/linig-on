@@ -134,20 +134,52 @@
 				</div>
 			</nav>
 
-			<main class="min-vh-100">
-				@if (session('sent-newsletter-success'))
-				<div class="alert alert-success my-3 d-flex gap-3 align-items-center" role="alert">
-					<i class="fa-solid fa-circle-check text-primary"></i>
-					<small class="text-primary fw-semibold">{!! session("sent-newsletter-success") !!}</small>
+			<main class="min-vh-100">@yield('content')</main>
+			@if (session('sent-newsletter-success'))
+			<script text="text/javascript">
+				$(document).ready(function () {
+					$("#newsLetterSuccessBtnTrg").click();
+				});
+			</script>
+			@endif @if (session('sent-newsletter-error'))
+			<script text="text/javascript">
+				$(document).ready(function () {
+					$("#newsLetterFailedBtnTrg").click();
+				});
+			</script>
+			@endif
+			<button class="d-none" id="newsLetterSuccessBtnTrg" data-bs-toggle="modal" data-bs-target="#newsLetterFeedbackSuccessModal">Launch</button>
+			<button class="d-none" id="newsLetterFailedBtnTrg" data-bs-toggle="modal" data-bs-target="#newsLetterFeedbackFailedModal">Launch</button>
+			<!-- Newsletter Feedback Modal (Success) -->
+			<div class="modal fade" id="newsLetterFeedbackSuccessModal" tabindex="-1" aria-labelledby="newsLetterFeedbackSuccessModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header border-0">
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body px-5 py-3 d-flex flex-column text-center">
+							<i class="fa-solid fa-circle-check h1 text-success"></i>
+							<h3 class="fw-bolder text-uppercase text-primary">Subscribed to Newsletter!</h3>
+							<p class="text-primary">Thanks for subscribing to Linig-on's Newsletter! we will contact you shortly. Stay tuned for our future events and promos!</p>
+						</div>
+					</div>
 				</div>
-				@endif @if (session('sent-newsletter-error'))
-				<div class="alert alert-danger my-3 d-flex gap-3 align-items-center" role="alert">
-					<i class="fa-solid fa-circle-xmark text-danger"></i>
-					<small class="text-danger fw-semibold">{!! session("sent-newsletter-error") !!}</small>
+			</div>
+			<!-- Newsletter Feedback Modal (Failed) -->
+			<div class="modal fade" id="newsLetterFeedbackFailedModal" tabindex="-1" aria-labelledby="newsLetterFeedbackFailedModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header border-0">
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body px-5 py-3 d-flex flex-column text-center">
+							<i class="fa-solid fa-circle-xmark h1 text-danger"></i>
+							<h3 class="fw-bolder text-uppercase text-danger">Failed To Subscribe to our Newsletter!</h3>
+							<p class="text-primary">An error occured while subscribing to our newsletter...</p>
+						</div>
+					</div>
 				</div>
-				@endif @yield('content')
-			</main>
-
+			</div>
 			<footer class="bg-primary py-5">
 				<div class="ceiling container py-5">
 					<div class="row">

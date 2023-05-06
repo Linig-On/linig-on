@@ -774,7 +774,7 @@ class BookingSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
             [//book ni doms to dia
-                'id' => 34,
+                'id' => 35,
                 'user_id' => 5,
                 'worker_id' => 6,
                 'date_booked' => '2023-01-30',
