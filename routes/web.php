@@ -9,6 +9,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\WorkerProfileController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,19 +31,14 @@ Route::get('/about', [HomeController::class, 'aboutUs'])->name('about-us');
 // authentication
 Route::get('/register/user', [RegisterController::class, 'registerAsUser'])->name('register-as-user');
 Route::post('/register/user', [RegisterController::class, 'registerUser'])->name('register-user');
-
 Route::get('/register/worker', [RegisterController::class, 'registerAsWorker'])->name('register-as-worker');
-
 Route::get('/register/worker/individual', [RegisterController::class, 'registerAsWorkerIndividual'])->name('register-as-worker-individual');
 Route::post('/register/worker/individual', [RegisterController::class, 'registerWorkerIndividual'])->name('register-worker-individual');
-
 Route::get('/register/worker/wait-approval', [RegisterController::class, 'registerWorkerWaitApproval'])->name('register-worker-wait-approval');
 
 Route::get('/login/', [LoginController::class, 'index'])->name('login');
-
 Route::get('/login/user', [LoginController::class, 'loginAsUser'])->name('login-as-user');
 Route::post('/login/user', [LoginController::class, 'loginUser'])->name('login-user');
-
 Route::get('/login/worker', [LoginController::class, 'loginAsWorker'])->name('login-as-worker');
 Route::post('/login/worker', [LoginController::class, 'loginWorker'])->name('login-worker');
 
@@ -61,6 +57,10 @@ Route::get('/account/my-bookmarks', [AccountController::class, 'myBookmarkedWork
 // rating
 Route::post('/service/worker/rate', [ServiceController::class, 'rateWorker'])->name('rate-worker');
 Route::post('/service/worker/rate-app', [ServiceController::class, 'rateApp'])->name('rate-app');
+
+// sending emails
+Route::post('/about/contact-us', [ContactController::class, 'sendContactUs'])->name('send-contact-us');
+Route::post('/subscribe-newsletter', [ContactController::class, 'subscribeToNewsletter'])->name('subscribe-to-newsletter');
 
 // private module
 Route::get('/service/dashboard', [ServiceController::class, 'serviceDashboard'])->name('service-dashboard');

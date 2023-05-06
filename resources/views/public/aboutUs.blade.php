@@ -37,22 +37,33 @@
 		</div>
 		<div class="row gx-5">
 			<div class="col-md-6">
-				<form action="" class="d-flex flex-column gap-3">
+				@if (session('sent-contact-success'))
+				<div class="alert alert-success mb-3 d-flex gap-3 align-items-center" role="alert">
+					<i class="fa-solid fa-circle-check text-primary"></i>
+					<small class="text-primary fw-semibold">{!! session("sent-contact-success") !!}</small>
+				</div>
+				@endif @if (session('sent-contact-error'))
+				<div class="alert alert-danger mb-3 d-flex gap-3 align-items-center" role="alert">
+					<i class="fa-solid fa-circle-xmark text-danger"></i>
+					<small class="text-danger fw-semibold">{!! session("sent-contact-error") !!}</small>
+				</div>
+				@endif
+				<form method="POST" action="{{ route('send-contact-us') }}" class="d-flex flex-column gap-3">
+					@csrf
 					<div>
 						<label class="small fw-bold" for="">Name</label>
-						<input type="text" class="form-control" />
+						<input name="name" type="text" class="form-control" />
 					</div>
 					<div>
 						<label class="small fw-bold" for="">Email Address</label>
-						<input type="email" class="form-control" />
+						<input type="email" name="email" class="form-control" />
 					</div>
 					<div>
 						<label class="small fw-bold" for="">Message</label>
-						<textarea class="form-control" name="" id="" cols="30" rows="5"></textarea>
+						<textarea name="message" class="form-control" name="" id="" cols="30" rows="5"></textarea>
 					</div>
-					<div class="d-flex justify-content-between">
-						<div></div>
-						<button class="btn btn-primary ms-auto text-white text-uppercase">
+					<div class="w-mc ms-auto">
+						<button type="submit" class="btn btn-primary ms-auto text-white text-uppercase">
 							Submit
 							<i class="fa-solid fa-arrow-right-long text-white"></i>
 						</button>

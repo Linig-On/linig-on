@@ -54,11 +54,11 @@ class NotificationHandler {
     // }
 
     // { A WORKER CANCELS CLIENT BOOKINGS
-    public static function createOnBookingCanceledToUser($userId) {
+    public static function createOnBookingCanceledToUser($userId, $workerName) {
         NotificationHandler::create(
             $userId,
             'Booking Canceled.',
-            'Heads up! Your booking has been cancelled.',
+            'Heads up! Your booking to ' . $workerName . ' has been cancelled.',
         );
     }
 
@@ -88,6 +88,14 @@ class NotificationHandler {
         );
     }
     // }
+
+    public static function createOnSubscribeToNewletter($userId) {
+        NotificationHandler::create(
+            $userId,
+            'Newsletter Delivered!',
+            'You have joined Linig-On newsletter. Don\'t worry! We\'ll keep you updated!',
+        );
+    }
     
     private static function create($userId, $heading, $message) {
         Notification::create([

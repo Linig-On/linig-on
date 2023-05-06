@@ -532,16 +532,16 @@ class ServiceController extends Controller
                     'updated_at' => Carbon::now()
                 ]);
             
-            $workerUserId = DB::table('workers')
+            $worker = DB::table('workers')
                 ->join('users', 'users.id', '=', 'workers.user_id')
                 ->where('workers.id', Auth::user()->id)
                 ->select('workers.id as worker_id', 'users.id as user_id', 'users.*', 'workers.*')
-                ->first()
-                ->id;
-    
+                ->first();
+            $workerName = $worker->first_name . ' ' . $worker->last_name;
+            
             // send notifications
-            NotificationHandler::createOnBookingCanceledToUser($booking->user_id);
-            NotificationHandler::createOnBookingCanceledToWorker($workerUserId, $clientName);
+            NotificationHandler::createOnBookingCanceledToUser($booking->user_id, $workerName);
+            NotificationHandler::createOnBookingCanceledToWorker($worker->id, $clientName);
 
             return response(json_encode(['message' => 'You have successfully cancelled a booking.']), 200);
         } catch (Exception $th) {

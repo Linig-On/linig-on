@@ -134,7 +134,19 @@
 				</div>
 			</nav>
 
-			<main class="min-vh-100">@yield('content')</main>
+			<main class="min-vh-100">
+				@if (session('sent-newsletter-success'))
+				<div class="alert alert-success my-3 d-flex gap-3 align-items-center" role="alert">
+					<i class="fa-solid fa-circle-check text-primary"></i>
+					<small class="text-primary fw-semibold">{!! session("sent-newsletter-success") !!}</small>
+				</div>
+				@endif @if (session('sent-newsletter-error'))
+				<div class="alert alert-danger my-3 d-flex gap-3 align-items-center" role="alert">
+					<i class="fa-solid fa-circle-xmark text-danger"></i>
+					<small class="text-danger fw-semibold">{!! session("sent-newsletter-error") !!}</small>
+				</div>
+				@endif @yield('content')
+			</main>
 
 			<footer class="bg-primary py-5">
 				<div class="ceiling container py-5">
@@ -186,13 +198,13 @@
 							</div>
 						</div>
 						<div class="newsletter col-md-5">
-							<form>
-								<h5 class="text-uppercase text-white mb-4">Subscribe to our newsletter</h5>
-
-								<label class="small fw-bold text-white" for="newsletter1">Email address</label>
+							<h5 class="text-uppercase text-white mb-4">Subscribe to our newsletter</h5>
+							<form method="POST" action="{{ route('subscribe-to-newsletter') }}">
+								@csrf
+								<label class="small fw-bold text-white" for="newsLetterEmail">Email address</label>
 								<div class="d-flex w-100 gap-2">
-									<input id="newsletter1" type="text" class="form-control" placeholder="Email address" />
-									<button class="btn btn-secondary text-uppercase text-white fw-bold w-25" type="button">Send</button>
+									<input id="newsLetterEmail" name="email" type="email" class="form-control" placeholder="Email address" />
+									<button type="submit" class="btn btn-secondary text-uppercase text-white fw-bold w-25" type="button">Send</button>
 								</div>
 							</form>
 						</div>
