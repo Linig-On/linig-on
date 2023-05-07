@@ -69,10 +69,10 @@ class RegisterController extends Controller
 
             if ($request->img != null) {
                 // get the filename of image uploaded
-                $filename = $request->img->getClientOriginalName();
+                $filename = time() . '_' . $request->img->getClientOriginalName();
 
                 // store in public folder
-                $request->img->move(public_path('img/profile'), time() . '_' . $filename);
+                $request->img->move(public_path('img/profile'), $filename);
             }
 
             // Validate the incoming request data
@@ -160,6 +160,7 @@ class RegisterController extends Controller
             // Validate the incoming request data
             $validatedData = $request->validate([
                 'first_name' => 'required',
+                'resume' => 'required',
                 'last_name' => 'required',
                 'gender' => 'required|max:1',
                 'email' => 'required',
