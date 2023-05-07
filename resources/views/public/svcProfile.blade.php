@@ -415,7 +415,6 @@
 	<form method="POST" action="{{ route('rate-app') }}">
 		@csrf
 		<input type="text" class="d-none" name="user_id" value="{{ Auth::user()->id }}" />
-		<input type="text" />
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header bg-primary text-white"></div>
