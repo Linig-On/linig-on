@@ -40,12 +40,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '233 Juniper Drive, South Burlington VT 05403',
                 'type_of_area' => 'Pool',
                 'landmarks' => 'Beside SM South Burlington',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '07:30:00',
                 'preferred_date' => '2023-05-15',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [
                 'id' => 2,
@@ -62,12 +61,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '2715 Thornbrook Court, Odenton MD 21113',
                 'type_of_area' => 'Garage',
                 'landmarks' => 'Near Ateneo de Odenton University',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '08:30:00',
                 'preferred_date' => '2023-05-16',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [
                 'id' => 3,
@@ -84,12 +82,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '102 Hayes Drive, Pooler GA 31322',
                 'type_of_area' => 'House',
                 'landmarks' => 'Near University of Pooler',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '09:00:00',
                 'preferred_date' => '2023-05-16',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [
                 'id' => 4,
@@ -106,12 +103,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '8673 Burkitt Place Drive, Nolensville TN 371352',
                 'type_of_area' => 'Garage',
                 'landmarks' => 'Near Hotel Nolensville',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '12:30:00',
                 'preferred_date' => '2023-05-20',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni prince jobert to patrick
                 'id' => 5,
@@ -128,12 +124,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '2715 Thornbrook Court, Odenton MD 21113',
                 'type_of_area' => 'Garage',
                 'landmarks' => 'Near Ateneo de Odenton University',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '12:00:00',
                 'preferred_date' => '2023-02-01',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni joems to patrick
                 'id' => 6,
@@ -150,12 +145,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '102 Hayes Drive, Pooler GA 31322',
                 'type_of_area' => 'Pool',
                 'landmarks' => 'Near University of Pooler',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '12:00:00',
                 'preferred_date' => '2023-02-02',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni mark nino to patrick
                 'id' => 7,
@@ -172,12 +166,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '233 Juniper Drive, South Burlington VT 05403',
                 'type_of_area' => 'Room',
                 'landmarks' => 'Beside SM South Burlington',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '01:00:00',
                 'preferred_date' => '2023-02-03',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni denise to patrick
                 'id' => 8,
@@ -194,12 +187,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '8673 Burkitt Place Drive, Nolensville TN 37135',
                 'type_of_area' => 'Room',
                 'landmarks' => 'Near Hotel Nolensville',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '01:00:00',
                 'preferred_date' => '2023-02-04',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni doms to patrick
                 'id' => 9,
@@ -216,12 +208,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '8757 Lamar Circle, Arvada CO 80003',
                 'type_of_area' => 'House',
                 'landmarks' => 'Near Caldiz',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '03:30:00',
                 'preferred_date' => '2023-02-05',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni denise to baby
                 'id' => 10,
@@ -238,12 +229,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '8673 Burkitt Place Drive, Nolensville TN 37135',
                 'type_of_area' => 'Garage',
                 'landmarks' => 'Near Hotel Nolensville',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '12:00:00',
                 'preferred_date' => '2023-02-06',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni mark nino to baby
                 'id' => 11,
@@ -260,12 +250,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '233 Juniper Drive, South Burlington VT 05403',
                 'type_of_area' => 'Pool',
                 'landmarks' => 'Beside SM South Burlington',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '09:30:00',
                 'preferred_date' => '2023-02-07',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni doms to baby
                 'id' => 12,
@@ -282,12 +271,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '8757 Lamar Circle, Arvada CO 80003',
                 'type_of_area' => 'Garage',
                 'landmarks' => 'Near Caldiz',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '03:30:00',
                 'preferred_date' => '2023-02-08',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni prince jobert to baby
                 'id' => 13,
@@ -304,12 +292,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '2715 Thornbrook Court, Odenton MD 21113',
                 'type_of_area' => 'Room',
                 'landmarks' => 'Near Ateneo de Odenton University',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '11:00:00',
                 'preferred_date' => '2023-02-09',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni joems to baby
                 'id' => 14,
@@ -326,12 +313,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '102 Hayes Drive, Pooler GA 31322',
                 'type_of_area' => 'Room',
                 'landmarks' => 'Near University of Pooler',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '12:00:00',
                 'preferred_date' => '2023-02-10',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni doms to bea
                 'id' => 15,
@@ -348,12 +334,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '8757 Lamar Circle, Arvada CO 80003',
                 'type_of_area' => 'House',
                 'landmarks' => 'Near Caldiz',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '01:30:00',
                 'preferred_date' => '2023-02-11',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni denise to bea
                 'id' => 16,
@@ -370,12 +355,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '8673 Burkitt Place Drive, Nolensville TN 37135',
                 'type_of_area' => 'Garage',
                 'landmarks' => 'Near Hotel Nolensville',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '12:00:00',
                 'preferred_date' => '2023-02-12',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni joems to bea
                 'id' => 17,
@@ -392,12 +376,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '102 Hayes Drive, Pooler GA 31322',
                 'type_of_area' => 'Room',
                 'landmarks' => 'Near University of Pooler',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '12:00:00',
                 'preferred_date' => '2023-02-13',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni prince jobert to bea
                 'id' => 18,
@@ -414,12 +397,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '2715 Thornbrook Court, Odenton MD 21113',
                 'type_of_area' => 'Garage',
                 'landmarks' => 'Near Ateneo de Odenton University',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '11:00:00',
                 'preferred_date' => '2023-02-14',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni mark nino to bea
                 'id' => 19,
@@ -436,12 +418,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '233 Juniper Drive, South Burlington VT 05403',
                 'type_of_area' => 'Room',
                 'landmarks' => 'Beside SM South Burlington',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '08:30:00',
                 'preferred_date' => '2023-02-15',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni mark nino to jim
                 'id' => 20,
@@ -458,12 +439,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '233 Juniper Drive, South Burlington VT 05403',
                 'type_of_area' => 'Pool',
                 'landmarks' => 'Beside SM South Burlington',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '08:30:00',
                 'preferred_date' => '2023-02-16',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni prince jobert to jim
                 'id' => 21,
@@ -480,12 +460,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '2715 Thornbrook Court, Odenton MD 21113',
                 'type_of_area' => 'Pool',
                 'landmarks' => 'Near Ateneo de Odenton University',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '12:00:00',
                 'preferred_date' => '2023-02-17',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni joems to jim
                 'id' => 22,
@@ -502,12 +481,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '102 Hayes Drive, Pooler GA 31322',
                 'type_of_area' => 'Room',
                 'landmarks' => 'Near University of Pooler',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '12:00:00',
                 'preferred_date' => '2023-02-18',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni denise to jim
                 'id' => 23,
@@ -524,12 +502,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '8673 Burkitt Place Drive, Nolensville TN 37135',
                 'type_of_area' => 'Garage',
                 'landmarks' => 'Near Hotel Nolensville',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '01:30:00',
                 'preferred_date' => '2023-02-19',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni doms to jim
                 'id' => 24,
@@ -546,12 +523,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '8757 Lamar Circle, Arvada CO 80003',
                 'type_of_area' => 'House',
                 'landmarks' => 'Near Caldiz',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '01:30:00',
                 'preferred_date' => '2023-02-20',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni doms to rob
                 'id' => 25,
@@ -568,12 +544,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '8757 Lamar Circle, Arvada CO 80003',
                 'type_of_area' => 'Pool',
                 'landmarks' => 'Near Caldiz',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '01:30:00',
                 'preferred_date' => '2023-02-21',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni denise to rob
                 'id' => 26,
@@ -590,12 +565,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '8673 Burkitt Place Drive, Nolensville TN 37135',
                 'type_of_area' => 'Room',
                 'landmarks' => 'Near Hotel Nolensville',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '01:30:00',
                 'preferred_date' => '2023-02-22',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni joems to rob
                 'id' => 27,
@@ -612,12 +586,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '102 Hayes Drive, Pooler GA 31322',
                 'type_of_area' => 'Garage',
                 'landmarks' => 'Near University of Pooler',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '11:00:00',
                 'preferred_date' => '2023-02-23',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni prince jobert to rob
                 'id' => 28,
@@ -634,12 +607,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '2715 Thornbrook Court, Odenton MD 21113',
                 'type_of_area' => 'Garage',
                 'landmarks' => 'Near Ateneo de Odenton University',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '12:00:00',
                 'preferred_date' => '2023-02-24',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni mark nino to rob
                 'id' => 29,
@@ -656,12 +628,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '233 Juniper Drive, South Burlington VT 05403',
                 'type_of_area' => 'Room',
                 'landmarks' => 'Beside SM South Burlington',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '08:30:00',
                 'preferred_date' => '2023-02-25',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni mark nino to dia
                 'id' => 30,
@@ -678,12 +649,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '233 Juniper Drive, South Burlington VT 05403',
                 'type_of_area' => 'House',
                 'landmarks' => 'Beside SM South Burlington',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '08:30:00',
                 'preferred_date' => '2023-02-26',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni prince jobert to dia
                 'id' => 31,
@@ -700,12 +670,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '2715 Thornbrook Court, Odenton MD 21113',
                 'type_of_area' => 'Garage',
                 'landmarks' => 'Near Ateneo de Odenton University',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '09:30:00',
                 'preferred_date' => '2023-02-27',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni joems to dia
                 'id' => 32,
@@ -722,12 +691,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '102 Hayes Drive, Pooler GA 31322',
                 'type_of_area' => 'Garage',
                 'landmarks' => 'Near University of Pooler',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '11:00:00',
                 'preferred_date' => '2023-03-28',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni denise to dia
                 'id' => 33,
@@ -744,12 +712,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '8673 Burkitt Place Drive, Nolensville TN 37135',
                 'type_of_area' => 'Garage',
                 'landmarks' => 'Near Hotel Nolensville',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '02:30:00',
                 'preferred_date' => '2023-03-29',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni doms to dia
                 'id' => 34,
@@ -766,12 +733,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '8757 Lamar Circle, Arvada CO 80003',
                 'type_of_area' => 'Room',
                 'landmarks' => 'Near Caldiz',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '08:30:00',
                 'preferred_date' => '2023-03-30',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [//book ni doms to dia
                 'id' => 35,
@@ -788,12 +754,11 @@ class BookingSeeder extends Seeder
                 'client_address' => '8757 Lamar Circle, Arvada CO 80003',
                 'type_of_area' => 'Room',
                 'landmarks' => 'Near Caldiz',
-                'area_image_url' => null, //NULL
-                'additional_details_requests' => null, //NULL
+                'area_image_url' => null, 
+                'additional_details_requests' => null, 
                 'preferred_time' => '08:30:00',
                 'preferred_date' => '2023-03-30',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
         ];
 

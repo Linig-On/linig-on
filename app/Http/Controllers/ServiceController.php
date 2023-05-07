@@ -478,7 +478,7 @@ class ServiceController extends Controller
             ->first();
         
         $listOfBookings = DB::table('bookings')->where('worker_id', $worker->worker_id)->get();
-
+        
         return view('service.svcBookings')->with('listOfBookings', $listOfBookings);
     }
 
@@ -557,6 +557,7 @@ class ServiceController extends Controller
         try {
             $booking = DB::table('bookings')->where('id', (int)$request->input('id'))->first();
             $workerName = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+            $bookingId = 'BK-' . $booking->id . $booking->user_id . $booking->worker_id;
 
             DB::table('bookings')
                 ->where('id', (int)$request->input('id'))
@@ -573,9 +574,9 @@ class ServiceController extends Controller
                 ->first()
                 ->id;
 
-                // send notifications
+            // send notifications
             NotificationHandler::createOnBookingCompleteToUser($booking->user_id, $workerName);
-            NotificationHandler::createOnBookingCompleteToWorker($workerUserId);
+            NotificationHandler::createOnBookingCompleteToWorker($workerUserId, $bookingId);
             
             return response(json_encode(['message' => 'Great! You have completed a booking.']), 200);
         } catch (Exception $th) {

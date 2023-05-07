@@ -155,7 +155,7 @@ class WorkerRatingSeeder extends Seeder
                 'user_id' => 1,
                 'worker_id' =>  3,
                 'name' => 'Mark Alden',
-                'comment' => 'Ako na lang kuta nag linig',
+                'comment' => 'Ako na lang kuta nag linig!',
                 'rating' => 1,
                 'created_at' => Carbon::now(),
                 

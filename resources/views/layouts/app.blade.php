@@ -49,7 +49,7 @@
 								<a href="/" class="nav-link fw-bold {{ request()->is('/') ? 'active' : '' }}">Home</a>
 							</li>
 							<li class="nav-item text-nowrap">
-								<a href="/service" class="nav-link fw-bold {{ request()->is('service') ? 'active' : '' }}">Services</a>
+								<a href="/service" class="nav-link fw-bold {{ request()->is('service') || request()->is('service/filter') || request()->is('service/worker/*') ? 'active' : '' }}">Services</a>
 							</li>
 							<li class="nav-item text-nowrap">
 								<a href="/about" class="nav-link fw-bold {{ request()->is('about') ? 'active' : '' }}">About Us</a>

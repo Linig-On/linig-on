@@ -3,7 +3,7 @@
 * {
 	font-family: "Montserrat", sans-serif;
 	color: var(--default-text);
-	line-height: 1.5;
+	line-height: 2;
 }
 
 *,
@@ -24,8 +24,23 @@ small {
 	font-weight: 800 !important;
 }
 
-.richText-editor {
+.richText-editor, 
+.richText-editor h1, 
+.richText-editor h2, 
+.richText-editor h3, 
+.richText-editor h4 {
 	font-family: "Montserrat", sans-serif !important;
+}
+
+.richText-editor h1, 
+.richText-editor h2, 
+.richText-editor h3, 
+.richText-editor h4,
+#serviceInfoContainer h1, 
+#serviceInfoContainer h2, 
+#serviceInfoContainer h3, 
+#serviceInfoContainer h4 {
+	font-weight: 800;
 }
 
 .fs-inherit {
@@ -35,4 +50,8 @@ small {
 button:focus i.fa-solid.hvr-white,
 button:hover i.fa-solid.hvr-white {
 	color: white;
+}
+
+.lead-md {
+	font-size: 1.3rem;
 }

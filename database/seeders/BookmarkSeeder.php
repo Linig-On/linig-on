@@ -30,105 +30,90 @@ class BookmarkSeeder extends Seeder
                 'user_id' => 1,
                 'worker_id' => 1,
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [
                 'id' => 2,
                 'user_id' => 1,
                 'worker_id' => 2,
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [
                 'id' => 3,
                 'user_id' => 1,
                 'worker_id' => 3,
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [
                 'id' => 4,
                 'user_id' => 2,
                 'worker_id' => 2,
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [
                 'id' => 5,
                 'user_id' => 2,
                 'worker_id' => 4,
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [
                 'id' => 6,
                 'user_id' => 3,
                 'worker_id' => 1,
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [
                 'id' => 7,
                 'user_id' => 3,
                 'worker_id' => 3,
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [
                 'id' => 8,
                 'user_id' => 3,
                 'worker_id' => 4,
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [
                 'id' => 9,
                 'user_id' => 3,
                 'worker_id' => 5,
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [
                 'id' => 10,
                 'user_id' => 4,
                 'worker_id' => 5,
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [
                 'id' => 11,
                 'user_id' => 4,
                 'worker_id' => 6,
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [
                 'id' => 12,
                 'user_id' => 5,
                 'worker_id' => 2,
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [
                 'id' => 13,
                 'user_id' => 5,
                 'worker_id' => 4,
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [
                 'id' => 14,
                 'user_id' => 5,
                 'worker_id' => 5,
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
             [
                 'id' => 15,
                 'user_id' => 5,
                 'worker_id' => 6,
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
             ],
         ];
 

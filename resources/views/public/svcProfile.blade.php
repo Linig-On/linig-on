@@ -166,7 +166,7 @@
 						</button>
 					</div>
 				</div>
-				<div class="col-md-12 shadow p-4 mb-5 rounded-5 border border-1">{!! $workerInfo->service_info !!}</div>
+				<div id="serviceInfoContainer" class="col-md-12 shadow px-5 py-4 mb-5 rounded-5 border border-1" style="border-left: 7px solid var(--secondary) !important; border-top-left-radius: 3px !important; border-bottom-left-radius: 3px !important">{!! $workerInfo->service_info !!}</div>
 				<div class="col-md-12">
 					<div class="d-flex justify-content-between">
 						<h3 class="fw-bolder text-uppercase">Reviews</h3>

@@ -40,7 +40,7 @@ tag-container {
 	padding: 0.2rem 1rem;
 	background-color: var(--secondary);
 	width: max-content;
-	border-radius: 1rem;
+	border-radius: 2rem;
 	font-size: small;
 	font-weight: bold;
 	color: rgba(21, 60, 107, 60%);

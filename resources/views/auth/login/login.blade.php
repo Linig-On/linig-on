@@ -1,6 +1,6 @@
 @extends('layouts.app') @section('content')
 <div class="container fade-in">
-	<div class="card shadow border border-1 rounded-5 p-5">
+	<div class="card shadow border border-1 rounded-5 p-5 mt-5">
 		<div class="card-body px-5 py-4">
 			<div class="row px-5 py-4">
 				<div class="col-md-6">

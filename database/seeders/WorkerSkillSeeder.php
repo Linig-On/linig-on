@@ -98,11 +98,6 @@ class WorkerSkillSeeder extends Seeder
                 'skill' => 'Laundry',
                 'created_at' => Carbon::now()
             ]
-
-
-
-
-
         ];
 
         foreach ($data as $skill) {

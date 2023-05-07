@@ -221,7 +221,7 @@
 		urls: false,
 		table: true,
 		removeStyles: false,
-		code: false,
+		code: true,
 		videoEmbed: false,
 		backgroundColor: false,
 	};

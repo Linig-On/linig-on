@@ -54,7 +54,7 @@ class ContactController extends Controller
 
             // send notification
             if (Auth::check()) {
-                NotificationHandler::createOnSubscribeToNewletter(Auth::user()->id);
+                NotificationHandler::createOnSubscribeToNewsletter(Auth::user()->id);
             }
 
             Session::flash('sent-newsletter-success', 'Thank you for contacting us! we will contact you shortly.');

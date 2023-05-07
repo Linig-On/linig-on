@@ -80,16 +80,16 @@ class NotificationHandler {
         );
     }
 
-    public static function createOnBookingCompleteToWorker($userId) {
+    public static function createOnBookingCompleteToWorker($userId, $bookingId) {
         NotificationHandler::create(
             $userId,
             'Service Done!',
-            'A service has been successfully implemented!',
+            'Booking ' . $bookingId . ' has been finished.',
         );
     }
     // }
 
-    public static function createOnSubscribeToNewletter($userId) {
+    public static function createOnSubscribeToNewsletter($userId) {
         NotificationHandler::create(
             $userId,
             'Newsletter Delivered!',

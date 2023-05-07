@@ -105,7 +105,7 @@
 					<a class="header-brand" href="#"></a>
 					<ul class="header-nav ms-auto">
 						<li class="nav-item dropdown">
-							<a id="notifButton" class="nav-link" href="#" role="button" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+							<a id="notifButton" class="nav-link mt-2" href="#" role="button" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 								<i class="icon icon-lg cil-bell"></i>
 							</a>
 							<!-- start of dropdown div -->
@@ -145,7 +145,7 @@
 							</div>
 						</li>
 					</ul>
-					<ul class="header-nav ms-3">
+					<ul class="header-nav">
 						<li class="nav-item dropdown">
 							<a class="nav-link p-2 px-4 d-flex gap-3 align-items-center rounded-2 text-decoration-none" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 								<div class="avatar border border-dark">
@@ -183,15 +183,61 @@
 				</div>
 			</header>
 			<main class="main w-100">
-				<div class="min-vh-100">@yield('content')</div>
-				<footer class="bg-primary py-5">
-					<div class="container pt-5">
-						<div class="row">
-							<div class="col-2">
-								<img src="{{ asset('svg/site/logo-compressed.svg') }}" alt="" />
-								<p class="text-white small mt-3">© {{ now()->year }} Linig-On.</p>
+				<div class="min-vh-100">
+					@yield('content') @if (session('sent-newsletter-success'))
+					<script text="text/javascript">
+						$(document).ready(function () {
+							$("#newsLetterSuccessBtnTrg").click();
+						});
+					</script>
+					@endif @if (session('sent-newsletter-error'))
+					<script text="text/javascript">
+						$(document).ready(function () {
+							$("#newsLetterFailedBtnTrg").click();
+						});
+					</script>
+					@endif
+					<button class="d-none" id="newsLetterSuccessBtnTrg" data-bs-toggle="modal" data-bs-target="#newsLetterFeedbackSuccessModal">Launch</button>
+					<button class="d-none" id="newsLetterFailedBtnTrg" data-bs-toggle="modal" data-bs-target="#newsLetterFeedbackFailedModal">Launch</button>
+					<!-- Newsletter Feedback Modal (Success) -->
+					<div class="modal fade" id="newsLetterFeedbackSuccessModal" tabindex="-1" aria-labelledby="newsLetterFeedbackSuccessModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header border-0">
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div class="modal-body px-5 py-3 d-flex flex-column text-center">
+									<i class="fa-solid fa-circle-check h1 text-success"></i>
+									<h3 class="fw-bolder text-uppercase text-primary">Subscribed to Newsletter!</h3>
+									<p class="text-primary">Thanks for subscribing to Linig-on's Newsletter! we will contact you shortly. Stay tuned for our future events and promos!</p>
+								</div>
 							</div>
-							<div class="col">
+						</div>
+					</div>
+					<!-- Newsletter Feedback Modal (Failed) -->
+					<div class="modal fade" id="newsLetterFeedbackFailedModal" tabindex="-1" aria-labelledby="newsLetterFeedbackFailedModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header border-0">
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div class="modal-body px-5 py-3 d-flex flex-column text-center">
+									<i class="fa-solid fa-circle-xmark h1 text-danger"></i>
+									<h3 class="fw-bolder text-uppercase text-danger">Failed To Subscribe to our Newsletter!</h3>
+									<p class="text-primary">An error occured while subscribing to our newsletter...</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<footer class="bg-primary py-5">
+					<div class="ceiling container py-5">
+						<div class="row">
+							<div class="alignment col-md-2">
+								<img src="{{ asset('svg/site/logo-compressed.svg') }}" alt="" />
+								<p class="text-white mt-3">© {{ now()->year }} Linig-On.</p>
+							</div>
+							<div class="col-md-5">
 								<div class="row">
 									<div class="col">
 										<h5 class="text-uppercase text-white mb-4">Sitemap</h5>
@@ -200,7 +246,7 @@
 												<a href="/" class="nav-link p-0 text-white">Home</a>
 											</li>
 											<li class="nav-item mb-2">
-												<a href="/service" class="nav-link p-0 text-white">Services</a>
+												<a href="/service" class="nav-link p-0 text-white">Service</a>
 											</li>
 											<li class="nav-item mb-2">
 												<a href="/about" class="nav-link p-0 text-white">About Us</a>
@@ -224,7 +270,7 @@
 												<a href="/" class="nav-link p-0 text-white">Getting Started</a>
 											</li>
 											<li class="nav-item mb-2">
-												<a href="/about" class="nav-link p-0 text-white">FAQ</a>
+												<a href="/about#faq" class="nav-link p-0 text-white">FAQ</a>
 											</li>
 											<li class="nav-item mb-2">
 												<a href="https://github.com/Linig-On/linig-on/issues" class="nav-link p-0 text-white">Report Problems</a>
@@ -233,14 +279,14 @@
 									</div>
 								</div>
 							</div>
-							<div class="col">
-								<form>
-									<h5 class="text-uppercase text-white mb-4">Subscribe to our newsletter</h5>
-
-									<label class="small fw-bold text-white" for="newsletter1">Email address</label>
+							<div class="newsletter col-md-5">
+								<h5 class="text-uppercase text-white mb-4">Subscribe to our newsletter</h5>
+								<form method="POST" action="{{ route('subscribe-to-newsletter') }}">
+									@csrf
+									<label class="small fw-bold text-white" for="newsLetterEmail">Email address</label>
 									<div class="d-flex w-100 gap-2">
-										<input id="newsletter1" type="text" class="form-control" placeholder="Email address" />
-										<button class="btn btn-secondary text-uppercase text-white fw-bold w-25" type="button">Send</button>
+										<input id="newsLetterEmail" name="email" type="email" class="form-control" placeholder="Email address" />
+										<button type="submit" class="btn btn-secondary text-uppercase text-white fw-bold w-25" type="button">Send</button>
 									</div>
 								</form>
 							</div>

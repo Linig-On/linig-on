@@ -121,11 +121,10 @@
 						<h2 class="accordion-header" id="headingOne">
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">How do I book a service?</button>
 						</h2>
-							<div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-								<div class="accordion-body"><strong>Book a service through our website.</strong> 
-								Register first by going through the registration process. After registering, you can find 
-								the different workers with their different skillset in the service page. After booking, the worker will approve
-								your appointment with them. 
+						<div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								<strong>Book a service through our website.</strong>
+								Register first by going through the registration process. After registering, you can find the different workers with their different skillset in the service page. After booking, the worker will approve your appointment with them.
 							</div>
 						</div>
 					</div>
@@ -134,9 +133,7 @@
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">What mode of payments are available for Linig-On?</button>
 						</h2>
 						<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-							<div class="accordion-body"><strong>As of now, Linig-on does not support on-website payment transaction.</strong>Your mode of payment
-								will differ case by case depending on the worker. Some of them will have Gcash as mode of payment, and some will allow
-								on-hand payment.   </div>
+							<div class="accordion-body"><strong>As of now, Linig-on does not support on-website payment transaction.</strong>Your mode of payment will differ case by case depending on the worker. Some of them will have Gcash as mode of payment, and some will allow on-hand payment.</div>
 						</div>
 					</div>
 					<div class="accordion-item">
@@ -144,8 +141,7 @@
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">What area does Linig-on provide services?</button>
 						</h2>
 						<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-							<div class="accordion-body"><strong>Linig-on has workers that services in Naga City and nearby areas only.</strong>As the workers that uses 
-								our website are from Naga City, they will only service to places that they will accept when your appointment request are received by them. </div>
+							<div class="accordion-body"><strong>Linig-on has workers that services in Naga City and nearby areas only.</strong>As the workers that uses our website are from Naga City, they will only service to places that they will accept when your appointment request are received by them.</div>
 						</div>
 					</div>
 				</div>

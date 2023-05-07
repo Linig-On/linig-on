@@ -60,6 +60,42 @@ class WorkerSocialSeeder extends Seeder
                 'worker_id' => 3,
                 'social' => 'www.linkedin.com',
                 'created_at' => Carbon::now()
+            ],
+            [
+                'id' => 7,
+                'worker_id' => 4,
+                'social' => 'www.facebook.com',
+                'created_at' => Carbon::now()
+            ],
+            [
+                'id' => 8,
+                'worker_id' => 4,
+                'social' => 'www.messenger.com',
+                'created_at' => Carbon::now()
+            ],
+            [
+                'id' => 9,
+                'worker_id' => 4,
+                'social' => 'www.linkedin.com',
+                'created_at' => Carbon::now()
+            ],
+            [
+                'id' => 10,
+                'worker_id' => 5,
+                'social' => 'www.linkedin.com',
+                'created_at' => Carbon::now()
+            ],
+            [
+                'id' => 11,
+                'worker_id' => 6,
+                'social' => 'www.facebook.com',
+                'created_at' => Carbon::now()
+            ],
+            [
+                'id' => 12,
+                'worker_id' => 6,
+                'social' => 'www.linkedin.com',
+                'created_at' => Carbon::now()
             ]
         ];
 
