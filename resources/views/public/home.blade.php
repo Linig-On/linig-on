@@ -5,12 +5,15 @@
 			<h1 class="display-2 fw-bolder pt-5 mt-5">
 				Your
 				<span class="text-secondary h1 display-2 fw-bolder"
-					>local service <br />
-					workers <br />
+					>Local Service <br />
+					Workers <br />
 				</span>
-				to your rescue
+				to your Rescue!
 			</h1>
-			<p class="lead-md">Naga City homeowners trust us in all aspects of home services</p>
+			<p class="lead-md p-3">
+				Naga City's service booking application for all homeowners' <br />
+				household needs.
+			</p>
 			@if (Auth::check())
 			<a href="/service" role="button" class="btn btn-primary btn-lg text-uppercase fw-bold mt-3 px-5 py-3 text-decoration-none">Avail Service <i class="fa-solid fa-arrow-right-long text-white"></i></a> @else <a href="/login" role="button" class="btn btn-primary btn-lg text-uppercase fw-bold mt-3 px-5 py-2 text-decoration-none">Avail Service <i class="fa-solid fa-arrow-right-long text-white"></i></a> @endif
 		</div>
@@ -19,11 +22,11 @@
 <div class="spacer"></div>
 <div class="container fade-in">
 	<div class="row">
-		<div class="col-lg-6 col-sm-12 col-xs-12">
+		<div class="col-lg-6 col-sm-12 col-xs-12 mb-5">
 			<img src="{{ asset('svg/illust/undraw-cleaning.svg') }}" alt="" width="500" />
 		</div>
 		<div class="col-lg-6 col-sm-12 col-xs-12">
-			<h2 class="fw-bolder pb-4">LINIG-On! An Online Home Service Application</h2>
+			<h2 class="fw-bolder pb-4 display-6">LINIG-On! An Online Home Service Application</h2>
 			<p class="lead-md">From the bikol word, “linigon” is a website that offers home cleaning services provided by local service workers. It aims to shorten the gap between customers and service workers. Through this website, you can forget the hassle of finding reliable people to solve your cleaning problems!</p>
 		</div>
 	</div>
@@ -33,7 +36,7 @@
 	<img src="{{ asset('svg/illust/bubbles-0.svg') }}" class="position-absolute top-0" alt="" />
 	<img src="{{ asset('svg/illust/bubbles-1.svg') }}" class="position-absolute w-mc end-0 bottom-0" alt="" />
 	<div class="container text-center py-5 fade-in">
-		<h2 class="text-uppercase fw-bolder text-primary mb-5">Top Rated Workers This Month</h2>
+		<h2 class="text-uppercase fw-bolder text-primary mb-5 display-6">Top Rated Workers This Month</h2>
 		<!-- Fetch top rated workers here (use component)... -->
 		<div class="card-group w-75 mx-auto shadow rounded-5">
 			<div class="card py-5 px-3">
@@ -96,7 +99,7 @@
 <div class="spacer"></div>
 <section>
 	<div class="container text-center fade-in">
-		<h2 class="text-uppercase fw-bolder mb-5">What Our Customer Say About Us</h2>
+		<h2 class="text-uppercase fw-bolder mb-5 display-6">What Our Customer Say About Us</h2>
 		<!-- Fetch testimonials here... -->
 		<div class="row">
 			@for ($i = 0; $i < 3; $i++)

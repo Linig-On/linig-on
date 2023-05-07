@@ -234,9 +234,13 @@
 							<form method="POST" action="{{ route('subscribe-to-newsletter') }}">
 								@csrf
 								<label class="small fw-bold text-white" for="newsLetterEmail">Email address</label>
-								<div class="d-flex w-100 gap-2">
-									<input id="newsLetterEmail" name="email" type="email" class="form-control" placeholder="Email address" />
-									<button type="submit" class="btn btn-secondary text-uppercase text-white fw-bold w-25" type="button">Send</button>
+								<div class="row">
+									<div class="col-lg-9 col-sm-12 mb-2">
+										<input id="newsLetterEmail" name="email" type="email" class="form-control" placeholder="Email address" />
+									</div>
+									<div class="col-lg-3 col-sm-12">
+										<button type="submit" class="btn btn-secondary text-uppercase text-white fw-bold" type="button">Send</button>
+									</div>
 								</div>
 							</form>
 						</div>
