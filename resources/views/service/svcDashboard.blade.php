@@ -45,21 +45,21 @@
 						<h4 class="text-uppercase text-primary fw-bolder">Customer Reviews</h4>
 						<div class="d-flex gap-3">
 							<div class="col-3">
-								<div class="avatar" id= "avatarDashboard" style="width: 10rem; height: 10rem">
-									@if ($latestRating->image_url != null)
+								<div class="avatar" id="avatarDashboard" style="width: 10rem; height: 10rem">
+									@if ($latestRating != null) @if ($latestRating->image_url != null)
 									<img class="rounded-circle w-100 h-100" src="{{ asset('img/profile') . '/' . $latestRating->image_url }}" />
 									@else
 									<div class="avatar w-100 h-100 rounded-circle bg-secondary text-white fw-bold">
 										<h2 class="text-white mb-0 fw-bolder">{{ $latestRating->first_name[0] }}</h2>
 									</div>
-									@endif
+									@endif @endif
 								</div>
 							</div>
 							<div class="col">
 								<i class="fa-solid fa-quote-left fa-2xl"></i>
-								<p>{{ $latestRating->comment }}</p>
+								<p>{{ $latestRating ? $latestRating->comment : '--' }}</p>
 								<b
-									><i>- {{ $latestRating->first_name }}</i></b
+									><i>- {{ $latestRating ? $latestRating->first_name : '-' }}</i></b
 								>
 							</div>
 						</div>
@@ -310,7 +310,6 @@
 			type: "POST",
 			success: function (res) {
 				const data = JSON.parse(res);
-
 				$("#closeBtn").trigger("click");
 
 				reloadDataTable(() => {
@@ -322,7 +321,7 @@
 				});
 			},
 			error: function (res) {
-				console.log(res);
+				console.log(JSON.parse(res.responseText));
 			},
 		});
 	};

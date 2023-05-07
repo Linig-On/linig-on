@@ -276,23 +276,23 @@
 						</span>
 						@enderror
 						<div class="form-check m-2">
-							<input name="area_type[]" class="form-check-input" type="checkbox" value="House" id="houseCheck" />
+							<input name="area_type[]" class="form-check-input mt-2" type="checkbox" value="House" id="houseCheck" />
 							<label class="form-check-label small fw-bold" for="houseCheck">House</label>
 						</div>
 						<div class="form-check m-2">
-							<input name="area_type[]" class="form-check-input" type="checkbox" value="Room" id="roomCheck" />
+							<input name="area_type[]" class="form-check-input mt-2" type="checkbox" value="Room" id="roomCheck" />
 							<label class="form-check-label small fw-bold" for="roomCheck">Room</label>
 						</div>
 						<div class="form-check m-2">
-							<input name="area_type[]" class="form-check-input" type="checkbox" value="Garage" id="garageCheck" />
+							<input name="area_type[]" class="form-check-input mt-2" type="checkbox" value="Garage" id="garageCheck" />
 							<label class="form-check-label small fw-bold" for="garageCheck">Garage</label>
 						</div>
 						<div class="form-check m-2">
-							<input name="area_type[]" class="form-check-input" type="checkbox" value="Garden" id="gardenCheck" />
+							<input name="area_type[]" class="form-check-input mt-2" type="checkbox" value="Garden" id="gardenCheck" />
 							<label class="form-check-label small fw-bold" for="gardenCheck">Garden</label>
 						</div>
 						<div class="form-check m-2">
-							<input name="area_type[]" class="form-check-input" type="checkbox" value="Pool" id="poolCheck" />
+							<input name="area_type[]" class="form-check-input mt-2" type="checkbox" value="Pool" id="poolCheck" />
 							<label class="form-check-label small fw-bold" for="poolCheck">Pool</label>
 						</div>
 					</section>

@@ -43,6 +43,7 @@ class ServiceController extends Controller
                 'last_name' => $user->first()->last_name,
                 'skills' => $skills,
                 'short_bio' => $worker->short_bio,
+                'service_info' => $worker->service_info,
             ];
             
             array_push($model, $item);
@@ -111,6 +112,90 @@ class ServiceController extends Controller
         return view('service.svcMyProfile')->with('workerSkills', $workerSkills)->with('workerSocials', $workerSocials)->with('workerId', $workerId);
     }
     
+    /**
+     * POST
+     */
+    public function serviceUpdateWorker(Request $request) 
+    {
+        try {
+            $filename = null;
+            $worker = DB::table('workers')->where('id', $request->worker_id)->get()->first();
+            $user = DB::table('users')->where('id', $worker->user_id)->get()->first();
+
+            if ($request->img != null) {
+                // get the filename of image uploaded
+                $filename = time() . '_' . $request->img->getClientOriginalName();
+
+                // store in public folder
+                $request->img->move(public_path('img/profile'), $filename);
+                
+                User::whereId($user->id)->update(['image_url' => $filename]);
+            }
+
+            // validate the request
+            $data = $request->validate([
+                'contact_number' => 'required|min:11',
+                'address' => 'required',
+                'short_bio' => 'required',
+                'service_info' => 'required',
+                'skills' => 'required',
+                'socials' => 'required'
+            ]);
+
+            /**
+             * update the fields:
+             *  mobile -> (users table); address -> (users table)
+             *  service_info -> (workers table); short_bio -> (workers table)
+             *  skills -> (worker_skills table); socials -> (worker_socials table)
+             */
+
+            Worker::whereId($worker->id)->update([
+                'short_bio' => $data['short_bio'],
+                'service_info' => $data['service_info'],
+                'updated_at' => Carbon::now()
+            ]);
+
+            User::whereId($user->id)->update([
+                'contact_number' => $data['contact_number'],
+                'address' => $data['address'],
+                'updated_at' => Carbon::now()
+            ]);
+
+            // delete all skills and socials on worker
+            DB::table('worker_skills')->where('worker_id', $worker->id)->delete();
+            DB::table('worker_socials')->where('worker_id', $worker->id)->delete();
+
+            // NOTE: this shi- is ugly af. clean this code by using functions and 
+            //      using generics.
+            
+            // add the new skills back to table
+            foreach (json_decode($data['skills'], true) as $skill) {
+                WorkerSkill::create([
+                    'worker_id' => $worker->id,
+                    'skill' => $skill['value'],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now()
+                ]);
+            }
+
+            // add the new skills back to table
+            foreach (json_decode($data['socials'], true) as $social) {
+                WorkerSocial::create([
+                    'worker_id' => $worker->id,
+                    'social' => $social['value'],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now()
+                ]);
+            }
+
+            Session::flash('success','Successfully updated your profile.');
+            return redirect()->back();
+
+        } catch (ValidationException $ex) {
+            return redirect()->back()->withErrors($ex->validator->errors());
+        }
+    }
+
     /**
      * GET
      */
@@ -223,90 +308,6 @@ class ServiceController extends Controller
         } catch (QueryException $th) {
             Session::flash('app-rating-failed', 'Uh oh! Your rating was not successful...');
             return redirect()->back();
-        }
-    }
-
-    /**
-     * POST
-     */
-    public function serviceUpdateWorker(Request $request) 
-    {
-        try {
-            $filename = null;
-            $worker = DB::table('workers')->where('id', $request->worker_id)->get()->first();
-            $user = DB::table('users')->where('id', $worker->user_id)->get()->first();
-
-            if ($request->img != null) {
-                // get the filename of image uploaded
-                $filename = time() . '_' . $request->img->getClientOriginalName();
-
-                // store in public folder
-                $request->img->move(public_path('img/profile'), $filename);
-                
-                User::whereId($user->id)->update(['image_url' => $filename]);
-            }
-
-            // validate the request
-            $data = $request->validate([
-                'contact_number' => 'required|min:11',
-                'address' => 'required',
-                'short_bio' => 'required',
-                'service_info' => 'required',
-                'skills' => 'required',
-                'socials' => 'required'
-            ]);
-
-            /**
-             * update the fields:
-             *  mobile -> (users table); address -> (users table)
-             *  service_info -> (workers table); short_bio -> (workers table)
-             *  skills -> (worker_skills table); socials -> (worker_socials table)
-             */
-
-            Worker::whereId($worker->id)->update([
-                'short_bio' => $data['short_bio'],
-                'service_info' => $data['service_info'],
-                'updated_at' => Carbon::now()
-            ]);
-
-            User::whereId($user->id)->update([
-                'contact_number' => $data['contact_number'],
-                'address' => $data['address'],
-                'updated_at' => Carbon::now()
-            ]);
-
-            // delete all skills and socials on worker
-            DB::table('worker_skills')->where('worker_id', $worker->id)->delete();
-            DB::table('worker_socials')->where('worker_id', $worker->id)->delete();
-
-            // NOTE: this shi- is ugly af. clean this code by using functions and 
-            //      using generics.
-            
-            // add the new skills back to table
-            foreach (json_decode($data['skills'], true) as $skill) {
-                WorkerSkill::create([
-                    'worker_id' => $worker->id,
-                    'skill' => $skill['value'],
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now()
-                ]);
-            }
-
-            // add the new skills back to table
-            foreach (json_decode($data['socials'], true) as $social) {
-                WorkerSocial::create([
-                    'worker_id' => $worker->id,
-                    'social' => $social['value'],
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now()
-                ]);
-            }
-
-            Session::flash('success','Successfully updated your profile.');
-            return redirect()->back();
-
-        } catch (ValidationException $ex) {
-            return redirect()->back()->withErrors($ex->validator->errors());
         }
     }
 
@@ -499,16 +500,15 @@ class ServiceController extends Controller
                     'updated_at' => Carbon::now()
                 ]);
             
-            $workerUserId = DB::table('workers')
+            $worker = DB::table('workers')
                 ->join('users', 'users.id', '=', 'workers.user_id')
-                ->where('workers.id', Auth::user()->id)
+                ->where('workers.id', $booking->worker_id)
                 ->select('workers.id as worker_id', 'users.id as user_id', 'users.*', 'workers.*')
-                ->first()
-                ->id;
+                ->first();
 
             // send notifications
             NotificationHandler::createOnBookingAcceptToUser($booking->user_id, $clientName);
-            NotificationHandler::createOnBookingAcceptToWorker($workerUserId, $clientName);
+            NotificationHandler::createOnBookingAcceptToWorker($worker->user_id, $clientName);
 
             return response(json_encode(['message' => 'You have successfully accepted a booking!']), 200);
         } catch (Exception $th) {
@@ -520,7 +520,7 @@ class ServiceController extends Controller
      * POST
      */
     public function cancelBooking(Request $request) {
-
+        
         try {
             $booking = DB::table('bookings')->where('id', (int)$request->input('id'))->first();
             $clientName = $booking->client_first_name . ' ' . $booking->client_last_name;
@@ -534,14 +534,15 @@ class ServiceController extends Controller
             
             $worker = DB::table('workers')
                 ->join('users', 'users.id', '=', 'workers.user_id')
-                ->where('workers.id', Auth::user()->id)
+                ->where('workers.id', $booking->worker_id)
                 ->select('workers.id as worker_id', 'users.id as user_id', 'users.*', 'workers.*')
                 ->first();
-            $workerName = $worker->first_name . ' ' . $worker->last_name;
+
+            $workerName = Auth::user()->first_name . ' ' . Auth::user()->last_name;
             
             // send notifications
             NotificationHandler::createOnBookingCanceledToUser($booking->user_id, $workerName);
-            NotificationHandler::createOnBookingCanceledToWorker($worker->id, $clientName);
+            NotificationHandler::createOnBookingCanceledToWorker($worker->user_id, $clientName);
 
             return response(json_encode(['message' => 'You have successfully cancelled a booking.']), 200);
         } catch (Exception $th) {
@@ -567,16 +568,15 @@ class ServiceController extends Controller
                     'date_finished' => date('Y-m-d')
                 ]);
     
-            $workerUserId = DB::table('workers')
+            $worker = DB::table('workers')
                 ->join('users', 'users.id', '=', 'workers.user_id')
-                ->where('workers.id', Auth::user()->id)
+                ->where('workers.id', $booking->worker_id)
                 ->select('workers.id as worker_id', 'users.id as user_id', 'users.*', 'workers.*')
-                ->first()
-                ->id;
+                ->first();
 
             // send notifications
             NotificationHandler::createOnBookingCompleteToUser($booking->user_id, $workerName);
-            NotificationHandler::createOnBookingCompleteToWorker($workerUserId, $bookingId);
+            NotificationHandler::createOnBookingCompleteToWorker($worker->user_id, $bookingId);
             
             return response(json_encode(['message' => 'Great! You have completed a booking.']), 200);
         } catch (Exception $th) {

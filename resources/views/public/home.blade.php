@@ -15,7 +15,10 @@
 				household needs.
 			</p>
 			@if (Auth::check())
-			<a href="/service" role="button" class="btn btn-primary btn-lg text-uppercase fw-bold mt-3 px-5 py-3 text-decoration-none">Avail Service <i class="fa-solid fa-arrow-right-long text-white"></i></a> @else <a href="/login" role="button" class="btn btn-primary btn-lg text-uppercase fw-bold mt-3 px-5 py-2 text-decoration-none">Avail Service <i class="fa-solid fa-arrow-right-long text-white"></i></a> @endif
+			<a href="/service" role="button" class="btn btn-primary btn-lg text-uppercase fw-bold mt-3 px-5 py-3 text-decoration-none">Avail Service <i class="fa-solid fa-arrow-right-long text-white"></i></a>
+			@else
+			<a href="/login" role="button" class="btn btn-primary btn-lg text-uppercase fw-bold mt-3 px-5 py-3 text-decoration-none">Avail Service <i class="fa-solid fa-arrow-right-long text-white"></i></a>
+			@endif
 		</div>
 	</div>
 </div>

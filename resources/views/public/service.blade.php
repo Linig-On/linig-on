@@ -43,7 +43,7 @@
 		</div>
 		<section>
 			<ul id="paginatedList" data-current-page="1" aria-live="polite">
-				@foreach($listOfWorkers as $worker)
+				@foreach($listOfWorkers as $worker) @if ($worker['short_bio'] != null || $worker['service_info'] != null)
 				<li>
 					<div class="card shadow border border-1 mb-4">
 						<div class="card-body px-4 py-3">
@@ -82,7 +82,7 @@
 						</div>
 					</div>
 				</li>
-				@endforeach
+				@endif @endforeach
 			</ul>
 		</section>
 	</form>
@@ -98,47 +98,47 @@
 <!-- Pagination Script -->
 <script src="{{ asset('vendor/pagination/pagination.js') }}"></script>
 <script type="text/javascript">
-    // NOTE: this shi- is confusing to read
-    // NOTE: basically it waits for a few ms before adding the fade-in class
-    $(document).ready(function() {
-        initPagination();
-    });
+	// NOTE: this shi- is confusing to read
+	// NOTE: basically it waits for a few ms before adding the fade-in class
+	$(document).ready(function() {
+	    initPagination();
+	});
 
-    const model = {!! json_encode($listOfWorkers) !!};
-    
-    let workerNames = [];
+	const model = {!! json_encode($listOfWorkers) !!};
 
-    model.forEach(element => {
-        let fullName = `${element.first_name} ${element.last_name}`;
-        workerNames.push(fullName);
-    });
+	let workerNames = [];
 
-    $("#searchWorker").keyup(function(el) {
-        const searchTerm = $(this).val().toLowerCase();
+	model.forEach(element => {
+	    let fullName = `${element.first_name} ${element.last_name}`;
+	    workerNames.push(fullName);
+	});
 
-        // Filter the list based on the search term
-        const filteredList = workerNames.filter(function(item) {
-            return item.toLowerCase().indexOf(searchTerm) > -1;
-        });
+	$("#searchWorker").keyup(function(el) {
+	    const searchTerm = $(this).val().toLowerCase();
 
-        console.log(filteredList);
+	    // Filter the list based on the search term
+	    const filteredList = workerNames.filter(function(item) {
+	        return item.toLowerCase().indexOf(searchTerm) > -1;
+	    });
 
-        $("#paginatedList h2[worker-name]").each(function(i, el) {
+	    console.log(filteredList);
 
-            if ($(el).text().toLowerCase().indexOf(searchTerm) > -1) {
-                $(this).closest("li").removeClass("hidden").addClass("fade-in");
-            } else {
-                $(this).closest("li").removeClass("fade-in").addClass("hidden");
-            }
-        });
+	    $("#paginatedList h2[worker-name]").each(function(i, el) {
+
+	        if ($(el).text().toLowerCase().indexOf(searchTerm) > -1) {
+	            $(this).closest("li").removeClass("hidden").addClass("fade-in");
+	        } else {
+	            $(this).closest("li").removeClass("fade-in").addClass("hidden");
+	        }
+	    });
 
 
-        if ($(this).val().length == 0)
-            $("#paginatedList li").slice(3).addClass("hidden");
-    });
+	    if ($(this).val().length == 0)
+	        $("#paginatedList li").slice(3).addClass("hidden");
+	});
 
-    const assignSortBy = function(element) {
-        $("#sortBy").val(`${$(element).attr("value")}`);
-    }
+	const assignSortBy = function(element) {
+	    $("#sortBy").val(`${$(element).attr("value")}`);
+	}
 </script>
 @endsection

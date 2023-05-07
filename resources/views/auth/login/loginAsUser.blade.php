@@ -8,6 +8,12 @@
 	</nav>
 </div>
 <div class="container fade-in">
+	@if (session("register-success"))
+	<div class="alert alert-success mb-3 d-flex gap-3 align-items-center" role="alert">
+		<i class="fa-solid fa-circle-info text-primary"></i>
+		<small class="text-primary fw-semibold">{{ session("register-success") }}</small>
+	</div>
+	@endif
 	<div class="card shadow border border-1 rounded-5 p-5">
 		<div class="card-body px-5 py-4">
 			<div class="row px-5 py-4 gx-5">

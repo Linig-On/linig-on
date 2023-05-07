@@ -148,14 +148,12 @@
 					<ul class="header-nav">
 						<li class="nav-item dropdown">
 							<a class="nav-link p-2 px-4 d-flex gap-3 align-items-center rounded-2 text-decoration-none" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-								<div class="avatar border border-dark">
-									<div class="avatar">
-										@if (Auth::user()->image_url != null)
-										<img class="avatar-img avatar-lg" src="{{ asset('img/profile') . '/' . Auth::user()->image_url }}" />
-										@else
-										<div class="avatar bg-secondary text-white fw-bold">{{ Auth::user()->first_name[0] }}</div>
-										@endif
-									</div>
+								<div class="avatar overflow-hidden" style="width: 2.5rem; height: 2.5rem">
+									@if (Auth::user()->image_url != null)
+									<img class="avatar-img avatar-lg" src="{{ asset('img/profile') . '/' . Auth::user()->image_url }}" />
+									@else
+									<div class="avatar bg-secondary w-100 h-100 text-white fw-bold">{{ Auth::user()->first_name[0] }}</div>
+									@endif
 								</div>
 								<span class="fw-bold">{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}</span>
 							</a>

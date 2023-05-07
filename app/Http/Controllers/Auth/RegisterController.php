@@ -103,6 +103,7 @@ class RegisterController extends Controller
             // Send notification
             NotificationHandler::createOnRegister($user->id);
 
+            Session::flash('register-success', 'Great! You have successfully created an account.');
             // Redirect the user to a success page
             return redirect('/login/user')->with('success', 'Registration successful!');
         } catch (ValidationException $ex) {
@@ -195,7 +196,7 @@ class RegisterController extends Controller
             return redirect('/register/worker/wait-approval')->with('success', 'Registration successful!');
         } catch (ValidationException $ex) {
             Session::flash('missing-fields', 'Please make sure to fill in all of the required fields.');
-            
+
             return redirect()->back()->withInput();
         } catch (QueryException $ex) {
             $errorCode = $ex->errorInfo[1];
