@@ -161,7 +161,11 @@
 			<div class="col-lg-4 text-center">
 				<img src="{{ asset('img/about-us/gene.png') }}" alt="" width="200" />
 				<h5 class="fw-bolder mt-4">Johcel Gene T. Bitara</h5>
-				<p>UI/UX Designer; Frontend-Backend Developer</p>
+				<p>
+					UI/UX Designer <br />
+					Frontend Developer <br />
+					Backend Developer
+				</p>
 				<small>BS-Information Technology</small>
 				<div class="d-flex align-items-center gap-2 mt-3 w-mc mx-auto">
 					<!-- Facebook -->
@@ -181,7 +185,11 @@
 			<div class="col-lg-4 text-center">
 				<img src="{{ asset('img/about-us/kim.png') }}" alt="" width="200" />
 				<h5 class="fw-bolder mt-4">Camela Kim P. Quidip</h5>
-				<p>UI/UX Designer; Frontend-Backend Developer</p>
+				<p>
+					UI/UX Designer <br />
+					Frontend Developer <br />
+					Seeder
+				</p>
 				<small>BS-Information Technology</small>
 				<div class="d-flex align-items-center gap-2 mt-3 w-mc mx-auto">
 					<!-- Facebook -->
@@ -201,7 +209,11 @@
 			<div class="col-lg-4 text-center">
 				<img src="{{ asset('img/about-us/mat.png') }}" alt="" width="200" />
 				<h5 class="fw-bolder mt-4">Mathew P. Talagtag</h5>
-				<p>UI/UX Designer; Frontend-Backend Developer</p>
+				<p>
+					UI/UX Designer <br />
+					Frontend Developer <br />
+					Seeder
+				</p>
 				<small>BS-Information Technology</small>
 				<div class="d-flex align-items-center gap-2 mt-3 w-mc mx-auto">
 					<!-- Facebook -->

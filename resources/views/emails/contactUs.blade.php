@@ -1,12 +1,34 @@
-<div style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; color: #333; margin: 0; padding: 0">
-	<div style="max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)">
-		<h2 style="font-size: 24px; font-weight: bold; color: #333; margin: 0 0 20px; padding: 0">I am {{ $data["name"] }}</h2>
-		and I have a concern.
-		<br />
-		<strong>USER DETAILS </strong><br />
-		<strong>Name: </strong>{{ $data["name"] }} <br />
-		<strong>Email: </strong>{{ $data["email"] }} <br />
-		<strong>Message: </strong>{{ $data["message"] }} <br />
-		Thank you
-	</div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>CONTACT US</title>
+		<style>
+			.p-5 {
+				padding: 1.5rem;
+			}
+			.d-flex {
+				display: flex;
+			}
+			.gap-3 {
+				gap: 1rem;
+			}
+			.text-end {
+				text-align: right;
+			}
+		</style>
+	</head>
+	<body class="p-5 d-flex gap-3">
+		<div>
+			<img src="https://i.imgur.com/e7YNx0i.png" alt="Linig-On Logo" style="display: block; max-width: 20%" />
+			<hr />
+			<p><b>Name:</b> {{ $data["name"] }}</p>
+			<p><b>Email Address:</b> {{ $data["email"] }}</p>
+			<p><b>Message:</b> {{ $data["message"] }}</p>
+			<p class="text-end">Thanks,</p>
+			<p class="text-end">
+				<i>{{ $data["name"] }}</i>
+			</p>
+		</div>
+	</body>
+</html>

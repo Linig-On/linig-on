@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 use App\Mail\ContactMail;
 use App\Models\NewsletterContact;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 class ContactController extends Controller
@@ -45,7 +46,9 @@ class ContactController extends Controller
                 'email' => 'required|email',
             ]);
 
-            NewsletterContact::create($request->all());
+            if (DB::table('newsletter_contacts')->where('email', $request->input('email'))->first() == null) {
+                NewsletterContact::create($request->all());
+            }
 
             Mail::to($request->input('email'))->send(new ContactMail($request->all(), 'newsletter', 'Subscribed to Newsletter: Linig-on!'));
 
