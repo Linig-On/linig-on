@@ -99,7 +99,7 @@
 							</div>
 							<!-- start of navbar dropdown -->
 							<a id="navbarDropdown" class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<div class="avatar">
+								<div class="avatar overflow-hidden">
 									@if (Auth::user()->image_url != null)
 									<img class="avatar-img avatar-lg" src="{{ asset('img/profile') . '/' . Auth::user()->image_url }}" /> @else
 									<div class="avatar bg-secondary text-white fw-bold">{{ Auth::user()->first_name[0] }}</div>
