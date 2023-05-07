@@ -8,11 +8,13 @@ use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\Worker;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
@@ -142,7 +144,7 @@ class RegisterController extends Controller
         try {
             $imgFileName = null;
             $resumeFileName = null;
-
+            
             if ($request->file('img') != null) {
                 // get the filename of file uploaded
                 $imgFileName = time() . '_' . $request->file('img')->getClientOriginalName();
@@ -150,17 +152,18 @@ class RegisterController extends Controller
                 $request->file('img')->move(public_path('img/profile'), $imgFileName);
             }
 
-            if ($request->file('resume') != null) {
+            if ($request->file('resume_url') != null) {
                 // get the filename of file uploaded
-                $resumeFileName = time() . '_' . $request->file('resume')->getClientOriginalName();
+                $resumeFileName = time() . '_' . $request->file('resume_url')->getClientOriginalName();
                 // store in public folder
-                $request->file('resume')->move(public_path('resume/pending-approval'), $resumeFileName);
+                $request->file('resume_url')->move(public_path('resume/pending-approval'), $resumeFileName);
+            } else {
+                throw new ValidationException(500);
             }
-
+            
             // Validate the incoming request data
             $validatedData = $request->validate([
                 'first_name' => 'required',
-                'resume' => 'required',
                 'last_name' => 'required',
                 'gender' => 'required|max:1',
                 'email' => 'required',
@@ -169,7 +172,6 @@ class RegisterController extends Controller
                 'address' => 'required',
             ]);
             
-
             // Create a new user object and fill it with the validated data
             $user = User::create([
                 'first_name' => $validatedData['first_name'],
@@ -182,7 +184,7 @@ class RegisterController extends Controller
                 'image_url' => $imgFileName,
                 'user_type' => 'SVC',
             ]);
-
+            
             Worker::create([
                 'user_id' => $user->id,
                 'resume_url' => $resumeFileName,
@@ -192,13 +194,16 @@ class RegisterController extends Controller
             // Redirect the user to a success page
             return redirect('/register/worker/wait-approval')->with('success', 'Registration successful!');
         } catch (ValidationException $ex) {
-            return redirect()->back()->withErrors($ex->validator->errors())->withInput();
+            Session::flash('missing-fields', 'Please make sure to fill in all of the required fields.');
+            
+            return redirect()->back()->withInput();
         } catch (QueryException $ex) {
             $errorCode = $ex->errorInfo[1];
 
             if ($errorCode == 1062) {
                 // we have a duplicate entry problem
-                return redirect()->back()->withErrors(['msg' => 'This email address already exists.']);
+                Session::flash('email-already-exist', 'This email address already exists.');
+                return redirect()->back();
             }
         }
     }

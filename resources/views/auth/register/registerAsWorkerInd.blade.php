@@ -16,12 +16,17 @@
 	</nav>
 </div>
 <div class="container fade-in">
-	@error("msg")
+	@if (session("email-already-exist"))
 	<div class="alert alert-danger mb-3 d-flex gap-3 align-items-center" role="alert">
 		<i class="fa-solid fa-circle-info text-danger"></i>
-		<small class="text-danger fw-semibold">{{ $message }}</small>
+		<small class="text-danger fw-semibold">{{ session("email-already-exist") }}</small>
 	</div>
-	@enderror
+	@endif @if (session("missing-fields"))
+	<div class="alert alert-danger mb-3 d-flex gap-3 align-items-center" role="alert">
+		<i class="fa-solid fa-circle-info text-danger"></i>
+		<small class="text-danger fw-semibold">{{ session("missing-fields") }}</small>
+	</div>
+	@endif
 	<div class="card shadow border border-1 rounded-5 p-0">
 		<div class="card-body p-0">
 			<form method="POST" action="{{ route('register-worker-individual') }}" enctype="multipart/form-data" class="d-flex flex-column gap-3">
@@ -40,11 +45,11 @@
 								<div class="col-12">
 									<div class="d-flex flex-column gap-3">
 										<label for="resume" class="btn btn-secondary text-uppercase fw-bold">Upload Resume</label>
-										<input id="resume" class="form-control d-none" type="file" name="resume" value="{{ old('resume') }}" accept="application/pdf,application/vnd.ms-excel" />
+										<input id="resume" class="form-control d-none" type="file" name="resume_url" value="{{ old('resume') }}" accept="application/pdf, application/vnd.ms-excel" />
 										<label id="resumeFilePreview" class="small fst-italic"></label>
-										@error('resume')
-										<span class="invalid-feedback" role="alert">
-											<strong class="small text-danger">{{ $message }}</strong>
+										@error('resume_url')
+										<span class="invalid-feedback d-block" role="alert">
+											<strong class="small text-danger">Resume is required.</strong>
 										</span>
 										@enderror
 									</div>
